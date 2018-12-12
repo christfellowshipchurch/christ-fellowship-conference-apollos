@@ -25,19 +25,14 @@ GetLikeData.propTypes = {
   children: PropTypes.func.isRequired,
 };
 
-const UpdateLikeStatus = ({
-  itemId,
-  item = { __typename: null },
-  isLiked,
-  children,
-}) => (
+const UpdateLikeStatus = ({ itemId, item, isLiked, children }) => (
   <Mutation
     mutation={updateLikeEntity}
     optimisticResponse={{
       updateLikeEntity: {
         id: itemId, // unknown at this time
         isLiked: !isLiked,
-        __typename: item.__typename,
+        __typename: item && item.__typename,
       },
     }}
     update={(
@@ -63,24 +58,24 @@ const UpdateLikeStatus = ({
     {(createNewInteraction) =>
       itemId
         ? children({
-            itemId,
-            isLiked,
-            toggleLike: async (variables) => {
-              try {
-                await createNewInteraction({ variables });
-                track({
-                  eventName: isLiked
-                    ? events.UnlikeContent
-                    : events.LikeContent,
-                  properties: {
-                    id: itemId,
-                  },
-                });
-              } catch (e) {
-                throw e.message;
-              }
-            },
-          })
+          itemId,
+          isLiked,
+          toggleLike: async (variables) => {
+            try {
+              await createNewInteraction({ variables });
+              track({
+                eventName: isLiked
+                  ? events.UnlikeContent
+                  : events.LikeContent,
+                properties: {
+                  id: itemId,
+                },
+              });
+            } catch (e) {
+              throw e.message;
+            }
+          },
+        })
         : null
     }
   </Mutation>

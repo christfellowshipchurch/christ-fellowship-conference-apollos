@@ -91,3 +91,4 @@ const getContentCard = gql`
 `;
 
 export default getContentCard;
+console.log("Content Card: ", getContentCard);

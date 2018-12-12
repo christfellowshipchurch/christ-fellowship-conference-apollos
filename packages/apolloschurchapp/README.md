@@ -1,4 +1,4 @@
-# Apollos Church App prototype
+# Christ Fellowship Apollos Church App prototype
 
 [![codecov](https://codecov.io/gh/ApollosProject/apollos-prototype/branch/master/graph/badge.svg)](https://codecov.io/gh/ApollosProject/apollos-prototype)
 

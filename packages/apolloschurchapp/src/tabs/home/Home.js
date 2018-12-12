@@ -12,6 +12,8 @@ import { LiveButton } from '../../live';
 
 import getUserFeed from './getUserFeed';
 
+console.log(getUserFeed)
+
 const LogoTitle = styled(({ theme }) => ({
   height: theme.sizing.baseUnit,
   margin: theme.sizing.baseUnit,
@@ -43,7 +45,7 @@ class Home extends PureComponent {
       <BackgroundView>
         <SafeAreaView>
           <Query query={getUserFeed} fetchPolicy="cache-and-network">
-            {({ loading, error, data, refetch }) => (
+            {({ loading, error, data, refetch }) => (console.log(error, data) ||
               <FeedView
                 ListItemComponent={ContentCardConnected}
                 content={get(data, 'userFeed.edges', []).map(

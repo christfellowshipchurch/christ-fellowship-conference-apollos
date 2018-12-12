@@ -12,9 +12,9 @@ APP:
   # It should match whatver is in your Info.plist `CFBundleURLTypes`
   DEEP_LINK_HOST: apolloschurchapp
 ROCK:
-  API_URL: https://apollosrock.newspring.cc/api
+  API_URL: ${ROCK_API}/api
   API_TOKEN: ${ROCK_TOKEN}
-  IMAGE_URL: https://apollosrock.newspring.cc/GetImage.ashx
+  IMAGE_URL: ${ROCK_API}/GetImage.ashx
 ANALYTICS:
   # Filling out these fields will automatically enable analytics tracking
   # on the accompanying service
@@ -22,21 +22,16 @@ ANALYTICS:
   GA_ID:
 BIBLE_API:
   KEY: ${BIBLE_API_KEY}
-  BIBLE_ID: "9879dbb7cfe39e4d-01"
-CLOUDINARY:
-  # Cloudinary is used to improve image loading
-  # value should look something like
-  # cloudinary://123123123:adkfnla_adASDv_adAS@test
-  URL: ${CLOUDINARY_URL}
+  BIBLE_ID: ${BIBLE_ID}
 
 # This key holds various properties that allow our GraphQL server to map to your Rock Instance
 ROCK_MAPPINGS:
 
   INTERACTIONS:
     # Name of the InteractionChannel that will be created
-    CHANNEL_NAME: Apollos App
+    CHANNEL_NAME: Christ Fellowship App
     # Name of the InteractionComponent that will be created for Content Items
-    COMPONENT_NAME: Apollos Content Item
+    COMPONENT_NAME: Christ Fellowship App Item
     # 512 is "Mobile App"
     CHANNEL_MEDIUM_TYPE_ID: 512
 
@@ -47,21 +42,13 @@ ROCK_MAPPINGS:
     - MediaContentItem
   # Apollos will pull these content channels and expose them in the app on the discover screen.
   DISCOVER_CONTENT_CHANNEL_IDS:
-    - 2
-    - 3
-    - 4
-    - 6
-    - 8
+    - 13
+    - 11
   # Apollos will pull content items from these channels and expose them on the user feed
   # However, it will not expose the channel itself.
   FEED_CONTENT_CHANNEL_IDS:
-    - 1
-    - 2
-    - 3
-    - 4
-    - 5
-    - 6
-    - 8
+    - 13
+    - 11
 
   # The apollos app will show scripture for specific ContentChannelTypeIds, specified here.
   # As of right now, it will pull from the 'scriptures' field.
@@ -72,8 +59,8 @@ ROCK_MAPPINGS:
   # The apollos app will use the content channel types as "Content Series" types. A Content Series
   # is any content item that represents a series of content - Sermon Series, Devotional Series, Podcast Series etc
   SERIES_CONTENT_CHANNEL_TYPE_IDS:
+    - 5
     - 6
-    - 7
 
 # Default mapping of field types -> ids. There's probably no reason to edit this.
 ROCK_CONSTANTS:

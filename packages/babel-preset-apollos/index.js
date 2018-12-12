@@ -47,5 +47,12 @@ module.exports = () => ({
       },
     ],
     '@babel/plugin-proposal-json-strings',
+    [
+      'module-resolver',
+      {
+        cwd: 'babelrc',
+        extensions: ['.android.js', '.ios.js', '.js'],
+      },
+    ],
   ],
 });

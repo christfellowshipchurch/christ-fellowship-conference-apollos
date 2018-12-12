@@ -2,21 +2,21 @@ import { gql } from 'apollo-server';
 
 import { createApolloServerConfig } from '@apollosproject/server-core';
 
+import * as Auth from '@apollosproject/data-connector-rock-auth';
+import {
+  ContentItem,
+  ContentChannel,
+  Sharable,
+} from '@apollosproject/data-connector-rock-content';
 import * as Analytics from '@apollosproject/data-connector-analytics';
+import { Person, Family } from '@apollosproject/data-connector-people';
 import * as Scripture from '@apollosproject/data-connector-bible';
 import * as LiveStream from '@apollosproject/data-connector-church-online';
-import * as Cloudinary from '@apollosproject/data-connector-cloudinary';
 import {
   Followings,
   Interactions,
   RockConstants,
-  Family,
-  Person,
-  ContentItem,
-  ContentChannel,
-  Sharable,
-  Auth,
-} from '@apollosproject/data-connector-rock';
+} from '@apollosproject/data-connector-rock-actions';
 import * as Theme from './theme';
 
 const data = {
@@ -24,7 +24,6 @@ const data = {
   ContentChannel,
   ContentItem,
   Person,
-  Cloudinary,
   Auth,
   LiveStream,
   Theme,
@@ -34,18 +33,10 @@ const data = {
   Sharable,
   Analytics,
   Family,
-  UniversalContentItem: {
-    dataSource: ContentItem.dataSource,
-  }, // alias
-  DevotionalContentItem: {
-    dataSource: ContentItem.dataSource,
-  }, // alias
-  ContentSeriesContentItem: {
-    dataSource: ContentItem.dataSource,
-  }, // alias
-  MediaContentItem: {
-    dataSource: ContentItem.dataSource,
-  }, // alias
+  UniversalContentItem: ContentItem, // alias
+  DevotionalContentItem: ContentItem, // alias
+  ContentSeriesContentItem: ContentItem, // alias
+  MediaContentItem: ContentItem, // alias
 };
 
 const { dataSources, resolvers, schema, context } = createApolloServerConfig(
