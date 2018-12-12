@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import gql from 'graphql-tag';
 
-export const schema = gql`
+export default schema = gql`
     type EventTicketContentItem implements Node & ContentItem {
         id: ID!
         title: String
@@ -11,12 +11,12 @@ export const schema = gql`
         audios: [AudioMedia]
         htmlContent: String
         childContentItemsConnection(
-        first: Int
-        after: String
+            first: Int
+            after: String
         ): ContentItemsConnection
         siblingContentItemsConnection(
-        first: Int
-        after: String
+            first: Int
+            after: String
         ): ContentItemsConnection
         parentChannel: ContentChannel
 

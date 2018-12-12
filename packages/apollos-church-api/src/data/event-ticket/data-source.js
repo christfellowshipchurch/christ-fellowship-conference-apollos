@@ -1,6 +1,6 @@
 
-import { ContentItem } from '@apollosproject/data-connector-rock-content';
+import RockApolloDataSource from '@apollosproject/rock-apollo-data-source';
 
-export default class EventTicketContentItem extends ContentItem {
-
+export default class EventTicketContentItem extends RockApolloDataSource {
+    resource = 'ContentChannelItems';
 }

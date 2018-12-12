@@ -39,7 +39,7 @@ const data = {
   DevotionalContentItem: ContentItem, // alias
   ContentSeriesContentItem: ContentItem, // alias
   MediaContentItem: ContentItem, // alias
-  EventTicketContentItem,
+  EventTicketContentItem: ContentItem,
 };
 
 const { dataSources, resolvers, schema, context } = createApolloServerConfig(

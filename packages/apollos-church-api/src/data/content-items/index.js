@@ -7,10 +7,9 @@ export const resolver = {
     ContentItem: {
         ...ContentItem.resolver.ContentItem,
         __resolveType: async (attrs, ...otherProps) => {
-            console.log("Has Price: ",
-                Object.hasOwnProperty.call(attrs.attributeValues, 'price'));
 
             if (Object.hasOwnProperty.call(attrs.attributeValues, 'price')) {
+                console.log("Found Ticket");
                 return 'EventTicketContentItem';
             }
             return ContentItem.resolver.ContentItem.__resolveType(
@@ -18,5 +17,11 @@ export const resolver = {
                 ...otherProps
             );
         },
+    },
+    SharableContentItem: {
+        url: ({ url = null }) => url,
+        // todo: return a dynamic url that links to the content item
+        title: ({ title = null }) => title,
+        message: ({ message = null }) => message,
     },
 };
