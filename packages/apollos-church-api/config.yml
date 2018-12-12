@@ -42,13 +42,18 @@ ROCK_MAPPINGS:
     - MediaContentItem
   # Apollos will pull these content channels and expose them in the app on the discover screen.
   DISCOVER_CONTENT_CHANNEL_IDS:
-    - 13
-    - 11
+    - 7
+    - 8
+    - 9
+    - 10
+
   # Apollos will pull content items from these channels and expose them on the user feed
   # However, it will not expose the channel itself.
   FEED_CONTENT_CHANNEL_IDS:
-    - 13
-    - 11
+    - 7
+    - 8
+    - 9
+    - 10
 
   # The apollos app will show scripture for specific ContentChannelTypeIds, specified here.
   # As of right now, it will pull from the 'scriptures' field.
@@ -61,6 +66,12 @@ ROCK_MAPPINGS:
   SERIES_CONTENT_CHANNEL_TYPE_IDS:
     - 5
     - 6
+
+  # The apollos app will show ticket pricing and information for specific ContentChannelTypeIds, specified here.
+  # As of right now, it will pull from the 'price' field.
+  # Ignore if this doesn't apply to you.
+  EVENT_TICKET_TYPE_IDS:
+    - 1
 
 # Default mapping of field types -> ids. There's probably no reason to edit this.
 ROCK_CONSTANTS:

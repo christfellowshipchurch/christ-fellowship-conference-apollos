@@ -4,7 +4,6 @@ import { createApolloServerConfig } from '@apollosproject/server-core';
 
 import * as Auth from '@apollosproject/data-connector-rock-auth';
 import {
-  ContentItem,
   ContentChannel,
   Sharable,
 } from '@apollosproject/data-connector-rock-content';
@@ -18,6 +17,9 @@ import {
   RockConstants,
 } from '@apollosproject/data-connector-rock-actions';
 import * as Theme from './theme';
+
+import * as ContentItem from './content-items';
+import * as EventTicketContentItem from './event-ticket';
 
 const data = {
   Followings,
@@ -37,6 +39,7 @@ const data = {
   DevotionalContentItem: ContentItem, // alias
   ContentSeriesContentItem: ContentItem, // alias
   MediaContentItem: ContentItem, // alias
+  EventTicketContentItem,
 };
 
 const { dataSources, resolvers, schema, context } = createApolloServerConfig(
