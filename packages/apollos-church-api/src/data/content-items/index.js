@@ -10,8 +10,10 @@ export const resolver = {
             console.log("Attributes: ",
                 Object.hasOwnProperty.call(attrs.attributeValues, 'price'));
 
-            if (Object.hasOwnProperty.call(attrs.attributeValues, 'price'))
+            if (Object.hasOwnProperty.call(attrs.attributeValues, 'price')) {
+                console.log("Found Event Ticket");
                 return 'EventTicketContentItem';
+            }
             return ContentItem.resolver.ContentItem.__resolveType(
                 attrs,
                 ...otherProps
