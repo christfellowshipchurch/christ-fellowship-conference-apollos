@@ -21,7 +21,8 @@ import * as Theme from './theme';
 import * as ContentItem from './content-items';
 import * as EventTicketContentItem from './event-ticket';
 import * as ConferenceSpeakerContentItem from './conference-speaker';
-import * as Person from './people';
+import * as Person from './rock-people';
+import * as Group from './rock-groups';
 
 const data = {
   Followings,
@@ -43,6 +44,7 @@ const data = {
   MediaContentItem: ContentItem, // alias
   EventTicketContentItem,
   ConferenceSpeakerContentItem,
+  Group,
 };
 
 const { dataSources, resolvers, schema, context } = createApolloServerConfig(
