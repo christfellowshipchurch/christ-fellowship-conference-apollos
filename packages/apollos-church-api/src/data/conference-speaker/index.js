@@ -8,7 +8,7 @@ export { default as dataSource } from './data-source';
 // export { default as resolver } from './resolver';
 
 export const schema = gql`
-    type EventTicketContentItem implements Node & ContentItem {
+    type ConferenceSpeakerContentItem implements ContentItem & Node {
         id: ID!
         title: String
         coverImage: ImageMedia
@@ -32,25 +32,21 @@ export const schema = gql`
         isLiked: Boolean
         likedCount: Int
 
-        startDateTime: String
+        person: Person
+        personId: Int
 
-        ticketPrice: String
-        registration: String
-        color: String
     }
 `;
 
 
 export const resolver = {
-    EventTicketContentItem: {
+    ConferenceSpeakerContentItem: {
         ...ContentItem.resolver.UniversalContentItem,
-        startDateTime: ({ startDateTime, attributeValues }) => {
-            console.log("Logging Attr Values: ", attributeValues);
-            return startDateTime
-        },
-
-        ticketPrice: ({ attributeValues }) => attributeValues.price.value,
-        registration: ({ attributeValues }) => attributeValues.registration.value,
-        color: ({ attributeValues }) => attributeValues.color.value,
+        person: ({ attributeValues }, _, { dataSources }) => {
+            if (attributeValues.person.value) {
+                return dataSources.Person.getFromAlias(attributeValues.person.value);
+            }
+            return null;
+        }
     }
 };

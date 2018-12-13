@@ -9,9 +9,13 @@ export const resolver = {
         __resolveType: async (attrs, ...otherProps) => {
 
             if (Object.hasOwnProperty.call(attrs.attributeValues, 'price')) {
-                console.log("Found Ticket");
                 return 'EventTicketContentItem';
             }
+
+            if (Object.hasOwnProperty.call(attrs.attributeValues, 'person')) {
+                return 'ConferenceSpeakerContentItem';
+            }
+
             return ContentItem.resolver.ContentItem.__resolveType(
                 attrs,
                 ...otherProps

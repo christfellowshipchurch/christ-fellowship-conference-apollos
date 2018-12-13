@@ -8,7 +8,7 @@ import {
   Sharable,
 } from '@apollosproject/data-connector-rock-content';
 import * as Analytics from '@apollosproject/data-connector-analytics';
-import { Person, Family } from '@apollosproject/data-connector-people';
+import { Family } from '@apollosproject/data-connector-people';
 import * as Scripture from '@apollosproject/data-connector-bible';
 import * as LiveStream from '@apollosproject/data-connector-church-online';
 import {
@@ -20,6 +20,8 @@ import * as Theme from './theme';
 
 import * as ContentItem from './content-items';
 import * as EventTicketContentItem from './event-ticket';
+import * as ConferenceSpeakerContentItem from './conference-speaker';
+import * as Person from './people';
 
 const data = {
   Followings,
@@ -39,7 +41,8 @@ const data = {
   DevotionalContentItem: ContentItem, // alias
   ContentSeriesContentItem: ContentItem, // alias
   MediaContentItem: ContentItem, // alias
-  EventTicketContentItem: ContentItem,
+  EventTicketContentItem,
+  ConferenceSpeakerContentItem,
 };
 
 const { dataSources, resolvers, schema, context } = createApolloServerConfig(
