@@ -32,16 +32,8 @@ export default {
                 (typeof description === null ? '' : description),
 
         childGroups:
-            (data, args, context, { parentType }) => {
-                console.log("Attr Values: ", data);
-                //console.log("Args: ", args);
-                //console.log("Context: ", context);
-                //console.log("Parent Type: ", parentType);
-
-                return [];
-
-                return (typeof id === null) ?
-                    [] : dataSources.Group.getChildrenFromParentId(id)
-            },
+            ({ id }, args, { dataSources }) =>
+                (typeof id === null) ?
+                    [] : dataSources.Group.getChildrenFromParentId(id),
     },
 };
