@@ -3,6 +3,8 @@ import RockApolloDataSource from '@apollosproject/rock-apollo-data-source';
 export default class Group extends RockApolloDataSource {
     resource = 'Groups';
 
+    expanded = true;
+
     getFromGuid = (guid) =>
         this.request()
             .find(`Guid eq (guid'${guid}')`)

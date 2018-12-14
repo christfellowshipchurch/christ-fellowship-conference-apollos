@@ -6,6 +6,9 @@ export default gql`
         parentGroupId: Int
         name: String
         description: String
+        
+        image: ImageMedia
+
         childGroups: [Group]
     }
     extend type Query {

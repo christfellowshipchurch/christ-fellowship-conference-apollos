@@ -1,4 +1,13 @@
+import ApollosConfig from '@apollosproject/config';
 import { createGlobalId } from '@apollosproject/server-core';
+
+const { ROCK } = ApollosConfig;
+const enforceProtocol = (uri) => (uri.startsWith('//') ? `https:${uri}` : uri);
+
+const createImageUrl = (uri) =>
+    uri.split('-').length === 5
+        ? `${ROCK.IMAGE_URL}?guid=${uri}`
+        : enforceProtocol(uri);
 
 export default {
     Query: {
@@ -30,6 +39,17 @@ export default {
         description:
             ({ description }) =>
                 (typeof description === null ? '' : description),
+
+        image: ({ attributeValues, attributes }) => {
+            return {
+                __typename: 'ImageMedia',
+                key: "image",
+                name: attributes['image'] ? attributes['image'].name : '',
+                sources: attributeValues['image']
+                    ? [{ uri: createImageUrl(attributeValues['image'].value) }]
+                    : [],
+            };
+        },
 
         childGroups:
             ({ id }, args, { dataSources }) =>
