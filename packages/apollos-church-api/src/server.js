@@ -10,6 +10,7 @@ export default new ApolloServer({
   dataSources,
   context,
   introspection: true,
+  debug: true,
   formatError: (error) => {
     console.error(error.extensions.exception.stacktrace.join('\n'));
     return error;
