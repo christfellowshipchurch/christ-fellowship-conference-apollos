@@ -1,0 +1,3 @@
+packages/apolloschurchapp
+packages/apollos-church-api/.env
+packages/*/node_modules
