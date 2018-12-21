@@ -4,7 +4,7 @@ import { Query } from 'react-apollo';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
-import { LoginButton } from 'apolloschurchapp/src/auth';
+import { LoginButton, Auth } from 'apolloschurchapp/src/auth';
 import {
   H1,
   BodyText,
@@ -70,28 +70,30 @@ class Connect extends PureComponent {
                   </ScrollView>
                 </SafeAreaView>
               );
+
             return (
               <SafeAreaView>
                 <ScrollView>
                   <Header>
                     <BrandIcon />
-                    <Title>Connect!</Title>
+                    <Title>Christ Fellowship Conference 2019</Title>
                     <Paragraph>
                       <BodyText>
-                        Our mission is to help you connect to others as well as
-                        help you in your walk with Christ.
+                        We're so excited for everything coming up this year at
+                        Christ Fellowhsip Conference! And this year, we've got a
+                        new mobile experience to offer.
                       </BodyText>
                     </Paragraph>
                     <Paragraph>
                       <BodyText>
-                        By joining this community, you will unlock amazing
-                        features like; curated content and devotionals, simple
-                        event registration, and easy online giving!
+                        We've got a LOT packed into these few days with you. To
+                        keep up with everything and to get a unique Conference
+                        experience tailored to you, start by signing into your
+                        Conference account.
                       </BodyText>
                     </Paragraph>
                     <StyledLoginButton />
                   </Header>
-                  <ActionTable />
                 </ScrollView>
               </SafeAreaView>
             );
