@@ -2,22 +2,20 @@ import { gql } from 'apollo-server';
 
 import { createApolloServerConfig } from '@apollosproject/server-core';
 
-import * as Auth from '@apollosproject/data-connector-rock-auth';
-import {
-  ContentChannel,
-  Sharable,
-} from '@apollosproject/data-connector-rock-content';
 import * as Analytics from '@apollosproject/data-connector-analytics';
-import { Family } from '@apollosproject/data-connector-people';
 import * as Scripture from '@apollosproject/data-connector-bible';
 import * as LiveStream from '@apollosproject/data-connector-church-online';
 import {
+  Auth,
   Followings,
   Interactions,
   RockConstants,
-} from '@apollosproject/data-connector-rock-actions';
+  Family,
+  Sharable,
+} from '@apollosproject/data-connector-rock';
 import * as Theme from './theme';
 
+import * as ContentChannel from './content-channels';
 import * as ContentItem from './content-items';
 import * as EventTicketContentItem from './event-ticket';
 import * as ConferenceSpeakerContentItem from './conference-speaker';

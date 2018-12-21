@@ -1,31 +1,30 @@
-import { ContentItem } from '@apollosproject/data-connector-rock-content';
+import { ContentItem } from '@apollosproject/data-connector-rock';
 
 export const { schema, dataSource } = ContentItem;
 
 export const resolver = {
-    ...ContentItem.resolver,
-    ContentItem: {
-        ...ContentItem.resolver.ContentItem,
-        __resolveType: async (attrs, ...otherProps) => {
+  ...ContentItem.resolver,
+  ContentItem: {
+    ...ContentItem.resolver.ContentItem,
+    __resolveType: async (attrs, ...otherProps) => {
+      if (Object.hasOwnProperty.call(attrs.attributeValues, 'price')) {
+        return 'EventTicketContentItem';
+      }
 
-            if (Object.hasOwnProperty.call(attrs.attributeValues, 'price')) {
-                return 'EventTicketContentItem';
-            }
+      if (Object.hasOwnProperty.call(attrs.attributeValues, 'person')) {
+        return 'ConferenceSpeakerContentItem';
+      }
 
-            if (Object.hasOwnProperty.call(attrs.attributeValues, 'person')) {
-                return 'ConferenceSpeakerContentItem';
-            }
-
-            return ContentItem.resolver.ContentItem.__resolveType(
-                attrs,
-                ...otherProps
-            );
-        },
+      return ContentItem.resolver.ContentItem.__resolveType(
+        attrs,
+        ...otherProps
+      );
     },
-    SharableContentItem: {
-        url: ({ url = null }) => url,
-        // todo: return a dynamic url that links to the content item
-        title: ({ title = null }) => title,
-        message: ({ message = null }) => message,
-    },
+  },
+  SharableContentItem: {
+    url: ({ url = null }) => url,
+    // todo: return a dynamic url that links to the content item
+    title: ({ title = null }) => title,
+    message: ({ message = null }) => message,
+  },
 };

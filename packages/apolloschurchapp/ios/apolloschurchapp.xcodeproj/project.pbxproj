@@ -1783,7 +1783,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.christfellowshipapollos;
+				PRODUCT_BUNDLE_IDENTIFIER = io.echurch.christfellowshipconference;
 				PRODUCT_NAME = apolloschurchapp;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1817,7 +1817,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.christfellowshipapollos;
+				PRODUCT_BUNDLE_IDENTIFIER = io.echurch.christfellowshipconference;
 				PRODUCT_NAME = apolloschurchapp;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
