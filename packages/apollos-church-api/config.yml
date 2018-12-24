@@ -29,9 +29,9 @@ ROCK_MAPPINGS:
 
   INTERACTIONS:
     # Name of the InteractionChannel that will be created
-    CHANNEL_NAME: Christ Fellowship App
+    CHANNEL_NAME: Christ Fellowship Conference App
     # Name of the InteractionComponent that will be created for Content Items
-    COMPONENT_NAME: Christ Fellowship App Item
+    COMPONENT_NAME: Christ Fellowship Conference App Item
     # 512 is "Mobile App"
     CHANNEL_MEDIUM_TYPE_ID: 512
 
