@@ -26,10 +26,7 @@ export const schema = gql`
     ): ContentItemsConnection
     parentChannel: ContentChannel
 
-    sharing: SharableContentItem
     theme: Theme
-    isLiked: Boolean
-    likedCount: Int
 
     startDateTime: String
 
