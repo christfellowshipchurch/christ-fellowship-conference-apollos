@@ -1,18 +1,35 @@
 import { gql } from 'apollo-server';
 
 export default gql`
-    type Group implements Node {
-        id: ID!
-        parentGroupId: Int
-        name: String
-        description: String
-        
-        image: ImageMedia
+  type AppNavigationContentItem implements Node & ContentItem {
+    id: ID!
+    title: String
+    coverImage: ImageMedia
+    images: [ImageMedia]
+    videos: [VideoMedia]
+    audios: [AudioMedia]
+    htmlContent: String
+    summary: String
+    childContentItemsConnection(
+      first: Int
+      after: String
+    ): ContentItemsConnection
+    siblingContentItemsConnection(
+      first: Int
+      after: String
+    ): ContentItemsConnection
+    parentChannel: ContentChannel
 
-        childGroups: [Group]
-    }
-    extend type Query {
-        group(id: String):  Group
-        groups:             [Group]
-    }
+    sharing: SharableContentItem
+    theme: Theme
+    isLiked: Boolean
+    likedCount: Int
+
+    startDateTime: String
+
+    itemContentChannel: ContentChannel
+    group: Group
+    color: String
+    icon: String
+  }
 `;
