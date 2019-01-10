@@ -16,7 +16,7 @@ export default class Group extends RockApolloDataSource {
    */
   getChildrenFromParentId = (id) =>
     this.request()
-      .filter(`ParentGroupId eq ${id}`)
+      .filter(`ParentGroupId eq ${id} and IsPublic and IsActive`)
       .get();
 
   getFromId = (id) => {
