@@ -32,4 +32,8 @@ export default gql`
     color: String
     icon: String
   }
+
+  extend type Query {
+    getMobileNavigationChannel: [AppNavigationContentItem]
+  }
 `;

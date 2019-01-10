@@ -1,34 +1,11 @@
-import RockApolloDataSource from '@apollosproject/rock-apollo-data-source';
+import { ContentItem } from '@apollosproject/data-connector-rock';
+import ApollosConfig from '@apollosproject/config';
 
-export default class Group extends RockApolloDataSource {
-  resource = 'Groups';
+const { ROCK_MAPPINGS } = ApollosConfig;
 
-  expanded = true;
-
-  getFromGuid = (guid) =>
-    this.request()
-      .find(`Guid eq (guid'${guid}')`)
-      .get();
-
-  /**
-   * TODO : add proper support for checking Int v Guid
-   *      : move Int v Guid checking to data-source
-   */
-  getChildrenFromParentId = (id) =>
-    this.request()
-      .filter(`ParentGroupId eq ${id}`)
-      .get();
-
-  getFromId = (id) => {
-    if (!id) return false;
-    const regexNotDigit = /\D/g;
-    const idNotNumber = id.match(regexNotDigit);
-    return idNotNumber
-      ? this.getFromGuid(id)
-      : this.request()
-          .find(id)
-          .get();
-  };
-
-  getGroups = () => this.request().get();
+export default class AppNavigationContentItem extends ContentItem.dataSource {
+  getMobileNavigationChannel = async () =>
+    this.byContentChannelId(
+      ROCK_MAPPINGS.NAVIGATION_CONTENT_CHANNEL_IDS.MobileTabs[0]
+    ).get();
 }

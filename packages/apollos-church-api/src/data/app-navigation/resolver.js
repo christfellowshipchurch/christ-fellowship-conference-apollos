@@ -17,4 +17,8 @@ export default {
     color: ({ attributeValues }) => attributeValues.color.value,
     icon: ({ attributeValues }) => attributeValues.icon.value,
   },
+  Query: {
+    getMobileNavigationChannel: (root, args, context) =>
+      context.dataSources.AppNavigationContentItem.getMobileNavigationChannel(),
+  },
 };
