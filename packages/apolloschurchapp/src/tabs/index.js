@@ -10,7 +10,6 @@ const TabNavigator = createBottomTabNavigator(
   {
     Home,
     Discover,
-    Connect,
   },
   {
     tabBarComponent: TabBar,
