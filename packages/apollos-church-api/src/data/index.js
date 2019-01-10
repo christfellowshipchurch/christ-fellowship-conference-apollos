@@ -22,6 +22,7 @@ import * as ConferenceSpeakerContentItem from './conference-speaker';
 import * as Person from './rock-people';
 import * as Group from './rock-groups';
 import * as AppNavigationContentItem from './app-navigation';
+import * as ConferenceScheduleContentItem from './conference-schedule';
 
 const data = {
   Followings,
@@ -45,6 +46,7 @@ const data = {
   ConferenceSpeakerContentItem,
   Group,
   AppNavigationContentItem,
+  ConferenceScheduleContentItem,
 };
 
 const { dataSources, resolvers, schema, context } = createApolloServerConfig(

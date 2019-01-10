@@ -20,6 +20,13 @@ export default class ContentChannel extends RockApolloDataSource {
       )
       .get();
 
+  getMobileNavigationChannel = () =>
+    this.request()
+      .filter(
+        `(Id eq ${ROCK_MAPPINGS.NAVIGATION_CONTENT_CHANNEL_IDS.MobileTabs[0]})`
+      )
+      .get();
+
   getFromId = (id) =>
     this.request()
       .filter(`Id eq ${id}`)
@@ -34,8 +41,6 @@ export default class ContentChannel extends RockApolloDataSource {
     );
 
     if (!_id) throw new Error('Invalid Content Channel Guid');
-
-    console.log('Return ID: ', _id[0].id);
 
     return this.getFromId(_id[0].id);
   };
