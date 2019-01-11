@@ -1,4 +1,4 @@
-package org.reactjs.native.christfellowshipapollos;
+package com.christ;
 
 import android.app.Application;
 

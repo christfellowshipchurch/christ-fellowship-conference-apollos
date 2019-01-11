@@ -26,7 +26,7 @@ class LoginButton extends PureComponent {
           return (
             <Button
               onPress={this.handleLoginPress}
-              title="Get Connected"
+              title="Get Started"
               loading={loading}
               {...otherProps}
             />

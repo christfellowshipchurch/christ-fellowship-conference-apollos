@@ -96,8 +96,10 @@ class Auth extends PureComponent {
           <Header>
             <BrandIcon />
             <HeaderText>
-              <Title>Welcome!</Title>
-              <StyledH5>Please sign in to continue</StyledH5>
+              <Title>Let's get started!</Title>
+              <StyledH5>
+                Please sign in to start your Conference 2019 experience
+              </StyledH5>
             </HeaderText>
           </Header>
         </HeaderContainer>

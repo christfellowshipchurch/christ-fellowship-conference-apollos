@@ -8,6 +8,6 @@ const androidUri = ANDROID_URL || '10.0.2.2';
 // Android's emulator requires localhost network traffic to go through 10.0.2.2
 if (Platform.OS === 'android') uri = uri.replace('localhost', androidUri);
 
-console.log(uri);
+console.log('Logging URI: ', uri);
 
 export default createUploadLink({ uri });
