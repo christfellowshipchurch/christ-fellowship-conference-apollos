@@ -17,6 +17,8 @@ const mediaPlayerIsVisibleQuery = gql`
   }
 `;
 
+// TODO : Add property color that passes a HEX Code for the color of the icon when it's Active
+
 const TabBarWrapper = styled(({ theme, mediaPlayerIsVisible }) => ({
   backgroundColor: mediaPlayerIsVisible
     ? theme.colors.screen
@@ -26,7 +28,7 @@ const TabBarWrapper = styled(({ theme, mediaPlayerIsVisible }) => ({
 
 const ThemedBottomTabBar = compose(
   withTheme(({ theme }) => ({
-    showLabel: false,
+    showLabel: true,
     activeTintColor: theme.colors.secondary,
     inactiveTintColor: theme.colors.text.tertiary,
   })),

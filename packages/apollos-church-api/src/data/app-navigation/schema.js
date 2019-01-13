@@ -28,7 +28,7 @@ export default gql`
     startDateTime: String
 
     itemContentChannel: ContentChannel
-    group: Group
+    itemGroup: Group
     color: String
     icon: String
   }

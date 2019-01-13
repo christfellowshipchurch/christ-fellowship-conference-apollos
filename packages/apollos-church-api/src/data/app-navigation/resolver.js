@@ -10,7 +10,7 @@ export default {
             attributeValues.itemContentChannel.value
           )
         : null,
-    group: ({ attributeValues }) =>
+    itemGroup: ({ attributeValues }) =>
       // TODO : Update this to query the group based on the ID
 
       ({}),

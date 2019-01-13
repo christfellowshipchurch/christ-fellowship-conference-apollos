@@ -38,7 +38,7 @@ class ClientProvider extends PureComponent {
     } catch (e) {
       throw e;
     } finally {
-      if (SplashScreen && SplashScreen.hide) SplashScreen.hide();
+      // if (SplashScreen && SplashScreen.hide) SplashScreen.hide();
     }
   }
 
