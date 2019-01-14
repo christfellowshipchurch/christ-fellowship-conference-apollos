@@ -51,6 +51,10 @@ const createTabNavigator = (data) => {
           navigationOptions: {
             title: lowerCase(tab.title),
             tabBarIcon: tabBarIcon(tab.icon),
+            tabBarOptions: {
+              // TODO : Test to see if this actually works | https://github.com/react-navigation/react-navigation/issues/2818#issuecomment-421030796
+              activeTintColor: tab.color,
+            },
           },
           state: {
             params: { itemId: tab.itemContentChannel.id },
@@ -72,11 +76,9 @@ class TabNavigator extends Component {
   };
 
   async componentDidMount() {
-    SplashScreen.show();
     const { data } = await client.query({ query: getNavigation });
 
     this.setState({ data });
-    SplashScreen.hide();
   }
 
   render() {

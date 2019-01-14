@@ -6,7 +6,9 @@ export default gql`
       ... on AppNavigationContentItem {
         id
         title
+
         icon
+        color
 
         itemContentChannel {
           ... on ContentChannel {
