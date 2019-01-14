@@ -66,6 +66,8 @@
 		<string>Inter-UI-Medium.otf</string>
 		<string>Inter-UI-MediumItalic.otf</string>
 		<string>Inter-UI-Regular.otf</string>
+		<string>FontAwesome5_Solid.ttf</string>
+		<string>FontAwesome5_Solid.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
