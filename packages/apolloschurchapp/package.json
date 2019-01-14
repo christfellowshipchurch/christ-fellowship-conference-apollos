@@ -76,6 +76,7 @@
     "apollo-link-schema": "1.1.0",
     "apollo-link-state": "0.4.1",
     "apollo-upload-client": "^8.1.0",
+    "bugsnag-react-native": "^2.13.1",
     "color": "3.0.0",
     "entities": "1.1.1",
     "formik": "0.11.11",
