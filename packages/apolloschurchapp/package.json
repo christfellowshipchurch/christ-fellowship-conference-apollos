@@ -8,12 +8,12 @@
     ]
   },
   "devDependencies": {
+    "@apollosproject/babel-preset-apollos": "0.8.0-alpha.4",
     "@storybook/addon-actions": "4.0.0-alpha.2",
     "@storybook/addon-links": "4.0.0-alpha.2",
     "@storybook/addons": "4.0.0-alpha.2",
     "@storybook/react-native": "4.0.0-alpha.2",
     "apollos-church-api": "link:../apollos-church-api",
-    "@apollosproject/babel-preset-apollos": "0.8.0-alpha.4",
     "babel-preset-react-native": "5",
     "codecov": "3.0.2",
     "get-yarn-workspaces": "1.0.2",
@@ -108,6 +108,7 @@
     "react-native-tab-view": "1.0.2",
     "react-native-video": "3.2.0",
     "react-native-video-controls": "2.2.3",
+    "react-native-webview": "^3.1.2",
     "react-navigation": "2.11.2",
     "recompose": "0.27.1",
     "rn-placeholder": "1.2.0",

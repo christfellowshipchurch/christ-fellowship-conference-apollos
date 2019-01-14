@@ -11,6 +11,7 @@ import NavigationService from './NavigationService';
 import ContentSingle from './content-single';
 import Tabs from './tabs';
 import Auth from './auth';
+import UserWebView from './user-web-view';
 import PersonalDetails from './user-settings/PersonalDetails';
 import ChangePassword from './user-settings/ChangePassword';
 
@@ -30,6 +31,7 @@ const AppNavigator = createStackNavigator(
     Auth,
     PersonalDetails,
     ChangePassword,
+    UserWebView,
   },
   {
     initialRouteName: 'Tabs',
