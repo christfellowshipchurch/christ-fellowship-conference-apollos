@@ -15,7 +15,7 @@ import {
   TableView,
 } from '@apollosproject/ui-kit';
 
-import getUserProfile from '../connect/getUserProfile';
+import getUserProfile from '../tabs/connect/getUserProfile';
 import updateCurrentUser from './updateCurrentUser';
 
 class PersonalDetails extends PureComponent {

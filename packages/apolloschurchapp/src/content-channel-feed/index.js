@@ -9,19 +9,12 @@ import SafeAreaView from 'react-native-safe-area-view';
 import { BackgroundView, FeedView, styled } from '@apollosproject/ui-kit';
 
 import ContentCardConnected from 'apolloschurchapp/src/ui/ContentCardConnected';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import NavigationService from '../NavigationService';
 
 import { LiveButton } from '../live';
 
+import headerOptions from '../tabs/headerOptions';
 import getContentFeed from './getContentFeed';
-
-const LogoTitle = styled(({ theme }) => ({
-  height: theme.sizing.baseUnit,
-  margin: theme.sizing.baseUnit,
-  alignSelf: 'center',
-  resizeMode: 'contain',
-}))(Image);
 
 /**
  * This is where the component description lives
@@ -33,26 +26,8 @@ class ContentChannelFeed extends PureComponent {
   static navigationOptions = ({ navigation }) => {
     const itemTitle = navigation.getParam('itemTitle', 'Content Channel');
     return {
+      ...headerOptions,
       title: itemTitle,
-
-      headerTitle: <LogoTitle source={require('./wordmark.png')} />,
-      headerRight: (
-        <FontAwesome5.Button
-          name={'user-circle'}
-          solid
-          size={26}
-          color="#00aeef"
-          backgroundColor="transparent"
-          underlayColor="transparent"
-          onPress={() => {
-            NavigationService.navigate('Connect');
-          }}
-        />
-      ),
-      headerStyle: {
-        backgroundColor: '#FFFFFF',
-        shadowColor: 'transparent',
-      },
     };
   };
 

@@ -1,54 +1,21 @@
 import React, { PureComponent } from 'react';
 import { Query } from 'react-apollo';
-import { Button, Image, Text } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
+import { FeedView, BackgroundView } from '@apollosproject/ui-kit';
+import headerOptions from '../headerOptions';
 
-import {
-  styled,
-  withTheme,
-  FeedView,
-  BackgroundView,
-} from '@apollosproject/ui-kit';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import NavigationService from '../../NavigationService';
 import ContentCardConnected from '../../ui/ContentCardConnected';
-
-import { LiveButton } from '../../live';
 
 import getUserFeed from './getUserFeed';
 
 // console.log(getUserFeed);
 
-const LogoTitle = styled(({ theme }) => ({
-  height: theme.sizing.baseUnit,
-  margin: theme.sizing.baseUnit,
-  alignSelf: 'center',
-  resizeMode: 'contain',
-}))(Image);
-
 class Home extends PureComponent {
-  static navigationOptions = () => ({
-    headerTitle: <LogoTitle source={require('./wordmark.png')} />,
-    headerRight: (
-      <FontAwesome5.Button
-        name={'user-circle'}
-        solid
-        size={26}
-        color="#00aeef"
-        backgroundColor="transparent"
-        underlayColor="transparent"
-        onPress={() => {
-          NavigationService.navigate('Connect');
-        }}
-      />
-    ),
-    headerStyle: {
-      backgroundColor: '#FFFFFF',
-      shadowColor: 'transparent',
-    },
-  });
+  static navigationOptions = {
+    ...headerOptions,
+  };
 
   static propTypes = {
     navigation: PropTypes.shape({
