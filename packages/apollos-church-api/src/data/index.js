@@ -16,6 +16,7 @@ import {
 import * as Theme from './theme';
 
 import * as ContentChannel from './content-channels';
+import * as AuthenticatedUser from './authenticated-user';
 import * as ContentItem from './content-items';
 import * as EventTicketContentItem from './event-ticket';
 import * as ConferenceSpeakerContentItem from './conference-speaker';
@@ -47,6 +48,7 @@ const data = {
   Group,
   AppNavigationContentItem,
   ConferenceScheduleContentItem,
+  AuthenticatedUser,
 };
 
 const { dataSources, resolvers, schema, context } = createApolloServerConfig(
