@@ -1,9 +1,8 @@
-package com.christ;
+package com.apolloschurchapp;
 
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.oblador.vectoricons.VectorIconsPackage;
 import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.tanguyantoine.react.MusicControl;
@@ -33,7 +32,6 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new VectorIconsPackage(),
             new ReactNativeOneSignalPackage(),
             new ImagePickerPackage(),
             new MusicControl(),
