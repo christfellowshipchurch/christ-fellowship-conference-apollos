@@ -1,4 +1,4 @@
-package com.apolloschurchapp;
+package io.echurch.christfellowshipconference;
 
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;
