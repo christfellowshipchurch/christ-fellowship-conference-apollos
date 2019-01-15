@@ -7714,7 +7714,7 @@ fbjs@0.8.16:
     setimmediate "^1.0.5"
     ua-parser-js "^0.7.9"
 
-fbjs@^0.8.0, fbjs@^0.8.1, fbjs@^0.8.12, fbjs@^0.8.14, fbjs@^0.8.16, fbjs@^0.8.9:
+fbjs@^0.8.0, fbjs@^0.8.1, fbjs@^0.8.12, fbjs@^0.8.14, fbjs@^0.8.16, fbjs@^0.8.17, fbjs@^0.8.9:
   version "0.8.17"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.17.tgz#c4d598ead6949112653d6588b01a5cdcd9f90fdd"
   integrity sha1-xNWY6taUkRJlPWWIsBpc3Nn5D90=
@@ -13375,6 +13375,14 @@ react-native-video@3.2.0:
   dependencies:
     keymirror "0.1.1"
     prop-types "^15.5.10"
+
+react-native-webview@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-3.1.2.tgz#952a137774974d21a3c571356291ceabe0a68660"
+  integrity sha512-lnbLqyFNm3kbjyzXhjHfmcw/A1hf7KuVpjJ/ZmLMEoha6OrppDqYkirEO28Hg9rMTmsZ9pqXYNQOL51L4GiDfQ==
+  dependencies:
+    escape-string-regexp "^1.0.5"
+    fbjs "^0.8.17"
 
 react-native@0.56.0:
   version "0.56.0"
