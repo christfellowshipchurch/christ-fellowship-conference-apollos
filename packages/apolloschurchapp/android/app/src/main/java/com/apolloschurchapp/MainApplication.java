@@ -1,4 +1,4 @@
-package com.christ;
+package com.apolloschurchapp;
 
 import android.app.Application;
 

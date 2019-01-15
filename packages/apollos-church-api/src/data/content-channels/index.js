@@ -1,7 +1,8 @@
 import { ContentChannel } from '@apollosproject/data-connector-rock';
 import gql from 'graphql-tag';
+import dataSource from './data-source';
 
-export const { dataSource } = ContentChannel;
+export { dataSource };
 
 export const schema = gql`
   ${ContentChannel.schema}

@@ -1,30 +1,21 @@
 import React, { PureComponent } from 'react';
 import { Query } from 'react-apollo';
-import { Image } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
+import { FeedView, BackgroundView } from '@apollosproject/ui-kit';
+import headerOptions from '../headerOptions';
 
-import { styled, FeedView, BackgroundView } from '@apollosproject/ui-kit';
 import ContentCardConnected from '../../ui/ContentCardConnected';
-
-import { LiveButton } from '../../live';
 
 import getUserFeed from './getUserFeed';
 
-console.log(getUserFeed);
-
-const LogoTitle = styled(({ theme }) => ({
-  height: theme.sizing.baseUnit,
-  margin: theme.sizing.baseUnit,
-  alignSelf: 'center',
-  resizeMode: 'contain',
-}))(Image);
+// console.log(getUserFeed);
 
 class Home extends PureComponent {
-  static navigationOptions = () => ({
-    header: null,
-  });
+  static navigationOptions = {
+    ...headerOptions,
+  };
 
   static propTypes = {
     navigation: PropTypes.shape({
@@ -37,6 +28,11 @@ class Home extends PureComponent {
   handleOnPress = (item) =>
     this.props.navigation.navigate('ContentSingle', {
       itemId: item.id,
+      transitionKey: item.transitionKey,
+    });
+
+  handleProfilePress = (item) =>
+    this.props.navigation.navigate('Connect', {
       transitionKey: item.transitionKey,
     });
 
@@ -55,12 +51,12 @@ class Home extends PureComponent {
                   isLoading={loading}
                   error={error}
                   refetch={refetch}
-                  ListHeaderComponent={
-                    <>
-                      <LogoTitle source={require('./wordmark.png')} />
-                      <LiveButton />
-                    </>
-                  }
+                  // ListHeaderComponent={
+                  //   <>
+                  //     <LogoTitle source={require('./wordmark.png')} />
+                  //     <LiveButton />
+                  //   </>
+                  // }
                   onPressItem={this.handleOnPress}
                 />
               )

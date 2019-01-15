@@ -1,3 +1,4 @@
+import React from 'react';
 import { createStackNavigator } from 'react-navigation';
 
 import tabBarIcon from '../tabBarIcon';
@@ -15,6 +16,9 @@ export const HomeNavigator = createStackNavigator(
 
 HomeNavigator.navigationOptions = {
   tabBarIcon: tabBarIcon('home'),
+  tabBarOptions: {
+    activeTintColor: '#00aeef',
+  },
 };
 
 export default HomeNavigator;

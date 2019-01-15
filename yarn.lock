@@ -150,7 +150,7 @@
     lodash "^4.17.11"
     with-query "^1.1.2"
 
-"@apollosproject/server-core@^0.8.0-alpha.6", "@apollosproject/server-core@^0.8.0-alpha.6":
+"@apollosproject/server-core@^0.8.0-alpha.6":
   version "0.8.0-alpha.6"
   resolved "https://registry.yarnpkg.com/@apollosproject/server-core/-/server-core-0.8.0-alpha.6.tgz#5712f7be5a68c4cd042be9f7cd722d7d54eb0879"
   integrity sha512-0B6ir+pHSO50ObzZFcQn3eS5uGaSOqZBD43nEkKq00d42IbiCApJRxytDf/0WobR2c+0RSDz+yFgRVG/sDM69w==
@@ -10687,7 +10687,7 @@ lodash@4.17.10, lodash@^4.13.1, lodash@^4.16.4, lodash@^4.16.6, lodash@^4.17.10,
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
   integrity sha512-UejweD1pDoXu+AD825lWwp4ZGtSwgnpZxb3JDViD7StjQz+Nb/6l093lx4OQ0foGWNRoc19mWy7BzL+UAK2iVg==
 
-lodash@^4.17.11:
+lodash@^4.0.0, lodash@^4.17.11:
   version "4.17.11"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
   integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
@@ -13332,6 +13332,15 @@ react-native-tab-view@^0.0.77:
   integrity sha512-9vjD4Ly1Zlum1Y4g23ODpi/F3gYIUIsKWrsZO/Oh5cuX1eiB1DRVn11nY1z+j/hsQfhfyW6nDlmySyDvYQvYCA==
   dependencies:
     prop-types "^15.6.0"
+
+react-native-vector-icons@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-6.1.0.tgz#770a3f8ced692d75deb3afbb9829195ceed1eedd"
+  integrity sha512-1GF5I4VWgwnzBtVfAKNgEiR5ziHi5QaKL381wwApMzuiFgIJMNt5XIChuKwKoaiB86s+P5iMcYWxYCyENL96lA==
+  dependencies:
+    lodash "^4.0.0"
+    prop-types "^15.6.2"
+    yargs "^8.0.2"
 
 react-native-version@2.6.2:
   version "2.6.2"
