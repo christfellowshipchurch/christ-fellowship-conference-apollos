@@ -1,7 +1,8 @@
-import { gql } from 'apollo-server';
+/* eslint-disable camelcase */
+import gql from 'graphql-tag';
 
 export default gql`
-  type AppNavigationContentItem implements Node & ContentItem {
+  type ConferenceGroupContentItem implements ContentItem & Node {
     id: ID!
     title: String
     coverImage: ImageMedia
@@ -20,20 +21,7 @@ export default gql`
     ): ContentItemsConnection
     parentChannel: ContentChannel
 
-    sharing: SharableContentItem
     theme: Theme
-    isLiked: Boolean
-    likedCount: Int
-
-    startDateTime: String
-
-    itemContentChannel: ContentChannel
-    itemGroup: ConferenceGroupContentItem
-    color: String
-    icon: String
-  }
-
-  extend type Query {
-    getMobileNavigationChannel: [AppNavigationContentItem]
+    childGroups: [ConferenceGroupContentItem]
   }
 `;

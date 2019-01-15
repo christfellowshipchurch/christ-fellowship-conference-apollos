@@ -23,6 +23,10 @@ export const resolver = {
         return 'AppNavigationContentItem';
       }
 
+      if (Object.hasOwnProperty.call(attrs, 'groupTypeId')) {
+        return 'ConferenceGroupContentItem';
+      }
+
       return ContentItem.resolver.ContentItem.__resolveType(
         attrs,
         ...otherProps

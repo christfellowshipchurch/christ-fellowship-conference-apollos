@@ -5,9 +5,10 @@ export default class Group extends RockApolloDataSource {
 
   expanded = true;
 
-  getFromGuid = (guid) =>
+  getFromGuid = async (guid) =>
     this.request()
-      .find(`Guid eq (guid'${guid}')`)
+      .filter(`Guid eq (guid'${guid}')`)
+      .transform((list) => list[0])
       .get();
 
   /**

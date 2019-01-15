@@ -10,8 +10,6 @@ import ContentCardConnected from '../../ui/ContentCardConnected';
 
 import getUserFeed from './getUserFeed';
 
-// console.log(getUserFeed);
-
 class Home extends PureComponent {
   static navigationOptions = {
     ...headerOptions,

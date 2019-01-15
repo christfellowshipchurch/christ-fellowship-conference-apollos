@@ -22,13 +22,7 @@ export default {
     /**
      * If Group doesn't have a ParentGroupId, Rock returns { }, not null
      */
-    parentGroupId: ({ parentGroupId }) =>
-      typeof parentGroupId === 'number' ? parentGroupId : null,
-
-    name: ({ name }) => (typeof name === null ? '' : name),
-
-    description: ({ description }) =>
-      typeof description === null ? '' : description,
+    parentGroupId: ({ parentGroupId }) => parentGroupId,
 
     image: ({ attributeValues, attributes }) => ({
       __typename: 'ImageMedia',
