@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>201901110146000</string>
+	<string>201901151225000</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
@@ -45,7 +45,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like to use your camera (for uploading profile pictures)</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like to your microphone (for videos)</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
