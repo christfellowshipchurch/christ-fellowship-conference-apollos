@@ -23,7 +23,6 @@ const createTabNavigator = (data) => {
 
   // Loop through each of the Items returned by Graph
 
-  console.log('Logging Return Data: ', data);
   data.getMobileNavigationChannel.forEach((tab) => {
     if (tab.itemContentChannel === null && tab.group == null) return;
 
@@ -35,14 +34,6 @@ const createTabNavigator = (data) => {
         initialRouteName: 'ContentChannelFeed',
       }
     );
-
-    Feed.navigationOptions = {
-      title: lowerCase(tab.title),
-      tabBarIcon: tabBarIcon(tab.icon),
-      tabBarOptions: {
-        activeTintColor: tab.color,
-      },
-    };
 
     tabObject[capitalize(tab.title)] = tab.itemContentChannel
       ? {
@@ -58,32 +49,9 @@ const createTabNavigator = (data) => {
             tabBarOptions: {
               activeTintColor: tab.color,
             },
-            params: { itemId: tab.itemContentChannel.id },
-          },
-          params: { itemId: tab.itemContentChannel.id },
-          state: {
-            params: { itemId: tab.itemContentChannel.id },
           },
         }
       : GroupView;
-
-    // tabObject[capitalize(tab.title)] = tab.itemContentChannel
-    //   ? {
-    //       screen: Feed,
-    //       navigationOptions: {
-    //         title: lowerCase(tab.title),
-    //         tabBarIcon: tabBarIcon(tab.icon),
-    //         tabBarOptions: {
-    //           activeTintColor: tab.color,
-    //         },
-    //       },
-    //       state: {
-    //         params: { itemId: tab.itemContentChannel.id },
-    //       },
-    //     }
-    //   : GroupView;
-
-    // console.log(`Logging Feed Afterwards: `, tabObject[capitalize(tab.title)]);
   });
 
   return createBottomTabNavigator(tabObject, {
