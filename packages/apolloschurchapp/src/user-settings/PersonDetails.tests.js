@@ -4,7 +4,7 @@ import wait from 'waait';
 
 import Providers from 'apolloschurchapp/src/Providers';
 
-import getUserProfile from '../tabs/connect/getUserProfile';
+import getUserProfile from '../connect/getUserProfile';
 import PersonalDetails from './PersonalDetails';
 
 describe('PersonalDetails component', () => {

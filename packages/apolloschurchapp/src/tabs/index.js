@@ -11,7 +11,6 @@ import ContentChannelFeed from '../content-channel-feed';
 import tabBarIcon from './tabBarIcon';
 import TabBar from './tabBar';
 
-import Connect from './connect';
 import Home from './home';
 import Discover from './discover';
 import GroupView from './discover';

@@ -45,7 +45,7 @@ class ContentChannelFeed extends PureComponent {
           backgroundColor="transparent"
           underlayColor="transparent"
           onPress={() => {
-            console.log('Pressed the Profile Button');
+            NavigationService.navigate('Connect');
           }}
         />
       ),

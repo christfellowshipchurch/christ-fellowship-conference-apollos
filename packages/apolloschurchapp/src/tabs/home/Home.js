@@ -12,6 +12,7 @@ import {
   BackgroundView,
 } from '@apollosproject/ui-kit';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import NavigationService from '../../NavigationService';
 import ContentCardConnected from '../../ui/ContentCardConnected';
 
 import { LiveButton } from '../../live';
@@ -39,8 +40,7 @@ class Home extends PureComponent {
         backgroundColor="transparent"
         underlayColor="transparent"
         onPress={() => {
-          console.log('Pressed the Profile Button');
-          console.log('Logging Props: ', this);
+          NavigationService.navigate('Connect');
         }}
       />
     ),
