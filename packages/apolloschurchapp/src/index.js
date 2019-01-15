@@ -32,11 +32,8 @@ const AppNavigator = createStackNavigator(
     Auth,
     PersonalDetails,
     ChangePassword,
-<<<<<<< HEAD
     UserWebView,
-=======
     Connect,
->>>>>>> master
   },
   {
     initialRouteName: 'Tabs',
