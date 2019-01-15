@@ -7,12 +7,20 @@ export const resolver = {
   ContentItem: {
     ...ContentItem.resolver.ContentItem,
     __resolveType: async (attrs, ...otherProps) => {
+      // console.log(attrs.attributeValues);
+
       if (Object.hasOwnProperty.call(attrs.attributeValues, 'price')) {
         return 'EventTicketContentItem';
       }
 
       if (Object.hasOwnProperty.call(attrs.attributeValues, 'person')) {
         return 'ConferenceSpeakerContentItem';
+      }
+
+      if (
+        Object.hasOwnProperty.call(attrs.attributeValues, 'itemContentChannel')
+      ) {
+        return 'AppNavigationContentItem';
       }
 
       return ContentItem.resolver.ContentItem.__resolveType(

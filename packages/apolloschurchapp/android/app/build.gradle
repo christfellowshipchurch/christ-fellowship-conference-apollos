@@ -88,6 +88,12 @@ project.ext.react = [
 
 apply from: "../../node_modules/react-native/react.gradle"
 
+// Import Fonts from React Native Vector Fonts
+project.ext.vectoricons = [
+    iconFontNames: [ 'FontAwesome5_Regular.ttf', 'FontAwesome5_Solid.ttf' ]
+]
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+
 /**
  * Set this to true to create two separate APKs instead of one:
  *   - An APK that only works on ARM devices
@@ -147,6 +153,7 @@ android {
 }
 
 dependencies {
+    compile project(':bugsnag-react-native')
     compile project(':react-native-onesignal')
     compile project(':react-native-image-picker')
     compile project(':react-native-music-control')
