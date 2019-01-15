@@ -5,7 +5,7 @@ export default class Group extends RockApolloDataSource {
 
   expanded = true;
 
-  getFromGuid = async (guid) =>
+  getFromGuid = (guid) =>
     this.request()
       .filter(`Guid eq (guid'${guid}')`)
       .transform((list) => list[0])
