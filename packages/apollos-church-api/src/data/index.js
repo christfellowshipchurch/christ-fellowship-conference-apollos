@@ -20,6 +20,7 @@ import * as AuthenticatedUser from './authenticated-user';
 import * as ContentItem from './content-items';
 import * as EventTicketContentItem from './event-ticket';
 import * as ConferenceSpeakerContentItem from './conference-speaker';
+import * as ConferenceGroupContentItem from './conference-group';
 import * as Person from './rock-people';
 import * as Group from './rock-groups';
 import * as AppNavigationContentItem from './app-navigation';
@@ -45,6 +46,7 @@ const data = {
   MediaContentItem: ContentItem, // alias
   EventTicketContentItem,
   ConferenceSpeakerContentItem,
+  ConferenceGroupContentItem,
   Group,
   AppNavigationContentItem,
   ConferenceScheduleContentItem,

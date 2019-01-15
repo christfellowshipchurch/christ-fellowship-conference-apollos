@@ -14,12 +14,12 @@ const ContentCardConnected = ({
   tile,
   ...otherProps
 }) => {
-  if (!contentId || isLoading)
-    return null;
+  if (!contentId || isLoading) return null;
 
   return (
     <Query query={getContentCard} variables={{ contentId, tile: !!tile }}>
       {({ data: { node = {} } = {}, loading, error }) => {
+        console.log(error, 'content card error');
         if (error) return <ErrorCard error={error} />;
 
         const metrics = [

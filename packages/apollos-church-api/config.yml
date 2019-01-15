@@ -54,6 +54,8 @@ ROCK_MAPPINGS:
       EntityType: ContentChannelItem
     ConferenceSpeakerContentItem:
       EntityType: ContentChannelItem
+    ConferenceGroupContentItem:
+      EntityType: Group
   # Apollos will pull these content channels and expose them in the app on the discover screen.
   DISCOVER_CONTENT_CHANNEL_IDS:
     - 12

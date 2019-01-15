@@ -57,6 +57,9 @@ export const tileCardFragment = gql`
     ... on UniversalContentItem {
       ...baseCardFragment
     }
+    ... on ConferenceGroupContentItem {
+      ...baseCardFragment
+    }
     ... on DevotionalContentItem {
       ...baseCardFragment
     }
@@ -91,4 +94,3 @@ const getContentCard = gql`
 `;
 
 export default getContentCard;
-console.log("Content Card: ", getContentCard);

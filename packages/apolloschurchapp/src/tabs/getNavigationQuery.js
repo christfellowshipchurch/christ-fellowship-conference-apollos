@@ -9,7 +9,14 @@ export default gql`
 
         icon
         color
-
+        itemGroup {
+          id
+          title
+          childGroups {
+            id
+            title
+          }
+        }
         itemContentChannel {
           ... on ContentChannel {
             id

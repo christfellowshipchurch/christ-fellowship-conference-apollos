@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
-import {
-  createBottomTabNavigator,
-  createStackNavigator,
-} from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation';
 import { capitalize, lowerCase } from 'lodash';
 import { client } from '../client';
 
 import ContentChannelFeed from '../content-channel-feed';
+import ContentGroupFeed from '../content-group-feed';
 import tabBarIcon from './tabBarIcon';
 import TabBar from './tabBar';
 
 import Home from './home';
-import GroupView from './discover';
 
 import getNavigation from './getNavigationQuery';
 
@@ -23,34 +20,28 @@ const createTabNavigator = (data) => {
   // Loop through each of the Items returned by Graph
 
   data.getMobileNavigationChannel.forEach((tab) => {
-    if (tab.itemContentChannel === null && tab.group == null) return;
+    if (tab.itemContentChannel === null && tab.itemGroup == null) return;
 
-    const Feed = createStackNavigator(
-      {
-        ContentChannelFeed,
+    const isGroup = !tab.itemContentChannel;
+
+    const RenderComponent = isGroup ? ContentGroupFeed : ContentChannelFeed;
+
+    const itemId = isGroup ? tab.itemGroup.id : tab.itemContentChannel.id;
+
+    console.log({ isGroup });
+
+    tabObject[capitalize(tab.title)] = {
+      screen: () => (
+        <RenderComponent name={tab.title} screenProps={{ itemId }} />
+      ),
+      navigationOptions: {
+        title: lowerCase(tab.title),
+        tabBarIcon: tabBarIcon(tab.icon),
+        tabBarOptions: {
+          activeTintColor: tab.color,
+        },
       },
-      {
-        initialRouteName: 'ContentChannelFeed',
-      }
-    );
-
-    tabObject[capitalize(tab.title)] = tab.itemContentChannel
-      ? {
-          screen: () => (
-            <Feed
-              name={tab.title}
-              screenProps={{ itemId: tab.itemContentChannel.id }}
-            />
-          ),
-          navigationOptions: {
-            title: lowerCase(tab.title),
-            tabBarIcon: tabBarIcon(tab.icon),
-            tabBarOptions: {
-              activeTintColor: tab.color,
-            },
-          },
-        }
-      : GroupView;
+    };
   });
 
   return createBottomTabNavigator(tabObject, {

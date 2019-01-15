@@ -1,3 +1,4 @@
+import { createStackNavigator } from 'react-navigation';
 import React, { PureComponent } from 'react';
 import { Query } from 'react-apollo';
 import { get } from 'lodash';
@@ -5,21 +6,20 @@ import PropTypes from 'prop-types';
 
 import SafeAreaView from 'react-native-safe-area-view';
 
-import { createStackNavigator } from 'react-navigation';
 import { BackgroundView, FeedView } from '@apollosproject/ui-kit';
 
 import ContentCardConnected from 'apolloschurchapp/src/ui/ContentCardConnected';
 import NavigationService from '../NavigationService';
 
 import headerOptions from '../tabs/headerOptions';
-import getContentFeed from './getContentFeed';
+import getGroupFeed from './getGroupFeed';
 
 /**
  * This is where the component description lives
  * A FeedView wrapped in a query to pull content data.
  */
 
-class ContentChannelFeed extends PureComponent {
+class ContentGroupFeed extends PureComponent {
   /** Function for React Navigation to set information in the header. */
   static navigationOptions = ({ navigation }) => {
     const itemTitle = navigation.getParam('itemTitle', 'Content Channel');
@@ -54,23 +54,18 @@ class ContentChannelFeed extends PureComponent {
 
   render() {
     const { itemId } = this.props.screenProps;
-
     return (
       <BackgroundView>
         <SafeAreaView>
           <Query
-            query={getContentFeed}
+            query={getGroupFeed}
             variables={{ itemId }}
             fetchPolicy="cache-and-network"
           >
             {({ loading, error, data, refetch }) => (
               <FeedView
                 ListItemComponent={ContentCardConnected}
-                content={get(
-                  data,
-                  'node.childContentItemsConnection.edges',
-                  []
-                ).map((edge) => edge.node)}
+                content={get(data, 'node.childGroups', [])}
                 isLoading={loading}
                 error={error}
                 refetch={refetch}
@@ -86,9 +81,9 @@ class ContentChannelFeed extends PureComponent {
 
 export default createStackNavigator(
   {
-    ContentChannelFeed,
+    ContentGroupFeed,
   },
   {
-    initialRouteName: 'ContentChannelFeed',
+    initialRouteName: 'ContentGroupFeed',
   }
 );
