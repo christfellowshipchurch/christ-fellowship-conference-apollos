@@ -1,18 +1,24 @@
 import React, { PureComponent } from 'react';
 import { Query } from 'react-apollo';
-import { Image } from 'react-native';
+import { Button, Image, Text } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
-import { styled, FeedView, BackgroundView } from '@apollosproject/ui-kit';
+import {
+  styled,
+  withTheme,
+  FeedView,
+  BackgroundView,
+} from '@apollosproject/ui-kit';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import ContentCardConnected from '../../ui/ContentCardConnected';
 
 import { LiveButton } from '../../live';
 
 import getUserFeed from './getUserFeed';
 
-console.log(getUserFeed);
+// console.log(getUserFeed);
 
 const LogoTitle = styled(({ theme }) => ({
   height: theme.sizing.baseUnit,
@@ -23,7 +29,25 @@ const LogoTitle = styled(({ theme }) => ({
 
 class Home extends PureComponent {
   static navigationOptions = () => ({
-    header: null,
+    headerTitle: <LogoTitle source={require('./wordmark.png')} />,
+    headerRight: (
+      <FontAwesome5.Button
+        name={'user-circle'}
+        solid
+        size={26}
+        color="#00aeef"
+        backgroundColor="transparent"
+        underlayColor="transparent"
+        onPress={() => {
+          console.log('Pressed the Profile Button');
+          console.log('Logging Props: ', this);
+        }}
+      />
+    ),
+    headerStyle: {
+      backgroundColor: '#FFFFFF',
+      shadowColor: 'transparent',
+    },
   });
 
   static propTypes = {
@@ -37,6 +61,11 @@ class Home extends PureComponent {
   handleOnPress = (item) =>
     this.props.navigation.navigate('ContentSingle', {
       itemId: item.id,
+      transitionKey: item.transitionKey,
+    });
+
+  handleProfilePress = (item) =>
+    this.props.navigation.navigate('Connect', {
       transitionKey: item.transitionKey,
     });
 
@@ -55,12 +84,12 @@ class Home extends PureComponent {
                   isLoading={loading}
                   error={error}
                   refetch={refetch}
-                  ListHeaderComponent={
-                    <>
-                      <LogoTitle source={require('./wordmark.png')} />
-                      <LiveButton />
-                    </>
-                  }
+                  // ListHeaderComponent={
+                  //   <>
+                  //     <LogoTitle source={require('./wordmark.png')} />
+                  //     <LiveButton />
+                  //   </>
+                  // }
                   onPressItem={this.handleOnPress}
                 />
               )

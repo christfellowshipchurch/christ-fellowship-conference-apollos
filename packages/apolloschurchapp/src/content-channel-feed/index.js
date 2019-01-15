@@ -9,14 +9,12 @@ import SafeAreaView from 'react-native-safe-area-view';
 import { BackgroundView, FeedView, styled } from '@apollosproject/ui-kit';
 
 import ContentCardConnected from 'apolloschurchapp/src/ui/ContentCardConnected';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import NavigationService from '../NavigationService';
 
 import { LiveButton } from '../live';
+
 import getContentFeed from './getContentFeed';
-/**
- * This is where the component description lives
- * A FeedView wrapped in a query to pull content data.
- */
 
 const LogoTitle = styled(({ theme }) => ({
   height: theme.sizing.baseUnit,
@@ -25,12 +23,36 @@ const LogoTitle = styled(({ theme }) => ({
   resizeMode: 'contain',
 }))(Image);
 
+/**
+ * This is where the component description lives
+ * A FeedView wrapped in a query to pull content data.
+ */
+
 class ContentChannelFeed extends PureComponent {
   /** Function for React Navigation to set information in the header. */
   static navigationOptions = ({ navigation }) => {
     const itemTitle = navigation.getParam('itemTitle', 'Content Channel');
     return {
       title: itemTitle,
+
+      headerTitle: <LogoTitle source={require('./wordmark.png')} />,
+      headerRight: (
+        <FontAwesome5.Button
+          name={'user-circle'}
+          solid
+          size={26}
+          color="#00aeef"
+          backgroundColor="transparent"
+          underlayColor="transparent"
+          onPress={() => {
+            console.log('Pressed the Profile Button');
+          }}
+        />
+      ),
+      headerStyle: {
+        backgroundColor: '#FFFFFF',
+        shadowColor: 'transparent',
+      },
     };
   };
 
@@ -48,7 +70,6 @@ class ContentChannelFeed extends PureComponent {
    * Takes the user to the ContentSingle
    */
   handleOnPress = (item) => {
-    console.log(item);
     NavigationService.navigate('ContentSingle', {
       itemId: item.id,
       sharing: item.sharing,
@@ -56,11 +77,8 @@ class ContentChannelFeed extends PureComponent {
   };
 
   render() {
-    const { navigation } = this.props;
-    const itemId = this.props.itemId;
-    // const itemId = navigation.getParam('itemId', []);
-    console.log('Content Channel Feed: ', itemId);
-    console.log('Content Channel Feed Nav: ', navigation);
+    const itemId = this.props.screenProps.itemId;
+
     return (
       <BackgroundView>
         <SafeAreaView>
@@ -79,14 +97,8 @@ class ContentChannelFeed extends PureComponent {
                 ).map((edge) => edge.node)}
                 isLoading={loading}
                 error={error}
-                // refetch={refetch}
+                refetch={refetch}
                 onPressItem={this.handleOnPress}
-                ListHeaderComponent={
-                  <>
-                    <LogoTitle source={require('./wordmark.png')} />
-                    <LiveButton />
-                  </>
-                }
               />
             )}
           </Query>

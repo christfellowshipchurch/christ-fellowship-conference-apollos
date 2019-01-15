@@ -1,39 +1,27 @@
 import React, { Component } from 'react';
-import { createBottomTabNavigator } from 'react-navigation';
+import { Image } from 'react-native';
+import {
+  createBottomTabNavigator,
+  createStackNavigator,
+} from 'react-navigation';
 import { capitalize, lowerCase } from 'lodash';
-import SplashScreen from 'react-native-splash-screen';
 import { client } from '../client';
 
-import ContentChannelView from '../content-channel-feed/index';
+import ContentChannelFeed from '../content-channel-feed';
 import tabBarIcon from './tabBarIcon';
 import TabBar from './tabBar';
 
 import Connect from './connect';
 import Home from './home';
 import Discover from './discover';
-
 import GroupView from './discover';
 
 import getNavigation from './getNavigationQuery';
 
-// const TabNavigator = createBottomTabNavigator(
-//   {
-//     Home,
-//     Discover,
-//     Connect,
-//   },
-//   {
-//     tabBarComponent: TabBar,
-//     lazy: true,
-//     removeClippedSubviews: true,
-//   }
-// );
-
-// TODO : Create a function that runs a query and returns creatBottomTabNavigator
-//        apollo client instead of React Apollo
-
 const createTabNavigator = (data) => {
-  const tabObject = {};
+  const tabObject = {
+    Home,
+  };
 
   // Loop through each of the Items returned by Graph
 
@@ -41,26 +29,63 @@ const createTabNavigator = (data) => {
   data.getMobileNavigationChannel.forEach((tab) => {
     if (tab.itemContentChannel === null && tab.group == null) return;
 
-    console.log('Item Content Channel Id: ', tab.itemContentChannel.id);
+    const Feed = createStackNavigator(
+      {
+        ContentChannelFeed,
+      },
+      {
+        initialRouteName: 'ContentChannelFeed',
+      }
+    );
+
+    Feed.navigationOptions = {
+      title: lowerCase(tab.title),
+      tabBarIcon: tabBarIcon(tab.icon),
+      tabBarOptions: {
+        activeTintColor: tab.color,
+      },
+    };
 
     tabObject[capitalize(tab.title)] = tab.itemContentChannel
       ? {
-          screen: (props) => (
-            <ContentChannelView {...props} itemId={tab.itemContentChannel.id} />
+          screen: () => (
+            <Feed
+              name={tab.title}
+              screenProps={{ itemId: tab.itemContentChannel.id }}
+            />
           ),
           navigationOptions: {
             title: lowerCase(tab.title),
             tabBarIcon: tabBarIcon(tab.icon),
             tabBarOptions: {
-              // TODO : Test to see if this actually works | https://github.com/react-navigation/react-navigation/issues/2818#issuecomment-421030796
               activeTintColor: tab.color,
             },
+            params: { itemId: tab.itemContentChannel.id },
           },
+          params: { itemId: tab.itemContentChannel.id },
           state: {
             params: { itemId: tab.itemContentChannel.id },
           },
         }
       : GroupView;
+
+    // tabObject[capitalize(tab.title)] = tab.itemContentChannel
+    //   ? {
+    //       screen: Feed,
+    //       navigationOptions: {
+    //         title: lowerCase(tab.title),
+    //         tabBarIcon: tabBarIcon(tab.icon),
+    //         tabBarOptions: {
+    //           activeTintColor: tab.color,
+    //         },
+    //       },
+    //       state: {
+    //         params: { itemId: tab.itemContentChannel.id },
+    //       },
+    //     }
+    //   : GroupView;
+
+    // console.log(`Logging Feed Afterwards: `, tabObject[capitalize(tab.title)]);
   });
 
   return createBottomTabNavigator(tabObject, {
