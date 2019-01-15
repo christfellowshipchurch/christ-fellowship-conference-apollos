@@ -63,15 +63,17 @@ ROCK_MAPPINGS:
   FEED_CONTENT_CHANNEL_IDS:
     - 12
 
-  # The apollos app will show ticket pricing and information for specific ContentChannelTypeIds, specified here.
-  # As of right now, it will pull from the 'price' field.
-  # Ignore if this doesn't apply to you.
+  # This is not actively in use, but can be later configured to handle website specific content channels
   WEBSITE_CONTENT_CHANNEL_IDS:
     - 7
     - 8
     - 9
     - 10
     - 11
+
+  NAVIGATION_CONTENT_CHANNEL_IDS:
+    MobileTabs:
+      - 13
 
 # Default mapping of field types -> ids. There's probably no reason to edit this.
 ROCK_CONSTANTS:
