@@ -11,7 +11,6 @@ import tabBarIcon from './tabBarIcon';
 import TabBar from './tabBar';
 
 import Home from './home';
-import Discover from './discover';
 import GroupView from './discover';
 
 import getNavigation from './getNavigationQuery';

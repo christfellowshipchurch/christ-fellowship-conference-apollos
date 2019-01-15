@@ -1,17 +1,14 @@
 import React, { PureComponent } from 'react';
-import { Image } from 'react-native';
 import { Query } from 'react-apollo';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
 import SafeAreaView from 'react-native-safe-area-view';
 
-import { BackgroundView, FeedView, styled } from '@apollosproject/ui-kit';
+import { BackgroundView, FeedView } from '@apollosproject/ui-kit';
 
 import ContentCardConnected from 'apolloschurchapp/src/ui/ContentCardConnected';
 import NavigationService from '../NavigationService';
-
-import { LiveButton } from '../live';
 
 import headerOptions from '../tabs/headerOptions';
 import getContentFeed from './getContentFeed';
@@ -39,6 +36,9 @@ class ContentChannelFeed extends PureComponent {
       getParam: PropTypes.func,
       navigate: PropTypes.func,
     }),
+    screenProps: PropTypes.shape({
+      itemId: PropTypes.string.isRequired,
+    }).isRequired,
   };
 
   /** Function that is called when a card in the feed is pressed.
@@ -52,7 +52,7 @@ class ContentChannelFeed extends PureComponent {
   };
 
   render() {
-    const itemId = this.props.screenProps.itemId;
+    const { itemId } = this.props.screenProps;
 
     return (
       <BackgroundView>
