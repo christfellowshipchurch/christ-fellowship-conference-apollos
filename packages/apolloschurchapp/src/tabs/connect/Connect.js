@@ -3,6 +3,7 @@ import { View, ScrollView, SafeAreaView } from 'react-native';
 import { Query } from 'react-apollo';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
+import { HeaderBackButton } from 'react-navigation';
 
 import { LoginButton, Auth } from 'apolloschurchapp/src/auth';
 import {
@@ -50,9 +51,9 @@ const CallToActionContainer = styled(({ theme }) => ({
 }))(View);
 
 class Connect extends PureComponent {
-  static navigationOptions = () => ({
+  static navigationOptions = ({ navigation }) => ({
     title: 'Connect',
-    header: null,
+    headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)} />,
   });
 
   static propTypes = {

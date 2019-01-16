@@ -20,3 +20,7 @@ const ConnectNavigator = createStackNavigator(
 );
 
 export default ConnectNavigator;
+
+ConnectNavigator.navigationOptions = {
+  header: null,
+};
