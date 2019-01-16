@@ -1,15 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
 import {
   H3,
+  H4,
+  H5,
   PaddedView,
   ConnectedImage,
   styled,
   ChannelLabel,
   withIsLoading,
 } from '@apollosproject/ui-kit';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import AvatarForm from './AvatarForm';
 
@@ -24,13 +27,31 @@ const Content = styled(({ theme }) => ({
   paddingVertical: theme.sizing.baseUnit * 0.5,
 }))(PaddedView);
 
+const LocationHeader = styled(({ theme }) => ({
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginTop: 5,
+
+  color: theme.colors.darkSecondary,
+}))(H4);
+
+const JobTitleHeader = styled(({ theme }) => ({
+  marginBottom: 5,
+
+  color: theme.colors.lightSecondary,
+  textTransform: 'lowercase',
+}))(Text);
+
 const UserAvatarView = withIsLoading(
   ({
     theme,
     photo,
     firstName,
     lastName,
-    location,
+    church,
+    department,
+    jobTitle,
     isLoading,
     refetch,
     onPhotoPress,
@@ -49,10 +70,17 @@ const UserAvatarView = withIsLoading(
         refetch={refetch}
       />
       <Content>
+        <JobTitleHeader>{jobTitle}</JobTitleHeader>
         <H3>
           {firstName} {lastName}
         </H3>
-        <ChannelLabel icon="pin" label={location || ''} isLoading={isLoading} />
+        <LocationHeader>
+          <FontAwesome5 name="map-marker-alt" />
+          &nbsp;
+          {church}, {department}
+        </LocationHeader>
+
+        {/* <ChannelLabel icon="pin" label={church || ''} isLoading={isLoading} /> */}
       </Content>
     </Container>
   )

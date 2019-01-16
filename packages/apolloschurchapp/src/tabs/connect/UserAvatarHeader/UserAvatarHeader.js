@@ -33,7 +33,9 @@ const SettingsIcon = compose(
 const UserAvatarHeader = ({
   firstName,
   lastName,
-  location,
+  church,
+  department,
+  jobTitle,
   photo,
   refetch,
   navigation,
@@ -45,7 +47,9 @@ const UserAvatarHeader = ({
       <UserAvatarView
         firstName={firstName}
         lastName={lastName}
-        location={location}
+        church={church}
+        department={department}
+        jobTitle={jobTitle}
         photo={photo}
         refetch={refetch}
         disabled={disabled}
@@ -63,7 +67,9 @@ const UserAvatarHeader = ({
 UserAvatarHeader.propTypes = {
   firstName: PropTypes.string,
   lastName: PropTypes.string,
-  location: PropTypes.string,
+  church: PropTypes.string,
+  department: PropTypes.string,
+  jobTitle: PropTypes.string,
   photo: ConnectedImage.propTypes.source,
   refetch: PropTypes.func,
   navigation: PropTypes.shape({

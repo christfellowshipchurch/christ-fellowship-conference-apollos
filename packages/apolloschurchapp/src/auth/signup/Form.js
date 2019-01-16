@@ -45,6 +45,28 @@ class Form extends PureComponent {
           <PaddedView>
             <View>
               <TextInput
+                label="First Name"
+                type="text"
+                value={values.firstName}
+                error={touched.firstName && errors.firstName}
+                onChangeText={(text) => setFieldValue('firstName', text)}
+                onSubmitEditing={() => this.lastNameInput.focus()}
+                returnKeyType="next"
+                textContentType="givenName"
+                enablesReturnKeyAutomatically
+              />
+              <TextInput
+                label="Last Name"
+                type="text"
+                value={values.lastName}
+                error={touched.lastName && errors.lastName}
+                onChangeText={(text) => setFieldValue('lastName', text)}
+                onSubmitEditing={() => this.emailInput.focus()}
+                returnKeyType="next"
+                textContentType="familyName"
+                enablesReturnKeyAutomatically
+              />
+              <TextInput
                 label="Email"
                 type="email"
                 value={values.email}

@@ -78,7 +78,7 @@ class Form extends PureComponent {
                     onPress={() => {
                       track({ eventName: events.UserForgotPassword });
                       return openUrl(
-                        'https://apollosrock.newspring.cc/page/56/'
+                        'https://my.christfellowshipconference.com/page/56/'
                       );
                     }}
                   >

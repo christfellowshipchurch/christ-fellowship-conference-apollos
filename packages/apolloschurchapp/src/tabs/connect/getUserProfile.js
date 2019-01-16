@@ -5,11 +5,14 @@ export default gql`
     currentUser {
       id
       profile {
+        id
         firstName
         lastName
-        location
         email
         nickName
+        church
+        department
+        jobTitle
         photo {
           uri
         }
