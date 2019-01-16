@@ -11,7 +11,7 @@ const ConnectNavigator = createStackNavigator(
     Connect,
     TestingControlPanel,
     UserSettings,
-    LikedContentList,
+    // LikedContentList,
   },
   {
     initialRouteName: 'Connect',
