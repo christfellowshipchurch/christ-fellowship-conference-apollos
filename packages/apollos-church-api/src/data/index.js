@@ -6,7 +6,6 @@ import * as Analytics from '@apollosproject/data-connector-analytics';
 import * as Scripture from '@apollosproject/data-connector-bible';
 import * as LiveStream from '@apollosproject/data-connector-church-online';
 import {
-  Auth,
   Followings,
   Interactions,
   RockConstants,
@@ -16,6 +15,7 @@ import {
 import * as Theme from './theme';
 
 import * as ContentChannel from './content-channels';
+import * as Auth from './extended-auth';
 import * as AuthenticatedUser from './authenticated-user';
 import * as ContentItem from './content-items';
 import * as EventTicketContentItem from './event-ticket';
