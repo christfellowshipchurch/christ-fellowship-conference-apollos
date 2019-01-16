@@ -1,6 +1,7 @@
 import RockApolloDataSource from '@apollosproject/rock-apollo-data-source';
+import { Person } from '@apollosproject/data-connector-rock';
 
-export default class Person extends RockApolloDataSource {
+export default class RockPerson extends Person.dataSource {
   resource = 'People';
 
   getFromAlias = async (alias) => {
