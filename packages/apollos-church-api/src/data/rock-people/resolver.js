@@ -1,6 +1,7 @@
 import { Person } from '@apollosproject/data-connector-rock';
 
 export default {
+  ...Person.resolver,
   Person: {
     ...Person.resolver.Person,
     bio: ({ attributeValues }) =>
