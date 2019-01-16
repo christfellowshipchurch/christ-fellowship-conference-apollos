@@ -3,15 +3,22 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
-import { ModalView } from '@apollosproject/ui-kit';
+import { BackgroundView, styled } from '@apollosproject/ui-kit';
 import { WebView } from 'react-native-webview';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
+const Container = styled({
+  flex: null,
+  width: '100%',
+  height: '100%',
+  borderRadius: 0,
+})(BackgroundView);
+
 const Browser = ({ url, cookie = '' }) => (
-  <ModalView>
+  <Container>
     <WebView source={{ uri: url, headers: { Cookie: cookie } }} />
-  </ModalView>
+  </Container>
 );
 
 Browser.propTypes = {

@@ -13,7 +13,6 @@ import {
   H4,
 } from '@apollosproject/ui-kit';
 import { WebBrowserConsumer } from 'apolloschurchapp/src/ui/WebBrowser';
-import { UserWebBrowserConsumer } from 'apolloschurchapp/src/user-web-view';
 import NavigationActions from 'apolloschurchapp/src/NavigationService';
 
 const RowHeader = styled(({ theme }) => ({
