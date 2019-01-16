@@ -1,4 +1,5 @@
 import { Auth } from '@apollosproject/data-connector-rock';
+import { AuthenticationError } from 'apollo-server';
 
 export default class ExtendedAuth extends Auth.dataSource {
   createUserProfileWithFullName = async (props = {}) => {
@@ -45,5 +46,19 @@ export default class ExtendedAuth extends Auth.dataSource {
     console.log('<==== LOGGING TOKEN ====> ', token);
 
     return token;
+  };
+
+  getCurrentPerson = async ({ cookie } = { cookie: null }) => {
+    const { rockCookie } = this.context;
+    const userCookie = cookie || rockCookie;
+    if (userCookie) {
+      const request = await this.request(
+        'People/GetCurrentPerson?loadAttributes=expanded'
+      ).get({
+        options: { headers: { cookie: userCookie } },
+      });
+      return request;
+    }
+    throw new AuthenticationError('Must be logged in');
   };
 }
