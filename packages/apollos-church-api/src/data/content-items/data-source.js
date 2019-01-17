@@ -1,12 +1,11 @@
 import { ContentItem } from '@apollosproject/data-connector-rock';
 import ApollosConfig from '@apollosproject/config';
+import moment from 'moment-timezone';
 
 const { ROCK_MAPPINGS } = ApollosConfig;
 
 const LIVE_CONTENT = () => {
-  const date = new Date(
-    new Date() - new Date().getTimezoneOffset() * 1000 * 60
-  );
+  const date = moment().utc().add(moment().tz('America/New_York').utcOffset(), 'minutes');
   return `((StartDateTime lt datetime'${date.toISOString()}') or (StartDateTime eq null)) and ((ExpireDateTime gt datetime'${date.toISOString()}') or (ExpireDateTime eq null))`;
 };
 
