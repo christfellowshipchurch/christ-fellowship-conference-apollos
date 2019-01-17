@@ -7,6 +7,10 @@ export default gql`
     LastName
     Email
     NickName
+
+    Church
+    MinistryDepartment
+    JobTitle
   }
 
   input UpdateProfileInput {
@@ -33,7 +37,10 @@ export default gql`
 
   extend type Mutation {
     updateProfileField(input: UpdateProfileInput!): Person
-    updateProfileFields(input: [UpdateProfileInput]!): Person
+    updateProfileFields(
+      input: [UpdateProfileInput]!
+      attributeValues: [UpdateProfileInput]!
+    ): Person
     uploadProfileImage(file: Upload!, size: Int!): Person
   }
 
