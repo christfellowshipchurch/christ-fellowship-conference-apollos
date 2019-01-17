@@ -61,6 +61,31 @@ class PersonalDetails extends PureComponent {
         <TableView>
           <PaddedView>
             <TextInput
+              label="Church"
+              type="text"
+              value={props.values.church}
+              error={props.touched.church && props.errors.church}
+              onChangeText={(text) => props.setFieldValue('church', text)}
+            />
+            <TextInput
+              label="Department"
+              type="text"
+              value={props.values.department}
+              error={props.touched.department && props.errors.department}
+              onChangeText={(text) => props.setFieldValue('department', text)}
+            />
+            <TextInput
+              label="Job Title"
+              type="text"
+              value={props.values.jobTitle}
+              error={props.touched.jobTitle && props.errors.jobTitle}
+              onChangeText={(text) => props.setFieldValue('jobTitle', text)}
+            />
+          </PaddedView>
+        </TableView>
+        <TableView>
+          <PaddedView>
+            <TextInput
               label="Email"
               type="email"
               value={props.values.email}
@@ -87,7 +112,14 @@ class PersonalDetails extends PureComponent {
     return (
       <Query query={getUserProfile} fetchPolicy="cache-and-network">
         {({ data: { currentUser = { profile: {} } } = {} }) => {
-          const { firstName, lastName, email } = currentUser.profile;
+          const {
+            firstName,
+            lastName,
+            church,
+            department,
+            jobTitle,
+            email,
+          } = currentUser.profile;
 
           return (
             <Mutation
@@ -102,6 +134,9 @@ class PersonalDetails extends PureComponent {
                         ...currentUser.profile,
                         firstName: updateProfileFields.firstName,
                         lastName: updateProfileFields.lastName,
+                        church: updateProfileFields.church,
+                        department: updateProfileFields.department,
+                        jobTitle: updateProfileFields.jobTitle,
                         email: updateProfileFields.email,
                       },
                     },
@@ -111,7 +146,14 @@ class PersonalDetails extends PureComponent {
             >
               {(updateDetails) => (
                 <Formik
-                  initialValues={{ firstName, lastName, email }}
+                  initialValues={{
+                    firstName,
+                    lastName,
+                    church,
+                    department,
+                    jobTitle,
+                    email,
+                  }}
                   validationSchema={Yup.object().shape({
                     firstName: Yup.string().required('First Name is required!'),
                     lastName: Yup.string().required('Last Name is required!'),

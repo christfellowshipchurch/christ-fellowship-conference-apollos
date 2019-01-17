@@ -14,11 +14,11 @@ import SignupForm from './Form';
 const Signup = ({ onSignup }) => (
   <Mutation
     mutation={registerPersonMutation}
-    update={(cache, { data: { registerPerson } }) => {
+    update={(cache, { data: { registerPersonWithFullName } }) => {
       client.mutate({
         mutation: handleLogin,
         variables: {
-          authToken: registerPerson.token,
+          authToken: registerPersonWithFullName.token,
         },
       });
     }}
@@ -26,6 +26,8 @@ const Signup = ({ onSignup }) => (
     {(authenticate) => (
       <Formik
         validationSchema={Yup.object().shape({
+          firstName: Yup.string().required('First Name is required!'),
+          lastName: Yup.string().required('Last Name is required!'),
           email: Yup.string()
             .email('Invalid email address')
             .required('Email is required!'),

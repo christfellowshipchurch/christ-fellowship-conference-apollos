@@ -5,6 +5,9 @@ export default gql`
     $firstName: String!
     $lastName: String!
     $email: String!
+    $church: String!
+    $department: String!
+    $jobTitle: String!
   ) {
     updateProfileFields(
       input: [
@@ -12,11 +15,20 @@ export default gql`
         { field: LastName, value: $lastName }
         { field: Email, value: $email }
       ]
+      attributeValues: [
+        { field: Church, value: $church }
+        { field: MinistryDepartment, value: $department }
+        { field: JobTitle, value: $jobTitle }
+      ]
     ) {
       firstName
       lastName
       email
       id
+
+      church
+      department
+      jobTitle
     }
   }
 `;

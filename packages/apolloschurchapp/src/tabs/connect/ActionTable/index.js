@@ -15,6 +15,8 @@ import {
 import { WebBrowserConsumer } from 'apolloschurchapp/src/ui/WebBrowser';
 import NavigationActions from 'apolloschurchapp/src/NavigationService';
 
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+
 const RowHeader = styled(({ theme }) => ({
   flexDirection: 'row',
   justifyContent: 'space-between',
@@ -32,45 +34,23 @@ const ActionTable = () => (
       <View>
         <RowHeader>
           <Name>
-            <H4>{'Connect with Apollos'}</H4>
+            <H4>{'App Information'}</H4>
           </Name>
         </RowHeader>
         <TableView>
           <Touchable
-            onPress={() => openUrl('https://apollosrock.newspring.cc/page/235')}
+            onPress={() =>
+              openUrl(
+                'https://gochristfellowship.com/privacypolicy/?clean=.footer-content'
+              )
+            }
           >
             <Cell>
-              <CellIcon name="check" />
-              <CellText>Find a serving opportunity</CellText>
+              <FontAwesome5 name={'file-alt'} size={16} />
+              <CellText>Privacy Policy</CellText>
             </Cell>
           </Touchable>
           <Divider />
-          <Touchable
-            onPress={() => openUrl('https://apollosrock.newspring.cc/page/236')}
-          >
-            <Cell>
-              <CellIcon name="groups" />
-              <CellText>Join a small group</CellText>
-            </Cell>
-          </Touchable>
-          <Divider />
-          <Touchable
-            onPress={() => openUrl('https://apollosrock.newspring.cc/page/233')}
-          >
-            <Cell>
-              <CellIcon name="share" />
-              <CellText>I need prayer</CellText>
-            </Cell>
-          </Touchable>
-          <Divider />
-          <Touchable
-            onPress={() => openUrl('https://apollosrock.newspring.cc/page/186')}
-          >
-            <Cell>
-              <CellIcon name="download" />
-              <CellText>I would like to give</CellText>
-            </Cell>
-          </Touchable>
         </TableView>
         <TableView>
           <Touchable

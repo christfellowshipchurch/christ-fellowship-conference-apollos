@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
-import { ScrollView, SafeAreaView } from 'react-native';
+import { View, ScrollView, SafeAreaView } from 'react-native';
 import { Query } from 'react-apollo';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
+import { HeaderBackButton } from 'react-navigation';
 
 import { LoginButton, Auth } from 'apolloschurchapp/src/auth';
 import {
@@ -14,7 +15,9 @@ import {
   styled,
   Icon,
   PaddedView,
+  Divider,
 } from '@apollosproject/ui-kit';
+import CallToAction from '../../ui/CallToAction';
 import ActionTable from './ActionTable';
 import { UserAvatarHeaderConnected } from './UserAvatarHeader';
 import { RecentlyLikedTileFeedConnected } from './RecentlyLikedTileFeed';
@@ -42,10 +45,15 @@ const StyledLoginButton = styled(({ theme }) => ({
   marginVertical: theme.sizing.baseUnit,
 }))(LoginButton);
 
+const CallToActionContainer = styled(({ theme }) => ({
+  marginTop: 30,
+  marginBottom: 30,
+}))(View);
+
 class Connect extends PureComponent {
-  static navigationOptions = () => ({
+  static navigationOptions = ({ navigation }) => ({
     title: 'Connect',
-    header: null,
+    headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)} />,
   });
 
   static propTypes = {
@@ -65,7 +73,21 @@ class Connect extends PureComponent {
                 <SafeAreaView>
                   <ScrollView>
                     <UserAvatarHeaderConnected key="UserAvatarHeaderConnected" />
-                    <RecentlyLikedTileFeedConnected key="RecentlyLikedTileFeedConnected" />
+
+                    <CallToActionContainer>
+                      <CallToAction
+                        icon="list"
+                        title="my breakouts"
+                        url="https://my.christfellowshipconference.com/page/206"
+                        useCookie
+                      />
+                      <CallToAction
+                        icon="qrcode"
+                        title="check in"
+                        url="https://christfellowshipconference.com/"
+                      />
+                    </CallToActionContainer>
+
                     <ActionTable />
                   </ScrollView>
                 </SafeAreaView>
