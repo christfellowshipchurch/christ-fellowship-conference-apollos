@@ -31,6 +31,7 @@
     "@apollosproject/data-connector-analytics": "^0.8.0-alpha.6",
     "@apollosproject/data-connector-bible": "^0.8.0-alpha.6",
     "@apollosproject/data-connector-church-online": "^0.8.0-alpha.6",
+    "@apollosproject/data-connector-cloudinary": "^0.8.0-alpha.6",
     "@apollosproject/data-connector-rock": "^0.8.0-alpha.6",
     "@apollosproject/rock-apollo-data-source": "^0.8.0-alpha.6",
     "@apollosproject/server-core": "^0.8.0-alpha.6",

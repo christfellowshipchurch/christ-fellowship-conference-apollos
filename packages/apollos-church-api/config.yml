@@ -5,6 +5,8 @@
 # You can access those values (and any other values in your environment)
 # using the ${VARIABLE_NAME} syntax
 
+CLOUDINARY:
+  URL: cloudinary://446745215112832:xmFDVGUjKitq2vuCEZJ32kaY0WI@christ-fellowship-church
 # This file should be checked into version control.
 # `.env` should NOT be checked into version control.
 APP:

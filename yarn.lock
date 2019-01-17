@@ -118,6 +118,13 @@
     apollo-datasource-rest "^0.2.0"
     lodash "^4.17.11"
 
+"@apollosproject/data-connector-cloudinary@^0.8.0-alpha.6":
+  version "0.8.0-alpha.6"
+  resolved "https://registry.yarnpkg.com/@apollosproject/data-connector-cloudinary/-/data-connector-cloudinary-0.8.0-alpha.6.tgz#7345cde38e83160614f605f90428a819e08234af"
+  integrity sha512-zA+hTqwR1j2svnxQ38EjamejBIepYzK1Nta9KTlV+MqwC9jGjP0DfIUCup8Qt86iuAtMUjrW5gR4RfH57D2i2g==
+  dependencies:
+    cloudinary "^1.13.2"
+
 "@apollosproject/data-connector-rock@^0.8.0-alpha.6":
   version "0.8.0-alpha.6"
   resolved "https://registry.yarnpkg.com/@apollosproject/data-connector-rock/-/data-connector-rock-0.8.0-alpha.6.tgz#32495c91f4c4c8bc8320a864ee74efe363cb74a3"
@@ -5731,6 +5738,14 @@ clone@^1.0.2:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/clone/-/clone-1.0.4.tgz#da309cc263df15994c688ca902179ca3c7cd7c7e"
   integrity sha1-2jCcwmPfFZlMaIypAheco8fNfH4=
+
+cloudinary@^1.13.2:
+  version "1.13.2"
+  resolved "https://registry.yarnpkg.com/cloudinary/-/cloudinary-1.13.2.tgz#af3c3f5091119d743d85c27be9405cf15e9012db"
+  integrity sha512-mZWxWxgln6Bkk5QA72BGb1mwRBFs+r94ZzdN37gROPL7FSOslhvFfEvF/Rz/ruPqR7mblMdzVz3wuLQi1oCalw==
+  dependencies:
+    lodash "^4.17.11"
+    q "^1.5.1"
 
 cmd-shim@^2.0.2:
   version "2.0.2"
