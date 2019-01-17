@@ -1,4 +1,3 @@
-import { createStackNavigator } from 'react-navigation';
 import React, { PureComponent } from 'react';
 import { Query } from 'react-apollo';
 import { get } from 'lodash';
@@ -6,20 +5,21 @@ import PropTypes from 'prop-types';
 
 import SafeAreaView from 'react-native-safe-area-view';
 
+import { createStackNavigator } from 'react-navigation';
 import { BackgroundView, FeedView } from '@apollosproject/ui-kit';
 
 import ContentCardConnected from 'apolloschurchapp/src/ui/ContentCardConnected';
 import NavigationService from '../NavigationService';
 
 import headerOptions from '../tabs/headerOptions';
-import getGroupFeed from './getGroupFeed';
+import getContentFeed from './getContentFeed';
 
 /**
  * This is where the component description lives
  * A FeedView wrapped in a query to pull content data.
  */
 
-class ContentGroupFeed extends PureComponent {
+class ContentItemFeed extends PureComponent {
   /** Function for React Navigation to set information in the header. */
   static navigationOptions = ({ navigation }) => {
     const itemTitle = navigation.getParam('itemTitle', 'Content Channel');
@@ -46,12 +46,8 @@ class ContentGroupFeed extends PureComponent {
    * Takes the user to the ContentSingle
    */
   handleOnPress = (item) => {
-    const destination = item.childGroups.length
-      ? 'ContentGroupFeed'
-      : 'ContentSingle';
-    NavigationService.navigate(destination, {
+    NavigationService.navigate('ContentSingle', {
       itemId: item.id,
-      sharing: item.sharing,
     });
   };
 
@@ -60,18 +56,23 @@ class ContentGroupFeed extends PureComponent {
       'itemId',
       get(this.props, 'screenProps.itemId')
     );
+
     return (
       <BackgroundView>
         <SafeAreaView>
           <Query
-            query={getGroupFeed}
+            query={getContentFeed}
             variables={{ itemId }}
             fetchPolicy="cache-and-network"
           >
             {({ loading, error, data, refetch }) => (
               <FeedView
                 ListItemComponent={ContentCardConnected}
-                content={get(data, 'node.childGroups', [])}
+                content={get(
+                  data,
+                  'node.childContentItemsConnection.edges',
+                  []
+                ).map((edge) => edge.node)}
                 isLoading={loading}
                 error={error}
                 refetch={refetch}
@@ -85,17 +86,17 @@ class ContentGroupFeed extends PureComponent {
   }
 }
 
-const ContentGroupFeedNavigator = createStackNavigator(
+const ContentItemFeedNavigator = createStackNavigator(
   {
-    ContentGroupFeed,
+    ContentItemFeed,
   },
   {
-    initialRouteName: 'ContentGroupFeed',
+    initialRouteName: 'ContentItemFeed',
   }
 );
 
-ContentGroupFeedNavigator.navigationOptions = {
+ContentItemFeedNavigator.navigationOptions = {
   header: null,
 };
 
-export default ContentGroupFeedNavigator;
+export default ContentItemFeedNavigator;

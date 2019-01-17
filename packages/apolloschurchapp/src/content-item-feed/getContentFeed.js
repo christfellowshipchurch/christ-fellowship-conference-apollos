@@ -4,15 +4,16 @@ import { largeCardFragment } from 'apolloschurchapp/src/ui/ContentCardConnected'
 import { contentItemFragment } from '../content-single/getContentItem';
 
 export default gql`
-  query getGroupFeed($itemId: ID!) {
+  query getContentItemFeed($itemId: ID!) {
     node(id: $itemId) {
       id
-      ... on ConferenceGroupContentItem {
-        childGroups {
-          ...contentItemFragment
-          ...largeCardFragment
-          childGroups {
-            id
+      ... on ContentItem {
+        childContentItemsConnection {
+          edges {
+            node {
+              ...contentItemFragment
+              ...largeCardFragment
+            }
           }
         }
       }

@@ -12,6 +12,7 @@ import {
   Family,
   Sharable,
 } from '@apollosproject/data-connector-rock';
+import * as Cloudinary from '@apollosproject/data-connector-cloudinary';
 import * as Theme from './theme';
 
 import * as ContentChannel from './content-channels';
@@ -51,6 +52,7 @@ const data = {
   AppNavigationContentItem,
   ConferenceScheduleContentItem,
   AuthenticatedUser,
+  Cloudinary,
 };
 
 const { dataSources, resolvers, schema, context } = createApolloServerConfig(

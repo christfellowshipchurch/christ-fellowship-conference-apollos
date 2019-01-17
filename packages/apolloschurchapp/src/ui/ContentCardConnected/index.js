@@ -22,21 +22,13 @@ const ContentCardConnected = ({
         console.log(error, 'content card error');
         if (error) return <ErrorCard error={error} />;
 
-        const metrics = [
-          {
-            icon: node.isLiked ? 'like-solid' : 'like',
-            value: node.likedCount,
-          },
-        ];
-
         const coverImage = get(node, 'coverImage.sources', undefined);
-
+        console.log(node);
         return (
           <ContentCard
             {...node}
             {...otherProps}
             coverImage={coverImage}
-            //metrics={metrics}
             tile={tile}
             isLoading={loading}
           />

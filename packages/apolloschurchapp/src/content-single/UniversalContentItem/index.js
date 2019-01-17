@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, SafeAreaView } from 'react-native';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import {
@@ -25,16 +25,18 @@ const UniversalContentItem = ({ content, loading }) => {
           source={coverImageSources}
         />
       ) : null}
-      <BackgroundView>
-        <MediaControls contentId={content.id} />
-        <PaddedView>
-          <H2 padded isLoading={!content.title && loading}>
-            {content.title}
-          </H2>
-          <HTMLContent contentId={content.id} />
-        </PaddedView>
-        <HorizontalContentFeed contentId={content.id} />
-      </BackgroundView>
+      <SafeAreaView>
+        <BackgroundView>
+          <MediaControls contentId={content.id} />
+          <PaddedView>
+            <H2 padded isLoading={!content.title && loading}>
+              {content.title}
+            </H2>
+            <HTMLContent contentId={content.id} />
+          </PaddedView>
+          <HorizontalContentFeed contentId={content.id} />
+        </BackgroundView>
+      </SafeAreaView>
     </FlexedScrollView>
   );
 };
