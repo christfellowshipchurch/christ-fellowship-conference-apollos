@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -507,6 +508,13 @@
 			remoteGlobalIDString = 8AD256131D6DE5F600C7D842;
 			remoteInfo = BugsnagReactNative;
 		};
+		EF8AD4BD21EE510C0041C293 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F7E856FE759F42E59D6541EA /* RNCWebView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNCWebView;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -911,7 +919,6 @@
 				39CD8003DF9A405ABBAE5BFC /* libRNVectorIcons.a */,
 				92D60EACE4B446008F15093D /* libRNVectorIcons-tvOS.a */,
 				F36A52CCB2E84704B1C6F45C /* libRNCWebView.a */,
-				7C4A17FC369B40079C9691E3 /* libRNAmplitudeSDK.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1095,6 +1102,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		EF8AD4BA21EE510C0041C293 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EF8AD4BE21EE510C0041C293 /* libRNCWebView.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		EFFEA1D521ED332200228F9B /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1208,7 +1223,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = HK4PSU43BN;
+						DevelopmentTeam = 244Z6V4SJ9;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -1312,7 +1327,7 @@
 					ProjectRef = 6BAAC994942548609D0EEECA /* ReactNativeCustomTabs.xcodeproj */;
 				},
 				{
-					ProductGroup = BF1CA6E721EFB2D800316852 /* Products */;
+					ProductGroup = EF8AD4BA21EE510C0041C293 /* Products */;
 					ProjectRef = F7E856FE759F42E59D6541EA /* RNCWebView.xcodeproj */;
 				},
 				{
@@ -1743,6 +1758,13 @@
 			remoteRef = BFE87B5921E7F163009B1E0E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		EF8AD4BE21EE510C0041C293 /* libRNCWebView.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNCWebView.a;
+			remoteRef = EF8AD4BD21EE510C0041C293 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -2000,7 +2022,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = HK4PSU43BN;
+				DEVELOPMENT_TEAM = 244Z6V4SJ9;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-custom-tabs/ios/ReactNativeCustomTabs",
@@ -2041,7 +2063,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = HK4PSU43BN;
+				DEVELOPMENT_TEAM = 244Z6V4SJ9;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-custom-tabs/ios/ReactNativeCustomTabs",

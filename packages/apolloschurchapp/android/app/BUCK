@@ -45,12 +45,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.christ",
+    package = "io.echurch.christfellowshipconference",
 )
 
 android_resource(
     name = "res",
-    package = "com.christ",
+    package = "io.echurch.christfellowshipconference",
     res = "src/main/res",
 )
 
