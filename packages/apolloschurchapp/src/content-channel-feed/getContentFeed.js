@@ -12,6 +12,13 @@ export default gql`
             node {
               ...contentItemFragment
               ...largeCardFragment
+              childContentItemsConnection {
+                edges {
+                  node {
+                    id
+                  }
+                }
+              }
             }
           }
         }

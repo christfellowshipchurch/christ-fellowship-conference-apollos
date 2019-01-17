@@ -45,7 +45,10 @@ class ContentChannelFeed extends PureComponent {
    * Takes the user to the ContentSingle
    */
   handleOnPress = (item) => {
-    NavigationService.navigate('ContentSingle', {
+    const destination = item.childContentItemsConnection.edges.length
+      ? 'ContentItemFeed'
+      : 'ContentSingle';
+    NavigationService.navigate(destination, {
       itemId: item.id,
       sharing: item.sharing,
     });
