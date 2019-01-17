@@ -1,4 +1,4 @@
-package com.apolloschurchapp;
+package io.echurch.christfellowshipconference;
 
 import android.content.Intent;
 import android.os.Bundle;
