@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { Query } from 'react-apollo';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
+import { SafeAreaView } from 'react-native';
 
 import { ErrorCard, ThemeMixin } from '@apollosproject/ui-kit';
 
@@ -87,7 +88,6 @@ class ContentSingle extends PureComponent {
           }}
         />
         {this.renderContent({ content, loading, error })}
-        <ActionContainer itemId={id} />
       </ThemeMixin>
     );
   };

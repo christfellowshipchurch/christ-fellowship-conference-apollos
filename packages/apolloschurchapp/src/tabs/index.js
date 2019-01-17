@@ -28,8 +28,6 @@ const createTabNavigator = (data) => {
 
     const itemId = isGroup ? tab.itemGroup.id : tab.itemContentChannel.id;
 
-    console.log({ isGroup });
-
     tabObject[capitalize(tab.title)] = {
       screen: () => (
         <RenderComponent name={tab.title} screenProps={{ itemId }} />

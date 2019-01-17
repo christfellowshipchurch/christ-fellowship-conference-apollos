@@ -46,14 +46,16 @@ class ContentChannelFeed extends PureComponent {
    * Takes the user to the ContentSingle
    */
   handleOnPress = (item) => {
-    NavigationService.navigate('ContentSingle', {
+    NavigationService.navigate('ContentItemFeed', {
       itemId: item.id,
-      sharing: item.sharing,
     });
   };
 
   render() {
-    const { itemId } = this.props.screenProps;
+    const itemId = this.props.navigation.getParam(
+      'itemId',
+      get(this.props, 'screenProps.itemId')
+    );
 
     return (
       <BackgroundView>
