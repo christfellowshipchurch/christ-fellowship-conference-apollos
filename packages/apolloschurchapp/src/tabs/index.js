@@ -9,12 +9,13 @@ import tabBarIcon from './tabBarIcon';
 import TabBar from './tabBar';
 
 import Home from './home';
+import ComingNext from './coming-next';
 
 import getNavigation from './getNavigationQuery';
 
 const createTabNavigator = (data) => {
   const tabObject = {
-    Home,
+    ComingNext,
   };
 
   // Loop through each of the Items returned by Graph

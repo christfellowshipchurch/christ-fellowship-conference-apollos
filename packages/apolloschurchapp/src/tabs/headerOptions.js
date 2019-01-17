@@ -18,7 +18,7 @@ export default {
       name={'user-circle'}
       solid
       size={26}
-      color="#C9C8C7"
+      color="#303030"
       backgroundColor="transparent"
       underlayColor="transparent"
       onPress={() => {
