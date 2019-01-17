@@ -41,6 +41,8 @@
     "dotenv": "6.0.0",
     "graphql": "0.13.2",
     "lodash": "4.17.10",
+    "moment": "^2.23.0",
+    "moment-timezone": "^0.5.23",
     "prettier": "1.12.1",
     "randomcolor": "0.5.3",
     "sanitize-html": "^1.19.3"
