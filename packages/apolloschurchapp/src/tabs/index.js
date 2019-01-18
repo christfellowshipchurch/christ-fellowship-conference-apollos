@@ -8,7 +8,6 @@ import ContentGroupFeed from '../content-group-feed';
 import tabBarIcon from './tabBarIcon';
 import TabBar from './tabBar';
 
-import Home from './home';
 import ComingNext from './coming-next';
 
 import getNavigation from './getNavigationQuery';
@@ -50,21 +49,26 @@ const createTabNavigator = (data) => {
   });
 };
 
+const DefaultNavigator = createTabNavigator({ getMobileNavigationChannel: [] });
+
 class TabNavigator extends Component {
   state = {
-    data: null,
+    Navigator: null,
   };
+
+  RockTabNavigator = null;
 
   async componentDidMount() {
     const { data } = await client.query({ query: getNavigation });
 
-    this.setState({ data });
+    const Navigator = createTabNavigator(data);
+    this.setState({ Navigator });
   }
 
   render() {
-    if (this.state.data === null) return null;
+    if (this.state.Navigator === null) return <DefaultNavigator />;
 
-    const RockTabNavigator = createTabNavigator(this.state.data);
+    const RockTabNavigator = this.state.Navigator;
 
     return <RockTabNavigator />;
   }
