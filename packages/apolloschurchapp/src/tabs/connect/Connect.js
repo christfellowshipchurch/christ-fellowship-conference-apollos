@@ -100,9 +100,19 @@ class Connect extends PureComponent {
                         webViewStyle={{ width: 300, height: 300 }}
                         modal={false}
                         scrollEnabled={false}
-                        injectedJavaScript={
-                          "document.getElementById('cms-admin-footer').remove(); true;"
-                        }
+                        injectedJavaScript={`
+                          try {
+                            const css = '#cms-admin-footer { display: none !important; }',
+                                head = document.head || document.getElementsByTagName('head')[0],
+                                style = document.createElement('style');
+
+                            style.type = 'text/css';
+                            style.appendChild(document.createTextNode(css));
+
+                            head.appendChild(style);
+                          } catch {}
+                          true;
+                        `}
                       />
                     </QRCodeContainer>
                     <ActionTable />
