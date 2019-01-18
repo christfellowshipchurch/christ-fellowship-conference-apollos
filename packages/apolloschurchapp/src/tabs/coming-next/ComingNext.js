@@ -70,7 +70,7 @@ class ComingNext extends PureComponent {
           source={require('./background.png')}
           resizeMode={'cover'}
         >
-          <Logo source={require('./logo.png')} />
+          <Logo source={require('../logo-white.png')} />
           <Header>See what&apos;s coming up next:</Header>
           <SafeAreaView>
             <Query query={getUserFeed} fetchPolicy="cache-and-network">
