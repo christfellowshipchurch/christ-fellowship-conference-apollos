@@ -2,12 +2,14 @@ import React, { PureComponent } from 'react';
 import { View, Image, ImageBackground, Text } from 'react-native';
 import { Query } from 'react-apollo';
 import SafeAreaView from 'react-native-safe-area-view';
+import { createStackNavigator } from 'react-navigation';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import { FeedView, BackgroundView, styled } from '@apollosproject/ui-kit';
 import headerOptions from '../headerOptions';
 
 import ContentCardConnected from '../../ui/ContentCardConnected';
+import ContentSingle from '../../content-single/ContentSingle';
 
 import getUserFeed from './getUserFeed';
 import defaultCardContent from './defaultCard';
@@ -96,4 +98,18 @@ class ComingNext extends PureComponent {
   }
 }
 
-export default ComingNext;
+const ComingNextNavigator = createStackNavigator(
+  {
+    ComingNext,
+    ContentSingle,
+  },
+  {
+    initialRouteName: 'ComingNext',
+  }
+);
+
+ComingNextNavigator.navigationOptions = {
+  header: null,
+};
+
+export default ComingNextNavigator;

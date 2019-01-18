@@ -31,19 +31,18 @@ const createTabNavigator = (data) => {
 
     const isMap = tab.title && lowerCase(tab.title) === 'map';
 
-
     const RenderComponent = isMap
       ? MapFeed
       : isGroup
         ? ContentGroupFeed
         : ContentChannelFeed;
-    
+
     const initialRoute = isMap
       ? 'MapFeed'
       : isGroup
         ? 'ContentGroupFeed'
-        : 'ContentChannelFeed';    
-    
+        : 'ContentChannelFeed';
+
     const itemId = isGroup ? tab.itemGroup.id : tab.itemContentChannel.id;
 
     let currentNavigator;
