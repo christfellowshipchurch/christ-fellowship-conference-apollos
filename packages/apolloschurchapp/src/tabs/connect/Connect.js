@@ -119,7 +119,7 @@ class Connect extends PureComponent {
                         url={
                           'https://my.christfellowshipconference.com/mycheckincode'
                         }
-                        webViewStyle={{ width: 300, height: 300 }}
+                        webViewStyle={{ width: 300, height: 500 }}
                         modal={false}
                         scrollEnabled={false}
                         injectedJavaScript={`
