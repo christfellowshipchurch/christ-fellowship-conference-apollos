@@ -11,7 +11,7 @@ import { BackgroundView, FeedView } from '@apollosproject/ui-kit';
 import ContentCardConnected from 'apolloschurchapp/src/ui/ContentCardConnected';
 
 import headerOptions from '../tabs/headerOptions';
-import ContentSingle from '../content-single';
+import ContentSingle from '../content-single/ContentSingle';
 import getGroupFeed from './getGroupFeed';
 /**
  * This is where the component description lives
@@ -21,7 +21,7 @@ import getGroupFeed from './getGroupFeed';
 class ContentGroupFeed extends PureComponent {
   /** Function for React Navigation to set information in the header. */
   static navigationOptions = ({ navigation }) => {
-    const itemTitle = navigation.getParam('itemTitle', 'Content Channel');
+    const itemTitle = navigation.getParam('itemTitle', '');
     return {
       ...headerOptions,
       title: itemTitle,
@@ -46,7 +46,7 @@ class ContentGroupFeed extends PureComponent {
    */
   handleOnPress = (item) => {
     const destination = item.childGroups.length
-      ? 'ContentGroupFeed'
+      ? 'ContentChildGroupFeed'
       : 'ContentSingle';
     this.props.navigation.navigate(destination, {
       itemId: item.id,
@@ -87,6 +87,7 @@ class ContentGroupFeed extends PureComponent {
 const ContentGroupFeedNavigator = createStackNavigator(
   {
     ContentGroupFeed,
+    ContentChildGroupFeed: ContentGroupFeed,
     ContentSingle,
   },
   {

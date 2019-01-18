@@ -8,6 +8,7 @@ export default gql`
     node(id: $itemId) {
       id
       ... on ContentItem {
+        title
         childContentItemsConnection {
           edges {
             node {

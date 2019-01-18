@@ -5,11 +5,9 @@ import PropTypes from 'prop-types';
 
 import SafeAreaView from 'react-native-safe-area-view';
 
-import { createStackNavigator } from 'react-navigation';
 import { BackgroundView, FeedView } from '@apollosproject/ui-kit';
 
 import ContentCardConnected from 'apolloschurchapp/src/ui/ContentCardConnected';
-import NavigationService from '../NavigationService';
 
 import headerOptions from '../tabs/headerOptions';
 import getContentFeed from './getContentFeed';
@@ -22,7 +20,7 @@ import getContentFeed from './getContentFeed';
 class ContentItemFeed extends PureComponent {
   /** Function for React Navigation to set information in the header. */
   static navigationOptions = ({ navigation }) => {
-    const itemTitle = navigation.getParam('itemTitle', 'Content Channel');
+    const itemTitle = navigation.getParam('itemTitle', '');
     return {
       ...headerOptions,
       title: itemTitle,
@@ -86,17 +84,4 @@ class ContentItemFeed extends PureComponent {
   }
 }
 
-const ContentItemFeedNavigator = createStackNavigator(
-  {
-    ContentItemFeed,
-  },
-  {
-    initialRouteName: 'ContentItemFeed',
-  }
-);
-
-ContentItemFeedNavigator.navigationOptions = {
-  header: null,
-};
-
-export default ContentItemFeedNavigator;
+export default ContentItemFeed;

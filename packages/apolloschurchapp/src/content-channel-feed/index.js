@@ -10,7 +10,7 @@ import { BackgroundView, FeedView } from '@apollosproject/ui-kit';
 
 import ContentCardConnected from 'apolloschurchapp/src/ui/ContentCardConnected';
 import ContentItemFeed from '../content-item-feed';
-import ContentSingle from '../content-single';
+import ContentSingle from '../content-single/ContentSingle';
 
 import headerOptions from '../tabs/headerOptions';
 import getContentFeed from './getContentFeed';
@@ -23,7 +23,8 @@ import getContentFeed from './getContentFeed';
 class ContentChannelFeed extends PureComponent {
   /** Function for React Navigation to set information in the header. */
   static navigationOptions = ({ navigation }) => {
-    const itemTitle = navigation.getParam('itemTitle', 'Content Channel');
+    const itemTitle = navigation.getParam('itemTitle', '');
+
     return {
       ...headerOptions,
       title: itemTitle,
@@ -90,7 +91,7 @@ class ContentChannelFeed extends PureComponent {
   }
 }
 
-export default createStackNavigator(
+const ContentChannelFeedNavigator = createStackNavigator(
   {
     ContentChannelFeed,
     ContentItemFeed,
@@ -100,3 +101,9 @@ export default createStackNavigator(
     initialRouteName: 'ContentChannelFeed',
   }
 );
+
+ContentChannelFeedNavigator.navigationOptions = {
+  header: null,
+};
+
+export default ContentChannelFeedNavigator;
