@@ -15,11 +15,10 @@ class LoginButton extends PureComponent {
     }),
   };
 
-  componentDidMount() {
+  handleLoginPress = () => {
+    this.props.navigation.push('Auth');
     OneSignal.registerForPushNotifications();
   }
-
-  handleLoginPress = () => this.props.navigation.push('Auth');
 
   render() {
     const { navigation, ...otherProps } = this.props;
