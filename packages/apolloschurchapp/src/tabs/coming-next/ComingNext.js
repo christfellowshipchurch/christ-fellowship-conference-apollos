@@ -29,10 +29,13 @@ const Logo = styled(({ theme }) => ({
 
 const Header = styled(({ theme }) => ({
   alignSelf: 'center',
+  textAlign: 'center',
   textTransform: 'lowercase',
   fontWeight: 'bold',
   color: 'black',
   fontSize: 16,
+  paddingLeft: '20%',
+  paddingRight: '20%',
 }))(Text);
 
 class ComingNext extends PureComponent {
@@ -73,7 +76,7 @@ class ComingNext extends PureComponent {
           resizeMode={'cover'}
         >
           <Logo source={require('../logo-white.png')} />
-          <Header>See what&apos;s coming up next:</Header>
+          <Header>pull down to see what&apos;s coming up next:</Header>
           <SafeAreaView>
             <Query query={getUserFeed} fetchPolicy="cache-and-network">
               {({ loading, error, data, refetch }) =>
