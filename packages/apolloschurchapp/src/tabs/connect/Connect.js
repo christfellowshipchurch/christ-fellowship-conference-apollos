@@ -3,7 +3,7 @@ import { View, ScrollView, SafeAreaView } from 'react-native';
 import { Query } from 'react-apollo';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
-import { HeaderBackButton } from 'react-navigation';
+import { HeaderBackButton, withNavigation } from 'react-navigation';
 
 import { LoginButton } from 'apolloschurchapp/src/auth';
 import {
@@ -16,12 +16,16 @@ import {
   Icon,
   PaddedView,
 } from '@apollosproject/ui-kit';
+import { Button } from '@apollosproject/ui-kit';
 import CallToAction from '../../ui/CallToAction';
 import UserWebView from '../../user-web-view';
 import ActionTable from './ActionTable';
 import { UserAvatarHeaderConnected } from './UserAvatarHeader';
 import getLoginState from './getLoginState';
 
+const MaybeLaterButon = ({ navigation }) => (
+  <Button title="Maybe Later" onPress={() => navigation.goBack(null)} />
+);
 const Title = styled(({ theme }) => ({
   color: theme.colors.primary,
   paddingBottom: theme.helpers.verticalRhythm(1.5),
@@ -43,6 +47,10 @@ const Header = styled(({ theme }) => ({
 const StyledLoginButton = styled(({ theme }) => ({
   marginVertical: theme.sizing.baseUnit,
 }))(LoginButton);
+
+const StyledMaybeLaterButton = styled(({ theme }) => ({
+  marginVertical: theme.sizing.baseUnit,
+}))(MaybeLaterButon);
 
 const CallToActionContainer = styled(({ theme }) => ({
   marginTop: 30,
@@ -137,6 +145,9 @@ class Connect extends PureComponent {
                       </BodyText>
                     </Paragraph>
                     <StyledLoginButton />
+                    <StyledMaybeLaterButton
+                      navigation={this.props.navigation}
+                    />
                   </Header>
                 </ScrollView>
               </SafeAreaView>
