@@ -25,6 +25,7 @@ export default gql`
     isLiked: Boolean
     likedCount: Int
 
+    headerColor: Color
     customItem: String
   }
 `;

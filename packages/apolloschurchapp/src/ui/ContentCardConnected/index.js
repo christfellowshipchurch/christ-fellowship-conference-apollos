@@ -22,11 +22,21 @@ const ContentCardConnected = ({
         console.log(error, 'content card error');
         if (error) return <ErrorCard error={error} />;
 
+        const themeProp = {
+          theme: {
+            colors: {
+              background: {
+                accent: get(node, 'theme.colors.primary', undefined),
+              },
+            },
+          },
+        };
         const coverImage = get(node, 'coverImage.sources', undefined);
         return (
           <ContentCard
             {...node}
             {...otherProps}
+            {...themeProp}
             coverImage={coverImage}
             tile={tile}
             isLoading={loading}

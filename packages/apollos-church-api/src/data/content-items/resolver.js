@@ -1,4 +1,5 @@
 import { ContentItem } from '@apollosproject/data-connector-rock';
+import { get } from 'lodash';
 
 export default {
   ...ContentItem.resolver,
@@ -9,6 +10,12 @@ export default {
 
       if (Object.hasOwnProperty.call(attrs.attributeValues, 'price')) {
         return 'EventTicketContentItem';
+      }
+      if (
+        Object.hasOwnProperty.call(attrs.attributeValues, 'color') &&
+        get(attrs, 'attributeValues.color.value', '') !== ''
+      ) {
+        return 'ConferenceScheduleContentItem';
       }
 
       if (Object.hasOwnProperty.call(attrs.attributeValues, 'person')) {
