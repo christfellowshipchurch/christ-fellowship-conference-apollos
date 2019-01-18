@@ -5,6 +5,7 @@ import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { BackgroundView, styled } from '@apollosproject/ui-kit';
 import { WebView } from 'react-native-webview';
+import { withNavigation } from 'react-navigation';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
@@ -15,15 +16,32 @@ const Container = styled({
   borderRadius: 0,
 })(BackgroundView);
 
-const Browser = ({ url, cookie = '' }) => (
-  <Container>
-    <WebView source={{ uri: url, headers: { Cookie: cookie } }} />
-  </Container>
-);
+const Browser = ({ url, cookie = '', modal, webViewStyle, ...props }) => {
+  if (modal) {
+    return (
+      <Container>
+        <WebView
+          style={webViewStyle}
+          source={{ uri: url, headers: { Cookie: cookie } }}
+          {...props}
+        />
+      </Container>
+    );
+  }
+  return (
+    <WebView
+      style={webViewStyle}
+      source={{ uri: url, headers: { Cookie: cookie } }}
+      {...props}
+    />
+  );
+};
 
 Browser.propTypes = {
   url: PropTypes.string.isRequired,
   cookie: PropTypes.string,
+  webViewStyle: PropTypes.any,
+  modal: PropTypes.bool.isRequired,
 };
 
 const WITH_USER_COOKIE = gql`
@@ -35,7 +53,13 @@ const WITH_USER_COOKIE = gql`
   }
 `;
 
-const BrowserWithUserCookie = ({ url, navigation }) => {
+const BrowserWithUserCookie = ({
+  url,
+  navigation,
+  modal = true,
+  webViewStyle,
+  ...props
+}) => {
   // get the url from the navigation param or default to the url prop;
   const uri = navigation.getParam('url', url);
   return (
@@ -45,7 +69,15 @@ const BrowserWithUserCookie = ({ url, navigation }) => {
           return null;
         }
         const cookie = get(data, 'currentUser.rockToken', '');
-        return <Browser cookie={cookie} url={uri} />;
+        return (
+          <Browser
+            cookie={cookie}
+            url={uri}
+            modal={modal}
+            webViewStyle={webViewStyle}
+            {...props}
+          />
+        );
       }}
     </Query>
   );
@@ -53,7 +85,12 @@ const BrowserWithUserCookie = ({ url, navigation }) => {
 
 BrowserWithUserCookie.propTypes = {
   url: PropTypes.string,
+  modal: PropTypes.bool,
+  webViewStyle: PropTypes.any,
+  navigation: PropTypes.shape({
+    getParam: PropTypes.func,
+  }).isRequired,
 };
 
-export default BrowserWithUserCookie;
+export default withNavigation(BrowserWithUserCookie);
 export { UserWebBrowserProvider, UserWebBrowserConsumer } from './Provider';

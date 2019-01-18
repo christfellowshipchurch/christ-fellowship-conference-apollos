@@ -5,7 +5,7 @@ import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import { HeaderBackButton } from 'react-navigation';
 
-import { LoginButton, Auth } from 'apolloschurchapp/src/auth';
+import { LoginButton } from 'apolloschurchapp/src/auth';
 import {
   H1,
   BodyText,
@@ -15,12 +15,11 @@ import {
   styled,
   Icon,
   PaddedView,
-  Divider,
 } from '@apollosproject/ui-kit';
 import CallToAction from '../../ui/CallToAction';
+import UserWebView from '../../user-web-view';
 import ActionTable from './ActionTable';
 import { UserAvatarHeaderConnected } from './UserAvatarHeader';
-import { RecentlyLikedTileFeedConnected } from './RecentlyLikedTileFeed';
 import getLoginState from './getLoginState';
 
 const Title = styled(({ theme }) => ({
@@ -48,6 +47,12 @@ const StyledLoginButton = styled(({ theme }) => ({
 const CallToActionContainer = styled(({ theme }) => ({
   marginTop: 30,
   marginBottom: 30,
+}))(View);
+
+const QRCodeContainer = styled(() => ({
+  width: '100%',
+  justifyContent: 'space-around',
+  alignItems: 'center',
 }))(View);
 
 class Connect extends PureComponent {
@@ -87,7 +92,19 @@ class Connect extends PureComponent {
                         url="https://christfellowshipconference.com/"
                       />
                     </CallToActionContainer>
-
+                    <QRCodeContainer>
+                      <UserWebView
+                        url={
+                          'https://my.christfellowshipconference.com/mycheckincode'
+                        }
+                        webViewStyle={{ width: 300, height: 300 }}
+                        modal={false}
+                        scrollEnabled={false}
+                        injectedJavaScript={
+                          "document.getElementById('cms-admin-footer').remove(); true;"
+                        }
+                      />
+                    </QRCodeContainer>
                     <ActionTable />
                   </ScrollView>
                 </SafeAreaView>
