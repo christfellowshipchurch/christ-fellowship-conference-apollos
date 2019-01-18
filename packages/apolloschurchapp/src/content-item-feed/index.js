@@ -46,7 +46,7 @@ class ContentItemFeed extends PureComponent {
    * Takes the user to the ContentSingle
    */
   handleOnPress = (item) => {
-    NavigationService.navigate('ContentSingle', {
+    this.props.navigation.navigate('ContentSingle', {
       itemId: item.id,
     });
   };

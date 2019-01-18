@@ -15,9 +15,6 @@ import UserWebView from './user-web-view';
 import PersonalDetails from './user-settings/PersonalDetails';
 import ChangePassword from './user-settings/ChangePassword';
 import Connect from './tabs/connect';
-import ContentChannelFeed from './content-channel-feed';
-import ContentGroupFeed from './content-group-feed';
-import ContentItemFeed from './content-item-feed';
 
 // Sentry.config(
 //   'https://5908fa19ed37447f86b2717423cadec5:45dd3b58792b413cb67109c5e63a0bb7@sentry.io/1241658'
@@ -37,9 +34,6 @@ const AppNavigator = createStackNavigator(
     ChangePassword,
     UserWebView,
     Connect,
-    ContentChannelFeed,
-    ContentGroupFeed,
-    ContentItemFeed,
   },
   {
     initialRouteName: 'Tabs',

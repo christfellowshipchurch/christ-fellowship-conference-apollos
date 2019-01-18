@@ -9,11 +9,10 @@ import SafeAreaView from 'react-native-safe-area-view';
 import { BackgroundView, FeedView } from '@apollosproject/ui-kit';
 
 import ContentCardConnected from 'apolloschurchapp/src/ui/ContentCardConnected';
-import NavigationService from '../NavigationService';
 
 import headerOptions from '../tabs/headerOptions';
+import ContentSingle from '../content-single';
 import getGroupFeed from './getGroupFeed';
-
 /**
  * This is where the component description lives
  * A FeedView wrapped in a query to pull content data.
@@ -49,7 +48,7 @@ class ContentGroupFeed extends PureComponent {
     const destination = item.childGroups.length
       ? 'ContentGroupFeed'
       : 'ContentSingle';
-    NavigationService.navigate(destination, {
+    this.props.navigation.navigate(destination, {
       itemId: item.id,
       sharing: item.sharing,
     });
@@ -88,6 +87,7 @@ class ContentGroupFeed extends PureComponent {
 const ContentGroupFeedNavigator = createStackNavigator(
   {
     ContentGroupFeed,
+    ContentSingle,
   },
   {
     initialRouteName: 'ContentGroupFeed',

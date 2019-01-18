@@ -9,7 +9,8 @@ import { createStackNavigator } from 'react-navigation';
 import { BackgroundView, FeedView } from '@apollosproject/ui-kit';
 
 import ContentCardConnected from 'apolloschurchapp/src/ui/ContentCardConnected';
-import NavigationService from '../NavigationService';
+import ContentItemFeed from '../content-item-feed';
+import ContentSingle from '../content-single';
 
 import headerOptions from '../tabs/headerOptions';
 import getContentFeed from './getContentFeed';
@@ -49,7 +50,7 @@ class ContentChannelFeed extends PureComponent {
     const destination = item.childContentItemsConnection.edges.length
       ? 'ContentItemFeed'
       : 'ContentSingle';
-    NavigationService.navigate(destination, {
+    this.props.navigation.navigate(destination, {
       itemId: item.id,
     });
   };
@@ -92,6 +93,8 @@ class ContentChannelFeed extends PureComponent {
 export default createStackNavigator(
   {
     ContentChannelFeed,
+    ContentItemFeed,
+    ContentSingle,
   },
   {
     initialRouteName: 'ContentChannelFeed',
