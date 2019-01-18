@@ -3,22 +3,21 @@ import URL from 'url';
 import { Component } from 'react';
 import { Linking } from 'react-native';
 import OneSignal from 'react-native-onesignal';
+import { get } from 'lodash';
 import NavigationService from './NavigationService';
 import { ONE_SIGNAL_KEY } from './config';
 
 export default class NotificationsInit extends Component {
   static navigationOptions = {};
 
-  componentWillMount() {
+  componentDidMount() {
     OneSignal.init(ONE_SIGNAL_KEY, {
-      kOSSettingsKeyAutoPrompt: true,
+      kOSSettingsKeyAutoPrompt: false,
     });
     OneSignal.addEventListener('received', this.onReceived);
     OneSignal.addEventListener('opened', this.onOpened);
     OneSignal.addEventListener('ids', this.onIds);
-  }
-
-  componentDidMount() {
+    OneSignal.configure();
     Linking.getInitialURL().then((url) => {
       this.navigate(url);
     });
@@ -53,14 +52,18 @@ export default class NotificationsInit extends Component {
     // apolloschurchapp://AppStackNavigator/Connect
     // apolloschurchapp://SomethingElse/Connect
     // apolloschurchapp://SomethingElse/ContentSingle?itemId=SomeItemId:blablalba
-    const { url } = openResult.notification.payload.additionalData;
+    const url = get(openResult, 'notification.payload.additionalData.url');
     if (url) {
       this.navigate(url);
     }
   };
 
   onIds = (device) => {
-    console.log('Device info: ', device);
+    // Uncomment to support sending push notifications from Rock
+    // client.mutate({
+    //   mutation: UPDATE_DEVICE_PUSH_ID,
+    //   variables: { pushId: device.userId },
+    // });
   };
 
   render() {

@@ -2,7 +2,8 @@ import { merge, get } from 'lodash';
 import gql from 'graphql-tag';
 import getLoginState from 'apolloschurchapp/src/auth/getLoginState';
 import { track, events } from 'apolloschurchapp/src/analytics';
-import { client } from '../client'; // eslint-disable-line
+import { client, CACHE_LOADED } from '../client'; // eslint-disable-line
+import NavigationService from '../NavigationService';
 import getAuthToken from './getAuthToken';
 // TODO: this will require more organization...ie...not keeping everything in one file.
 // But this is simple while our needs our small.
@@ -12,6 +13,7 @@ export const schema = `
     authToken: String
     mediaPlayer: MediaPlayerState
     isLoggedIn: Boolean
+    cacheLoaded: Boolean
   }
 
   type Mutation {
@@ -27,7 +29,7 @@ export const schema = `
       isVideo: Boolean,
     ): Boolean
 
-    handleLogin(authToken: String!)
+    cacheMarkLoaded
   }
 
   type MediaPlayerState {
@@ -59,6 +61,8 @@ export const schema = `
 export const defaults = {
   __typename: 'Query',
   authToken: null,
+  cacheLoaded: false,
+  pushId: null,
   mediaPlayer: {
     __typename: 'MediaPlayerState',
     currentTrack: null,
@@ -235,6 +239,19 @@ export const resolvers = {
         },
       });
       return null;
+    },
+
+    cacheMarkLoaded: (root, args, { cache }) => {
+      cache.writeQuery({
+        query: CACHE_LOADED,
+        data: {
+          cacheLoaded: true,
+        },
+      });
+      const isLoggedIn = resolvers.Query.isLoggedIn();
+      if (!isLoggedIn) {
+        NavigationService.navigate('Connect');
+      }
     },
   },
 };

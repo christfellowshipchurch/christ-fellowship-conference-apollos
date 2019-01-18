@@ -1,13 +1,14 @@
 import React, { PureComponent } from 'react';
-import { View, ScrollView, SafeAreaView } from 'react-native';
+import { View, ScrollView, SafeAreaView, Text, Image } from 'react-native';
 import { Query } from 'react-apollo';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
-import { HeaderBackButton } from 'react-navigation';
+import { HeaderBackButton, withNavigation } from 'react-navigation';
 
 import { LoginButton } from 'apolloschurchapp/src/auth';
 import {
   H1,
+  H3,
   BodyText,
   Paragraph,
   BackgroundView,
@@ -15,6 +16,8 @@ import {
   styled,
   Icon,
   PaddedView,
+  Button,
+  ButtonLink,
 } from '@apollosproject/ui-kit';
 import CallToAction from '../../ui/CallToAction';
 import UserWebView from '../../user-web-view';
@@ -22,10 +25,26 @@ import ActionTable from './ActionTable';
 import { UserAvatarHeaderConnected } from './UserAvatarHeader';
 import getLoginState from './getLoginState';
 
+const MaybeLaterButon = ({ navigation, style }) => (
+  <ButtonLink
+    title="Skip for now"
+    onPress={() => navigation.goBack(null)}
+    style={style}
+  >
+    Skip for now
+  </ButtonLink>
+);
 const Title = styled(({ theme }) => ({
   color: theme.colors.primary,
   paddingBottom: theme.helpers.verticalRhythm(1.5),
-}))(H1);
+}))(H3);
+
+const Logo = styled(({ theme }) => ({
+  resizeMode: 'contain',
+  width: '70%',
+  height: '30%',
+  alignSelf: 'center',
+}))(Image);
 
 const BrandIcon = withTheme(({ theme }) => ({
   name: 'brand-icon',
@@ -37,12 +56,20 @@ const BrandIcon = withTheme(({ theme }) => ({
 const Header = styled(({ theme }) => ({
   paddingBottom: theme.sizing.baseUnit * 1.5,
   backgroundColor: theme.colors.background.paper,
-  paddingTop: theme.sizing.baseUnit * 4,
+  // paddingTop: theme.sizing.baseUnit * 4,
 }))(PaddedView);
 
 const StyledLoginButton = styled(({ theme }) => ({
   marginVertical: theme.sizing.baseUnit,
+  color: theme.colors.text.link,
 }))(LoginButton);
+
+const StyledMaybeLaterButton = styled(({ theme }) => ({
+  flex: 1,
+  width: '100%',
+  textAlign: 'center',
+  marginVertical: theme.sizing.baseUnit,
+}))(MaybeLaterButon);
 
 const CallToActionContainer = styled(({ theme }) => ({
   marginTop: 30,
@@ -116,11 +143,12 @@ class Connect extends PureComponent {
               );
 
             return (
-              <SafeAreaView>
-                <ScrollView>
+              <SafeAreaView style={{ flex: 1 }}>
+                <ScrollView style={{ flex: 1 }}>
                   <Header>
-                    <BrandIcon />
-                    <Title>Christ Fellowship Conference 2019</Title>
+                    {/* <BrandIcon />
+                    <Title>Christ Fellowship Conference 2019</Title> */}
+                    <Logo source={require('../logo.png')} />
                     <Paragraph>
                       <BodyText>
                         We're so excited for everything coming up this year at
@@ -137,6 +165,9 @@ class Connect extends PureComponent {
                       </BodyText>
                     </Paragraph>
                     <StyledLoginButton />
+                    <StyledMaybeLaterButton
+                      navigation={this.props.navigation}
+                    />
                   </Header>
                 </ScrollView>
               </SafeAreaView>

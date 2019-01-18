@@ -1,3 +1,4 @@
+import OneSignal from 'react-native-onesignal';
 import React, { PureComponent } from 'react';
 import { withNavigation } from 'react-navigation';
 import { Query } from 'react-apollo';
@@ -14,7 +15,10 @@ class LoginButton extends PureComponent {
     }),
   };
 
-  handleLoginPress = () => this.props.navigation.push('Auth');
+  handleLoginPress = () => {
+    this.props.navigation.push('Auth');
+    OneSignal.registerForPushNotifications();
+  }
 
   render() {
     const { navigation, ...otherProps } = this.props;

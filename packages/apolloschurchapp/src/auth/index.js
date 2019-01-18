@@ -94,7 +94,6 @@ class Auth extends PureComponent {
         <HeaderContainer>
           <CancelButton onPress={this.handleFinish}>Cancel</CancelButton>
           <Header>
-            <BrandIcon />
             <HeaderText>
               <Title>Let's get started!</Title>
               <StyledH5>
