@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-import { createBottomTabNavigator } from 'react-navigation';
+import {
+  createBottomTabNavigator,
+  StackActions,
+  NavigationActions,
+} from 'react-navigation';
 import { capitalize, lowerCase } from 'lodash';
 import { client } from '../client';
 
 import ContentChannelFeed from '../content-channel-feed';
 import ContentGroupFeed from '../content-group-feed';
+import MapFeed from '../map-feed';
 import tabBarIcon from './tabBarIcon';
 import TabBar from './tabBar';
 
@@ -24,19 +29,55 @@ const createTabNavigator = (data) => {
 
     const isGroup = !tab.itemContentChannel;
 
-    const RenderComponent = isGroup ? ContentGroupFeed : ContentChannelFeed;
+    const isMap = tab.title && lowerCase(tab.title) === 'map';
 
+
+    const RenderComponent = isMap
+      ? MapFeed
+      : isGroup
+        ? ContentGroupFeed
+        : ContentChannelFeed;
+    
+    const initialRoute = isMap
+      ? 'MapFeed'
+      : isGroup
+        ? 'ContentGroupFeed'
+        : 'ContentChannelFeed';    
+    
     const itemId = isGroup ? tab.itemGroup.id : tab.itemContentChannel.id;
 
+    let currentNavigator;
     tabObject[capitalize(tab.title)] = {
       screen: () => (
-        <RenderComponent name={tab.title} screenProps={{ itemId }} />
+        <RenderComponent
+          name={tab.title}
+          screenProps={{ itemId }}
+          ref={(navigatorRef) => {
+            currentNavigator = navigatorRef;
+          }}
+        />
       ),
       navigationOptions: {
         title: lowerCase(tab.title),
         tabBarIcon: tabBarIcon(tab.icon),
         tabBarOptions: {
           activeTintColor: tab.color,
+        },
+        tabBarOnPress: ({ navigation, defaultHandler }) => {
+          if (currentNavigator && navigation.isFocused()) {
+            return currentNavigator.dispatch(
+              StackActions.reset({
+                index: 0,
+                actions: [
+                  NavigationActions.navigate({
+                    routeName: initialRoute,
+                    params: { itemId },
+                  }),
+                ],
+              })
+            );
+          }
+          return defaultHandler();
         },
       },
     };

@@ -86,11 +86,6 @@ class Connect extends PureComponent {
                         url="https://my.christfellowshipconference.com/page/206"
                         useCookie
                       />
-                      <CallToAction
-                        icon="qrcode"
-                        title="check in"
-                        url="https://christfellowshipconference.com/"
-                      />
                     </CallToActionContainer>
                     <QRCodeContainer>
                       <UserWebView
@@ -102,7 +97,7 @@ class Connect extends PureComponent {
                         scrollEnabled={false}
                         injectedJavaScript={`
                           try {
-                            const css = '#cms-admin-footer { display: none !important; }',
+                            const css = '#cms-admin-footer { display: none !important; } .panel-default { border: none; box-shadow: none; }',
                                 head = document.head || document.getElementsByTagName('head')[0],
                                 style = document.createElement('style');
 
