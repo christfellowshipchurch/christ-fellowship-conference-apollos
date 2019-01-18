@@ -24,7 +24,7 @@ import { UserAvatarHeaderConnected } from './UserAvatarHeader';
 import getLoginState from './getLoginState';
 
 const MaybeLaterButon = ({ navigation }) => (
-  <Button title="Maybe Later" onPress={() => navigation.goBack(null)} />
+  <Button title="Skip For Now" onPress={() => navigation.goBack(null)} />
 );
 const Title = styled(({ theme }) => ({
   color: theme.colors.primary,
