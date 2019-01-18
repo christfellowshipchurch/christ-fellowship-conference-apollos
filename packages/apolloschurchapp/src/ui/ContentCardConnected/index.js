@@ -24,7 +24,11 @@ const ContentCardConnected = ({
         const theme = {
           colors: {
             background: {
-              accent: get(node, 'theme.colors.primary', undefined),
+              accent: get(
+                node,
+                'theme.colors.primary',
+                'rgba(165, 165, 165, 0.30000000000000004)'
+              ),
             },
           },
         };

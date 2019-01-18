@@ -20,10 +20,7 @@ export default gql`
     ): ContentItemsConnection
     parentChannel: ContentChannel
 
-    sharing: SharableContentItem
     theme: Theme
-    isLiked: Boolean
-    likedCount: Int
 
     headerColor: Color
     customItem: String

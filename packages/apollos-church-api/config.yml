@@ -57,6 +57,8 @@ ROCK_MAPPINGS:
       EntityType: ContentChannelItem
     ConferenceSpeakerContentItem:
       EntityType: ContentChannelItem
+    ConferenceScheduleContentItem:
+      EntityType: ContentChannelItem
       ContentChannelTypeId: [12]
     ConferenceGroupContentItem:
       EntityType: Group
