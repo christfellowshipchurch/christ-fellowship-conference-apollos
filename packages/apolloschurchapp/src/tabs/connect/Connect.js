@@ -54,7 +54,8 @@ const BrandIcon = withTheme(({ theme }) => ({
 }))(Icon);
 
 const Header = styled(({ theme }) => ({
-  paddingBottom: theme.sizing.baseUnit * 1.5,
+  paddingBottom: theme.sizing.baseUnit * 3,
+  height: '100%',
   backgroundColor: theme.colors.background.paper,
   // paddingTop: theme.sizing.baseUnit * 4,
 }))(PaddedView);
@@ -65,7 +66,6 @@ const StyledLoginButton = styled(({ theme }) => ({
 }))(LoginButton);
 
 const StyledMaybeLaterButton = styled(({ theme }) => ({
-  flex: 1,
   width: '100%',
   textAlign: 'center',
   marginVertical: theme.sizing.baseUnit,
@@ -97,7 +97,7 @@ class Connect extends PureComponent {
 
   render() {
     return (
-      <BackgroundView>
+      <BackgroundView style={{ flex: 1, height: '100%' }}>
         <Query query={getLoginState}>
           {({ data }) => {
             if (get(data, 'isLoggedIn', false))
@@ -143,11 +143,9 @@ class Connect extends PureComponent {
               );
 
             return (
-              <SafeAreaView style={{ flex: 1 }}>
-                <ScrollView style={{ flex: 1 }}>
+              <SafeAreaView style={{ flex: 1, height: '100%' }}>
+                <ScrollView contentContainerStyle={{ flex: 1 }}>
                   <Header>
-                    {/* <BrandIcon />
-                    <Title>Christ Fellowship Conference 2019</Title> */}
                     <Logo source={require('../logo.png')} />
                     <Paragraph>
                       <BodyText>
