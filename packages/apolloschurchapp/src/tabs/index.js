@@ -50,7 +50,6 @@ const createTabNavigator = (data) => {
           activeTintColor: tab.color,
         },
         tabBarOnPress: ({ navigation, defaultHandler }) => {
-          console.log(navigation);
           if (currentNavigator && navigation.isFocused()) {
             return currentNavigator.dispatch(
               StackActions.reset({
