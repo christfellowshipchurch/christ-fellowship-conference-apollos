@@ -7,6 +7,7 @@ export default gql`
   query getContentFeed($itemId: ID!) {
     node(id: $itemId) {
       ... on ContentChannel {
+        id
         childContentItemsConnection {
           edges {
             node {
