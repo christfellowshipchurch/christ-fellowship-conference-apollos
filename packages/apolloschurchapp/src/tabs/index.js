@@ -9,6 +9,7 @@ import { client } from '../client';
 
 import ContentChannelFeed from '../content-channel-feed';
 import ContentGroupFeed from '../content-group-feed';
+import MapFeed from '../map-feed';
 import tabBarIcon from './tabBarIcon';
 import TabBar from './tabBar';
 
@@ -28,8 +29,21 @@ const createTabNavigator = (data) => {
 
     const isGroup = !tab.itemContentChannel;
 
-    const RenderComponent = isGroup ? ContentGroupFeed : ContentChannelFeed;
-    const initialRoute = isGroup ? 'ContentGroupFeed' : 'ContentChannelFeed';
+    const isMap = tab.title && lowerCase(tab.title) === 'map';
+
+
+    const RenderComponent = isMap
+      ? MapFeed
+      : isGroup
+        ? ContentGroupFeed
+        : ContentChannelFeed;
+    
+    const initialRoute = isMap
+      ? 'MapFeed'
+      : isGroup
+        ? 'ContentGroupFeed'
+        : 'ContentChannelFeed';    
+    
     const itemId = isGroup ? tab.itemGroup.id : tab.itemContentChannel.id;
 
     let currentNavigator;
