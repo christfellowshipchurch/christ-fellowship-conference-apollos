@@ -19,15 +19,12 @@ const ContentCardConnected = ({
   return (
     <Query query={getContentCard} variables={{ contentId, tile: !!tile }}>
       {({ data: { node = {} } = {}, loading, error }) => {
-        console.log(error, 'content card error');
+        if (error) console.log(error, 'content card error');
         if (error) return <ErrorCard error={error} />;
-
-        const themeProp = {
-          theme: {
-            colors: {
-              background: {
-                accent: get(node, 'theme.colors.primary', undefined),
-              },
+        const theme = {
+          colors: {
+            background: {
+              accent: get(node, 'theme.colors.primary', undefined),
             },
           },
         };
@@ -36,7 +33,7 @@ const ContentCardConnected = ({
           <ContentCard
             {...node}
             {...otherProps}
-            {...themeProp}
+            theme={theme}
             coverImage={coverImage}
             tile={tile}
             isLoading={loading}
