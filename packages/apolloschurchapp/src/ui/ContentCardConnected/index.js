@@ -23,7 +23,6 @@ const ContentCardConnected = ({
         if (error) return <ErrorCard error={error} />;
 
         const coverImage = get(node, 'coverImage.sources', undefined);
-        console.log(node);
         return (
           <ContentCard
             {...node}
