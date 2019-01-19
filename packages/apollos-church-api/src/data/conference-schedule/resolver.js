@@ -9,7 +9,11 @@ export default {
     itemStartTime: ({ title, attributeValues }, args, { dataSources }) => {
       console.log(`${title} : ${attributeValues}`);
       return dataSources.ConferenceScheduleContentItem.getTime(
-        attributeValues.itemStartDateTime.value
+        get(
+          attributeValues,
+          'itemStartDateTime.value',
+          new Date().toString()
+        ) || new Date().toString()
       );
     },
     theme: ({ attributeValues }) => ({
