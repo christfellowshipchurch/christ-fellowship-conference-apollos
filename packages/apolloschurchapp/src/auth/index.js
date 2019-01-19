@@ -68,8 +68,8 @@ class Auth extends PureComponent {
   };
 
   tabRoutes = [
-    { title: 'Sign In', key: 'login' },
-    { title: 'Register', key: 'signup' },
+    { title: 'Sign Up', key: 'signup' },
+    { title: 'Log In', key: 'login' },
   ];
 
   static propTypes = {
@@ -96,17 +96,15 @@ class Auth extends PureComponent {
           <Header>
             <HeaderText>
               <Title>Let's get started!</Title>
-              <StyledH5>
-                Please sign in to start your Conference 2019 experience
-              </StyledH5>
+              <StyledH5>Create your account</StyledH5>
             </HeaderText>
           </Header>
         </HeaderContainer>
         <TabView
           routes={this.tabRoutes}
           renderScene={SceneMap({
-            login: this.renderLogin,
             signup: this.renderSignup,
+            login: this.renderLogin,
           })}
         />
       </FlexedView>

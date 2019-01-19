@@ -60,30 +60,30 @@ const UserAvatarView = withIsLoading(
     disabled,
     ...viewProps
   }) => (
-    // todo: handle file select stuff
-    <Container {...viewProps}>
-      <AvatarForm
-        isLoading={isLoading}
-        text={false}
-        disabled={disabled}
-        photo={photo}
-        refetch={refetch}
-      />
-      <Content>
-        <JobTitleHeader>{jobTitle}</JobTitleHeader>
-        <H3>
-          {firstName} {lastName}
-        </H3>
-        <LocationHeader>
-          <FontAwesome5 name="map-marker-alt" />
-          &nbsp;
+      // todo: handle file select stuff
+      <Container {...viewProps}>
+        <AvatarForm
+          isLoading={isLoading}
+          text={false}
+          disabled={disabled}
+          photo={photo}
+          refetch={refetch}
+        />
+        <Content>
+          <JobTitleHeader>{jobTitle}</JobTitleHeader>
+          <H3>
+            {firstName} {lastName}
+          </H3>
+          <LocationHeader>
+            <FontAwesome5 name="building" />
+            &nbsp;
           {church}, {department}
-        </LocationHeader>
+          </LocationHeader>
 
-        {/* <ChannelLabel icon="pin" label={church || ''} isLoading={isLoading} /> */}
-      </Content>
-    </Container>
-  )
+          {/* <ChannelLabel icon="pin" label={church || ''} isLoading={isLoading} /> */}
+        </Content>
+      </Container>
+    )
 );
 
 UserAvatarView.propTypes = {

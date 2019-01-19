@@ -17,7 +17,7 @@ export default {
       );
     },
     theme: ({ attributeValues }) => ({
-      type: 'LIGHT',
+      type: 'DARK',
       colors: {
         primary:
           get(
