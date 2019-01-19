@@ -27,5 +27,6 @@ export default gql`
 
     headerColor: Color
     customItem: String
+    itemStartTime: String
   }
 `;
