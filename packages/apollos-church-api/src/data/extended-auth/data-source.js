@@ -48,7 +48,7 @@ export default class ExtendedAuth extends Auth.dataSource {
 
     if (church) {
       await this.context.dataSources.Person.updateProfileAttributeValues([
-        { field: 'church', value: church },
+        { field: 'Church', value: church },
       ]);
     }
 
