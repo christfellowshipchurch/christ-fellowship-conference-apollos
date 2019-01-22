@@ -5,6 +5,45 @@ export default {
   ConferenceScheduleContentItem: {
     ...ContentItem.resolver.UniversalContentItem,
 
+    htmlContent: ({ content, attributeValues }, args, { dataSources }) => {
+      const startTime = dataSources.ConferenceScheduleContentItem.getTime(
+        get(
+          attributeValues,
+          'itemStartDateTime.value',
+          new Date().toString()
+        ) || null
+      );
+
+      const endTime = dataSources.ConferenceScheduleContentItem.getTime(
+        get(attributeValues, 'itemEndDateTime.value') || null
+      );
+
+      const timeRange =
+        startTime + (endTime !== 'Invalid date' ? ` - ${endTime}` : '');
+
+      return dataSources.ConferenceScheduleContentItem.extendAndSanitizeHtmlContent(
+        content,
+        [timeRange]
+      );
+    },
+    summary: ({ attributeValues }, args, { dataSources }) => {
+      const startTime = dataSources.ConferenceScheduleContentItem.getTime(
+        get(
+          attributeValues,
+          'itemStartDateTime.value',
+          new Date().toString()
+        ) || null
+      );
+
+      const endTime = dataSources.ConferenceScheduleContentItem.getTime(
+        get(attributeValues, 'itemEndDateTime.value') || null
+      );
+
+      const timeRange =
+        startTime + (endTime !== 'Invalid date' ? ` - ${endTime}` : '');
+
+      return timeRange;
+    },
     customItem: ({ attributeValues }) => attributeValues.customItem.value,
     itemStartTime: ({ title, attributeValues }, args, { dataSources }) => {
       console.log(`${title} : ${attributeValues}`);
@@ -17,7 +56,7 @@ export default {
       );
     },
     theme: ({ attributeValues }) => ({
-      type: 'DARK',
+      type: 'LIGHT',
       colors: {
         primary:
           get(
