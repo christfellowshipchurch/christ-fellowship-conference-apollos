@@ -21,7 +21,7 @@ export default class RockPerson extends Person.dataSource {
 
   // fields is an array of objects matching the pattern
   // [{ field: String, value: String }]
-  updateProfile = async (fields, attributeValues) => {
+  updateProfile = async (fields, attributeValues = []) => {
     const currentPerson = await this.context.dataSources.Auth.getCurrentPerson();
 
     if (!currentPerson) throw new AuthenticationError('Invalid Credentials');

@@ -18,7 +18,7 @@ export default gql`
     value: String!
   }
 
-  type Person implements Node {
+  type Person implements Node @cacheControl(maxAge: 0) {
     id: ID!
     firstName: String!
     lastName: String!

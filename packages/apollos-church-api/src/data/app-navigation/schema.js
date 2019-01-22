@@ -1,7 +1,8 @@
 import { gql } from 'apollo-server';
 
 export default gql`
-  type AppNavigationContentItem implements Node & ContentItem {
+  type AppNavigationContentItem implements Node & ContentItem
+    @cacheControl(maxAge: 600) {
     id: ID!
     title: String
     coverImage: ImageMedia
