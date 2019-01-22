@@ -3,6 +3,7 @@ import { Person } from '@apollosproject/data-connector-rock';
 export default {
   ...Person.resolver,
   Mutation: {
+    ...Person.resolver.Mutation,
     updateProfileFields: (root, { input, attributeValues }, { dataSources }) =>
       dataSources.Person.updateProfile(input, attributeValues),
   },
