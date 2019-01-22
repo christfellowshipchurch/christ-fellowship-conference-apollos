@@ -28,7 +28,7 @@ export default gql`
 
     startDateTime: String
 
-    itemContentChannel: ContentChannel @cacheControl(maxAge: 600)
+    itemContentChannel: ContentChannel
     itemGroup: ConferenceGroupContentItem
     color: String
     icon: String
