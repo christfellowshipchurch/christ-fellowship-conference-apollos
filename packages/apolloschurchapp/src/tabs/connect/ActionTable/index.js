@@ -32,12 +32,20 @@ const ActionTable = () => (
   <WebBrowserConsumer>
     {(openUrl) => (
       <View>
-        <RowHeader>
-          <Name>
-            <H4>{'App Information'}</H4>
-          </Name>
-        </RowHeader>
         <TableView>
+          <Touchable
+            onPress={() =>
+              openUrl(
+                'https://www.google.com/maps/place/Christ+Fellowship+Church/@26.8106405,-80.1226569,17z/data=!3m1!4b1!4m5!3m4!1s0x88d92ac0d13189a5:0xfcd08babd72fd4ec!8m2!3d26.8106405!4d-80.1204682'
+              )
+            }
+          >
+            <Cell>
+              <FontAwesome5 name={'map-marker-alt'} size={16} />
+              <CellText>Driving Directions</CellText>
+            </Cell>
+          </Touchable>
+          <Divider />
           <Touchable
             onPress={() =>
               openUrl(
@@ -52,7 +60,7 @@ const ActionTable = () => (
           </Touchable>
           <Divider />
         </TableView>
-        <TableView>
+        {/* <TableView>
           <Touchable
             onPress={() => NavigationActions.navigate('TestingControlPanel')}
           >
@@ -61,7 +69,7 @@ const ActionTable = () => (
               <CellText>Open Testing Panel</CellText>
             </Cell>
           </Touchable>
-        </TableView>
+        </TableView> */}
       </View>
     )}
   </WebBrowserConsumer>

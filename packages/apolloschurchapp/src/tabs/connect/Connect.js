@@ -149,17 +149,14 @@ class Connect extends PureComponent {
                     <Logo source={require('../logo.png')} />
                     <Paragraph>
                       <BodyText>
-                        We're so excited for everything coming up this year at
-                        Christ Fellowhsip Conference! And this year, we've got a
-                        new mobile experience to offer.
+                        Welcome to Christ Fellowship Conference. This year, we
+                        have a new mobile experience for you.
                       </BodyText>
                     </Paragraph>
                     <Paragraph>
                       <BodyText>
-                        We've got a LOT packed into these few days with you. To
-                        keep up with everything and to get a unique Conference
-                        experience tailored to you, start by signing into your
-                        Conference account.
+                        Select and view your breakout schedule and stay up to
+                        date with the latest information.
                       </BodyText>
                     </Paragraph>
                     <StyledLoginButton />

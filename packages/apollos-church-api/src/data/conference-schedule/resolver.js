@@ -6,8 +6,18 @@ export default {
     ...ContentItem.resolver.UniversalContentItem,
 
     customItem: ({ attributeValues }) => attributeValues.customItem.value,
+    itemStartTime: ({ title, attributeValues }, args, { dataSources }) => {
+      console.log(`${title} : ${attributeValues}`);
+      return dataSources.ConferenceScheduleContentItem.getTime(
+        get(
+          attributeValues,
+          'itemStartDateTime.value',
+          new Date().toString()
+        ) || new Date().toString()
+      );
+    },
     theme: ({ attributeValues }) => ({
-      type: 'LIGHT',
+      type: 'DARK',
       colors: {
         primary:
           get(
