@@ -21,6 +21,7 @@ export default class ExtendedAuth extends Auth.dataSource {
   registerPersonWithFullName = async ({
     firstName,
     lastName,
+    church,
     email,
     password,
   }) => {
@@ -44,6 +45,12 @@ export default class ExtendedAuth extends Auth.dataSource {
     const token = await this.authenticate({ identity: email, password });
 
     console.log('<==== LOGGING TOKEN ====> ', token);
+
+    if (church) {
+      await this.context.dataSources.Person.updateProfileAttributeValues([
+        { field: 'church', value: church },
+      ]);
+    }
 
     return token;
   };
