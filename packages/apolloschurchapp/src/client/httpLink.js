@@ -11,4 +11,4 @@ if (Platform.OS === 'android') uri = uri.replace('localhost', androidUri);
 
 console.log('Logging URI: ', uri);
 
-export default createUploadLink({ uri });
+export default createUploadLink({ uri, useGETForQueries: true });

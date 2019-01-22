@@ -11,6 +11,12 @@ export default new ApolloServer({
   context,
   introspection: true,
   debug: true,
+  tracing: process.env.NODE_ENV === 'development',
+  cacheControl: {
+    stripFormattedExtensions: false,
+    calculateHttpHeaders: true,
+    defaultMaxAge: 240,
+  },
   formatError: (error) => {
     console.error(error.extensions.exception.stacktrace.join('\n'));
     return error;
