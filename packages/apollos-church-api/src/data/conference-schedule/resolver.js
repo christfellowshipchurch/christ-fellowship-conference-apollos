@@ -71,7 +71,7 @@ export default {
         alert: '#c64f55',
       },
     }),
-    coverImage: async (root) => {
+    coverImage: async (root, args, { dataSources }) => {
       const pickBestImage = (images) => {
         // TODO: there's probably a _much_ more explicit and better way to handle this
         const squareImage = images.find((image) =>
@@ -86,6 +86,7 @@ export default {
       if (defaultImages.length) return pickBestImage(defaultImages);
 
       // If no image, check parent for image:
+
       return null;
     },
   },
