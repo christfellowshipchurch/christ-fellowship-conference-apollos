@@ -14,6 +14,8 @@ export default gql`
           ...largeCardFragment
           childGroups {
             id
+            htmlContent
+            summary
           }
         }
       }
