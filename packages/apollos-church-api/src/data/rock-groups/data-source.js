@@ -23,7 +23,8 @@ export default class Group extends RockApolloDataSource {
   getFromId = (id) => {
     if (!id) return false;
     const regexNotDigit = /\D/g;
-    const idNotNumber = id.match(regexNotDigit);
+    const idNotNumber = id.toString().match(regexNotDigit);
+
     return idNotNumber
       ? this.getFromGuid(id)
       : this.request()
