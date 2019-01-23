@@ -5,6 +5,7 @@ export default gql`
     $firstName: String!
     $lastName: String!
     $email: String!
+    $church: String!
     $password: String!
   ) {
     registerPersonWithFullName(
@@ -12,6 +13,7 @@ export default gql`
       lastName: $lastName
       email: $email
       password: $password
+      church: $church
     ) {
       token
     }

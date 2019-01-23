@@ -36,6 +36,8 @@ export default class RockPerson extends Person.dataSource {
 
     await this.patch(`/People/${currentPerson.id}`, fieldsAsObject);
 
+    this.updateProfileAttributeValues(attributeValues, currentPerson);
+
     const attributeValuesAsObject = attributeValues.reduce(
       (accum, { field, value }) => ({
         ...accum,
@@ -44,22 +46,6 @@ export default class RockPerson extends Person.dataSource {
       {}
     );
 
-    console.log('Logging attributeValues', attributeValues);
-    attributeValues.forEach(async (n, i) => {
-      console.log('Logging n: ', n);
-
-      const uri = `/People/AttributeValue/${currentPerson.id}/?attributeKey=${
-        n.field
-      }&attributeValue=${n.value}`;
-
-      console.log('Logging URI: ', uri);
-      await this.post(
-        `/People/AttributeValue/${currentPerson.id}/?attributeKey=${
-          n.field
-        }&attributeValue=${n.value}`
-      );
-    });
-
     return {
       ...currentPerson,
       ...mapKeys(fieldsAsObject, (_, key) => camelCase(key)),
@@ -67,5 +53,27 @@ export default class RockPerson extends Person.dataSource {
         ...mapKeys(attributeValuesAsObject, (_, key) => camelCase(key)),
       },
     };
+  };
+
+  updateProfileAttributeValues = async (
+    attributeValues,
+    currentPerson = null
+  ) => {
+    const _currentPerson =
+      currentPerson || (await this.context.dataSources.Auth.getCurrentPerson());
+
+    console.log('Logging Current Person: ', _currentPerson.id);
+
+    attributeValues.forEach(async (n, i) => {
+      const uri = `/People/AttributeValue/${_currentPerson.id}/?attributeKey=${
+        n.field
+      }&attributeValue=${n.value}`;
+
+      console.log('Logging URI', uri);
+
+      await this.post(uri);
+    });
+
+    return attributeValues;
   };
 }
