@@ -3,7 +3,7 @@ import { get } from 'lodash';
 import sanitizeHtmlNode from 'sanitize-html';
 
 const titleWithValue = (title, value) =>
-  title && value ? `<strong>${title}:</strong> ${value}` : null;
+  title && value ? `${title}: ${value}` : null;
 
 const concatWithBreakLine = (args) => {
   let content = '';
