@@ -1,5 +1,7 @@
 import { ContentItem } from '@apollosproject/data-connector-rock';
 import ApollosConfig from '@apollosproject/config';
+import { get } from 'lodash';
+import sanitizeHtmlNode from 'sanitize-html';
 
 const { ROCK_CONSTANTS, ROCK_MAPPINGS, ROCK } = ApollosConfig;
 
@@ -15,11 +17,51 @@ const isImage = ({ key, attributeValues, attributes }) =>
     typeof attributeValues[key].value === 'string' &&
     attributeValues[key].value.startsWith('http')); // looks like an image url
 
+const titleWithValue = (title, value) =>
+  title && value ? `${title}: ${value}` : null;
+
+const concatWithBreakLine = (args, lineBreak) => {
+  let content = '';
+
+  args.forEach((n, i) => {
+    if (n) {
+      const newContent = content.concat(`${n}${lineBreak}`);
+      content = newContent;
+    }
+  });
+
+  return content;
+};
+
+const getBreakoutDetails = (attributeValues, lineBreak) => {
+  const room = get(attributeValues, 'room.value');
+  const facilitator = get(attributeValues, 'facilitator.value');
+  const breakouts = get(attributeValues, 'breakOut.value');
+
+  const desc = concatWithBreakLine(
+    [
+      titleWithValue('Room', room),
+      titleWithValue('Facilitator', facilitator),
+      titleWithValue('Breakout', breakouts),
+    ],
+    lineBreak
+  );
+
+  console.log('Logging Breakout Details: ', desc);
+
+  return desc;
+};
+
 export default {
   ConferenceGroupContentItem: {
     ...ContentItem.resolver.UniversalContentItem,
     title: ({ name }) => name,
-    htmlContent: ({ description }) => description,
+    htmlContent: ({ description, attributeValues }) =>
+      sanitizeHtmlNode(
+        `${getBreakoutDetails(attributeValues, '<br>')}<hr>${description}`
+      ),
+    summary: ({ description, attributeValues }) =>
+      sanitizeHtmlNode(getBreakoutDetails(attributeValues, '\n')),
     childGroups: ({ id }, args, { dataSources }) =>
       dataSources.Group.getChildrenFromParentId(id),
     parentChannel: () => null,
