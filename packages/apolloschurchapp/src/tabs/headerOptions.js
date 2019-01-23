@@ -29,5 +29,7 @@ export default {
   headerStyle: {
     backgroundColor: '#FFFFFF',
     shadowColor: 'transparent',
+    borderBottomWidth: 0,
+    elevation: 0,
   },
 };
