@@ -44,9 +44,11 @@ class ContentItemFeed extends PureComponent {
    * Takes the user to the ContentSingle
    */
   handleOnPress = (item) => {
-    this.props.navigation.navigate('ContentSingle', {
-      itemId: item.id,
-    });
+    if (item.__typename !== 'ConferenceScheduleContentItem') {
+      this.props.navigation.navigate('ContentSingle', {
+        itemId: item.id,
+      });
+    }
   };
 
   render() {
