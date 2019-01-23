@@ -32,39 +32,23 @@ export default {
         alert: '#c64f55',
       },
     }),
-    // coverImage: async (root, args, { dataSources }) => {
-    //   const pickBestImage = (images) => {
-    //     // TODO: there's probably a _much_ more explicit and better way to handle this
-    //     const squareImage = images.find((image) =>
-    //       image.key.toLowerCase().includes('square')
-    //     );
-    //     if (squareImage) return { ...squareImage, __typename: 'ImageMedia' };
-    //     return { ...images[0], __typename: 'ImageMedia' };
-    //   };
+    coverImage: async (root, args, { dataSources }) => {
+      const pickBestImage = (images) => {
+        // TODO: there's probably a _much_ more explicit and better way to handle this
+        const squareImage = images.find((image) =>
+          image.key.toLowerCase().includes('square')
+        );
+        if (squareImage) return { ...squareImage, __typename: 'ImageMedia' };
+        return { ...images[0], __typename: 'ImageMedia' };
+      };
 
-    //   let defaultImages = ContentItem.resolver.ContentItem.images(root) || [];
-    //   defaultImages = defaultImages.filter((image) => image.sources.length); // filter images w/o URLs
-    //   if (defaultImages.length) return pickBestImage(defaultImages);
+      let defaultImages = ContentItem.resolver.ContentItem.images(root) || [];
+      defaultImages = defaultImages.filter((image) => image.sources.length); // filter images w/o URLs
+      if (defaultImages.length) return pickBestImage(defaultImages);
 
-    //   // If no image, check parent for image:
-    //   const parentItemsCursor = await dataSources.ContentItem.getCursorByChildContentItemId(
-    //     root.id
-    //   );
-    //   if (!parentItemsCursor) return null;
+      // If no image, check parent for image:
 
-    //   const parentItems = await parentItemsCursor.get();
-
-    //   if (parentItems.length) {
-    //     const parentImages = parentItems
-    //       .map(ContentItem.resolver.defaultContentItemResolvers.images)
-    //       .find((images) => images.length)
-    //       .filter((image) => image.sources.length); // filter images w/o URLs
-
-    //     if (parentImages && parentImages.length)
-    //       return pickBestImage(parentImages);
-    //   }
-
-    //   return null;
-    // },
+      return null;
+    },
   },
 };
