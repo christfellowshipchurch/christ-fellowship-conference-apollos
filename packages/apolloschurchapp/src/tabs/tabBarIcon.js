@@ -5,7 +5,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 const tabBarIcon = (name) => {
   function TabBarIcon({ tintColor }) {
-    return <FontAwesome5 name={name} color={tintColor} size={24} />;
+    return <FontAwesome5 name={name} color={tintColor} size={20} />;
   }
   TabBarIcon.propTypes = {
     tintColor: PropTypes.string,
