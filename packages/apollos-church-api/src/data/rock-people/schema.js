@@ -33,6 +33,7 @@ export default gql`
     facebook: String!
     instagram: String!
     twitter: String!
+    activeFeatures: [String]
   }
 
   extend type Mutation {
