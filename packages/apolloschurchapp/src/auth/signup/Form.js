@@ -45,7 +45,7 @@ class Form extends PureComponent {
           <PaddedView>
             <View>
               <TextInput
-                label="First Name"
+                label="First Name*"
                 type="text"
                 value={values.firstName}
                 error={touched.firstName && errors.firstName}
@@ -56,7 +56,7 @@ class Form extends PureComponent {
                 enablesReturnKeyAutomatically
               />
               <TextInput
-                label="Last Name"
+                label="Last Name*"
                 type="text"
                 value={values.lastName}
                 error={touched.lastName && errors.lastName}
@@ -67,7 +67,18 @@ class Form extends PureComponent {
                 enablesReturnKeyAutomatically
               />
               <TextInput
-                label="Email"
+                label="Church or Organization"
+                type="text"
+                value={values.church}
+                error={touched.church && errors.church}
+                onChangeText={(text) => setFieldValue('church', text)}
+                onSubmitEditing={() => this.churchInput.focus()}
+                returnKeyType="next"
+                textContentType="church"
+                enablesReturnKeyAutomatically
+              />
+              <TextInput
+                label="Email*"
                 type="email"
                 value={values.email}
                 error={touched.email && errors.email}
@@ -78,7 +89,7 @@ class Form extends PureComponent {
                 enablesReturnKeyAutomatically
               />
               <TextInput
-                label="Password"
+                label="Password*"
                 type="password"
                 value={values.password}
                 error={touched.password && errors.password}

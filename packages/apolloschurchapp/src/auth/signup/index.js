@@ -26,12 +26,12 @@ const Signup = ({ onSignup }) => (
     {(authenticate) => (
       <Formik
         validationSchema={Yup.object().shape({
-          firstName: Yup.string().required('First Name is required!'),
-          lastName: Yup.string().required('Last Name is required!'),
+          firstName: Yup.string().required('First Name is required'),
+          lastName: Yup.string().required('Last Name is required'),
           email: Yup.string()
-            .email('Invalid email address')
-            .required('Email is required!'),
-          password: Yup.string().required('Password is required!'),
+            .email('Please enter a valid email address')
+            .required('Email is required'),
+          password: Yup.string().required('Password is required'),
         })}
         onSubmit={async (variables, { setSubmitting, setFieldError }) => {
           try {

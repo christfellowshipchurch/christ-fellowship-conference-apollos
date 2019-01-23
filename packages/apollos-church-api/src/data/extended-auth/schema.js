@@ -8,6 +8,7 @@ export default gql`
     registerPersonWithFullName(
       firstName: String!
       lastName: String!
+      church: String!
       email: String!
       password: String!
     ): Authentication
