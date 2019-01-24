@@ -9,6 +9,7 @@ export default gql`
       id
       ... on ConferenceScheduleContentItem {
         title
+        summary
         conferenceGroups {
           ...contentItemFragment
           ...largeCardFragment
