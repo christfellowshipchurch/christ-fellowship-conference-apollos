@@ -3,36 +3,8 @@ import { View, Text, Platform } from 'react-native';
 import { WebBrowserConsumer } from 'apolloschurchapp/src/ui/WebBrowser';
 import { OpenUserWebView } from 'apolloschurchapp/src/user-web-view/Provider';
 import PropTypes from 'prop-types';
-import { compose, pure } from 'recompose';
-import {
-  H2,
-  Touchable,
-  withTheme,
-  TableView,
-  Cell,
-  CellIcon,
-  CellText,
-  Divider,
-  styled,
-  PaddedView,
-  H4,
-} from '@apollosproject/ui-kit';
+import { Touchable, styled } from '@apollosproject/ui-kit';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome';
-
-const viewStyle = {
-  width: '60%',
-  alignSelf: 'center',
-
-  marginTop: 10,
-  marginBottom: 10,
-  paddingTop: '5%',
-  paddingBottom: '5%',
-
-  backgroundColor: 'white',
-  borderRadius: 20,
-  borderWidth: 1,
-  borderColor: '#eee',
-};
 
 const CallToActionTitle = styled(({ theme }) => ({
   textAlign: 'center',
@@ -44,10 +16,8 @@ const CallToActionView = styled(({ theme }) => ({
   width: '60%',
   alignSelf: 'center',
 
-  marginTop: 10,
-  marginBottom: 10,
-  paddingTop: '5%',
-  paddingBottom: '5%',
+  paddingTop: 15,
+  paddingBottom: 15,
 
   backgroundColor: 'white',
   borderRadius: 20,
@@ -63,7 +33,7 @@ const CallToAction = ({ icon, title, url, useCookie }) => (
       >
         <CallToActionView>
           <CallToActionTitle>
-            <FontAwesome5 name={icon} size={30} />
+            <FontAwesome5 name={icon} size={28} />
             {'\n'}
             {title}
           </CallToActionTitle>
