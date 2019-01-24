@@ -11,6 +11,7 @@ import { BackgroundView, FeedView } from '@apollosproject/ui-kit';
 import ContentCardConnected from 'apolloschurchapp/src/ui/ContentCardConnected';
 import ContentItemFeed from '../content-item-feed';
 import ContentSingle from '../content-single/ContentSingle';
+import ContentBreakoutFeed from '../content-breakout-feed';
 
 import headerOptions from '../tabs/headerOptions';
 import getContentFeed from './getContentFeed';
@@ -96,6 +97,7 @@ const ContentChannelFeedNavigator = createStackNavigator(
     ContentChannelFeed,
     ContentItemFeed,
     ContentSingle,
+    ContentBreakoutFeed,
   },
   {
     initialRouteName: 'ContentChannelFeed',

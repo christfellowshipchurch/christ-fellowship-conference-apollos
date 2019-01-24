@@ -2,14 +2,12 @@ import React, { PureComponent } from 'react';
 import { Query } from 'react-apollo';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
-import { SafeAreaView } from 'react-native';
 
 import { ErrorCard, ThemeMixin } from '@apollosproject/ui-kit';
 
 import TrackEventWhenLoaded from 'apolloschurchapp/src/analytics/TrackEventWhenLoaded';
 import { events } from 'apolloschurchapp/src/analytics';
 
-import ActionContainer from './ActionContainer';
 import getContentItem from './getContentItem';
 
 import DevotionalContentItem from './DevotionalContentItem';
