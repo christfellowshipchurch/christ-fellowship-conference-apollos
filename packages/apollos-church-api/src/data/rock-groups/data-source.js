@@ -33,4 +33,16 @@ export default class Group extends RockApolloDataSource {
   };
 
   getGroups = () => this.request().get();
+
+  getFromTypeId = (id) => {
+    if (!id) return false;
+    const regexNotDigit = /\D/g;
+    const idNotNumber = id.toString().match(regexNotDigit);
+
+    return idNotNumber
+      ? []
+      : this.request()
+          .filter(`GroupTypeId eq ${id} and IsPublic and IsActive`)
+          .get();
+  };
 }

@@ -14,6 +14,11 @@ export default gql`
             node {
               ...contentItemFragment
               ...largeCardFragment
+              ... on ConferenceScheduleContentItem {
+                conferenceGroups {
+                  id
+                }
+              }
             }
           }
         }
