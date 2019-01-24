@@ -64,28 +64,26 @@ class ContentChannelFeed extends PureComponent {
 
     return (
       <BackgroundView>
-        <SafeAreaView>
-          <Query
-            query={getContentFeed}
-            variables={{ itemId }}
-            fetchPolicy="cache-and-network"
-          >
-            {({ loading, error, data, refetch }) => (
-              <FeedView
-                ListItemComponent={ContentCardConnected}
-                content={get(
-                  data,
-                  'node.childContentItemsConnection.edges',
-                  []
-                ).map((edge) => edge.node)}
-                isLoading={loading}
-                error={error}
-                refetch={refetch}
-                onPressItem={this.handleOnPress}
-              />
-            )}
-          </Query>
-        </SafeAreaView>
+        <Query
+          query={getContentFeed}
+          variables={{ itemId }}
+          fetchPolicy="cache-and-network"
+        >
+          {({ loading, error, data, refetch }) => (
+            <FeedView
+              ListItemComponent={ContentCardConnected}
+              content={get(
+                data,
+                'node.childContentItemsConnection.edges',
+                []
+              ).map((edge) => edge.node)}
+              isLoading={loading}
+              error={error}
+              refetch={refetch}
+              onPressItem={this.handleOnPress}
+            />
+          )}
+        </Query>
       </BackgroundView>
     );
   }

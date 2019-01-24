@@ -12,6 +12,7 @@ import ContentCardConnected from 'apolloschurchapp/src/ui/ContentCardConnected';
 
 import headerOptions from '../tabs/headerOptions';
 import ContentSingle from '../content-single/ContentSingle';
+import { MyBreakoutsBar } from '../my-breakouts-bar';
 import getGroupFeed from './getGroupFeed';
 /**
  * This is where the component description lives
@@ -61,24 +62,23 @@ class ContentGroupFeed extends PureComponent {
     );
     return (
       <BackgroundView>
-        <SafeAreaView>
-          <Query
-            query={getGroupFeed}
-            variables={{ itemId }}
-            fetchPolicy="cache-and-network"
-          >
-            {({ loading, error, data, refetch }) => (
-              <FeedView
-                ListItemComponent={ContentCardConnected}
-                content={get(data, 'node.childGroups', [])}
-                isLoading={loading}
-                error={error}
-                refetch={refetch}
-                onPressItem={this.handleOnPress}
-              />
-            )}
-          </Query>
-        </SafeAreaView>
+        <Query
+          query={getGroupFeed}
+          variables={{ itemId }}
+          fetchPolicy="cache-and-network"
+        >
+          {({ loading, error, data, refetch }) => (
+            <FeedView
+              ListItemComponent={ContentCardConnected}
+              content={get(data, 'node.childGroups', [])}
+              isLoading={loading}
+              error={error}
+              refetch={refetch}
+              onPressItem={this.handleOnPress}
+              ListHeaderComponent={<MyBreakoutsBar />}
+            />
+          )}
+        </Query>
       </BackgroundView>
     );
   }
