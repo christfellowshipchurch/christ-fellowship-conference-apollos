@@ -19,8 +19,6 @@ import {
   Button,
   ButtonLink,
 } from '@apollosproject/ui-kit';
-import CallToAction from '../../ui/CallToAction';
-import UserWebView from '../../user-web-view';
 import ActionTable from './ActionTable';
 import { UserAvatarHeaderConnected } from './UserAvatarHeader';
 import getLoginState from './getLoginState';
@@ -71,17 +69,6 @@ const StyledMaybeLaterButton = styled(({ theme }) => ({
   marginVertical: theme.sizing.baseUnit,
 }))(MaybeLaterButon);
 
-const CallToActionContainer = styled(({ theme }) => ({
-  marginTop: 30,
-  marginBottom: 30,
-}))(View);
-
-const QRCodeContainer = styled(() => ({
-  width: '100%',
-  justifyContent: 'space-around',
-  alignItems: 'center',
-}))(View);
-
 class Connect extends PureComponent {
   static navigationOptions = ({ navigation }) => ({
     title: 'Connect',
@@ -105,38 +92,6 @@ class Connect extends PureComponent {
                 <SafeAreaView>
                   <ScrollView>
                     <UserAvatarHeaderConnected key="UserAvatarHeaderConnected" />
-
-                    <CallToActionContainer>
-                      <CallToAction
-                        icon="list"
-                        title="my breakouts"
-                        url="https://my.christfellowshipconference.com/page/206"
-                        useCookie
-                      />
-                    </CallToActionContainer>
-                    <QRCodeContainer>
-                      <UserWebView
-                        url={
-                          'https://my.christfellowshipconference.com/mycheckincode'
-                        }
-                        webViewStyle={{ width: 300, height: 500 }}
-                        modal={false}
-                        scrollEnabled={false}
-                        injectedJavaScript={`
-                          try {
-                            const css = '#cms-admin-footer { display: none !important; } .panel-default { border: none; box-shadow: none; }',
-                                head = document.head || document.getElementsByTagName('head')[0],
-                                style = document.createElement('style');
-
-                            style.type = 'text/css';
-                            style.appendChild(document.createTextNode(css));
-
-                            head.appendChild(style);
-                          } catch {}
-                          true;
-                        `}
-                      />
-                    </QRCodeContainer>
                     <ActionTable />
                   </ScrollView>
                 </SafeAreaView>

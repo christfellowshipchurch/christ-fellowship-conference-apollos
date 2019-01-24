@@ -13,6 +13,7 @@ export default gql`
         church
         department
         jobTitle
+        activeFeatures
         photo {
           uri
         }
