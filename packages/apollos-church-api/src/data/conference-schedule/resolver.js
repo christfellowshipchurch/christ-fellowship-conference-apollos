@@ -89,5 +89,9 @@ export default {
 
       return null;
     },
+    conferenceGroups: ({ attributeValues }, args, { dataSources }) =>
+      dataSources.ConferenceScheduleContentItem.getScheduleItemGroupsByBreakoutSession(
+        get(attributeValues, 'breakoutSession.value') || ''
+      ),
   },
 };
