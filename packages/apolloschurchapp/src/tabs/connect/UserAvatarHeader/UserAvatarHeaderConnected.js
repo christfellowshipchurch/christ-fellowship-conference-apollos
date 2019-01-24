@@ -31,19 +31,6 @@ const featuresMap = {
         webViewStyle={{ width: 300, height: 500 }}
         modal={false}
         scrollEnabled={false}
-        injectedJavaScript={`
-            try {
-              const css = '#cms-admin-footer { display: none !important; } .panel-default { border: none; box-shadow: none; }',
-                  head = document.head || document.getElementsByTagName('head')[0],
-                  style = document.createElement('style');
-
-              style.type = 'text/css';
-              style.appendChild(document.createTextNode(css));
-
-              head.appendChild(style);
-            } catch {}
-            true;
-          `}
       />
     </QRCodeContainer>
   ),
@@ -52,7 +39,7 @@ const featuresMap = {
       <CallToAction
         icon="list"
         title="my breakouts"
-        url="https://my.christfellowshipconference.com/page/206"
+        url="https://my.christfellowshipconference.com/mybreakouts"
         useCookie
       />
     </CallToActionContainer>
@@ -62,7 +49,7 @@ const featuresMap = {
       <CallToAction
         icon="list"
         title="survey"
-        url="https://my.christfellowshipconference.com/survey"
+        url="https://my.christfellowshipconference.com/survey2019"
         useCookie
       />
     </CallToActionContainer>
