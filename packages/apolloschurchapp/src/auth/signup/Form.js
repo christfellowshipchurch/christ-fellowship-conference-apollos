@@ -74,7 +74,7 @@ class Form extends PureComponent {
                 onChangeText={(text) => setFieldValue('church', text)}
                 onSubmitEditing={() => this.churchInput.focus()}
                 returnKeyType="next"
-                textContentType="church"
+                textContentType="organizationName"
                 enablesReturnKeyAutomatically
               />
               <TextInput
