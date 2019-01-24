@@ -27,16 +27,18 @@ const MyBreakoutsBar = () => (
         <UserWebBrowserConsumer>
           {(openUrl) => (
             <TouchableScale
-              onPress={() => openUrl('https://apollos.churchonline.org/')}
+              onPress={() =>
+                openUrl('https://my.christfellowshipconference.com/mybreakouts')
+              }
             >
               <LiveCard isLoading={loading}>
                 <CardContent>
                   <ChannelLabel
-                    icon="video"
+                    // icon="video"
                     label={
                       <UIText>
-                        <UIText bold>{`View your breakouts.`} </UIText>
-                        View your breakouts!
+                        {`View, Select, or Check In to breakouts `}
+                        <UIText bold>{`here`}</UIText>
                       </UIText>
                     }
                   />
