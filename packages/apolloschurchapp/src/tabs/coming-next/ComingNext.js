@@ -82,20 +82,18 @@ class ComingNext extends PureComponent {
           <Text style={{ textAlign: 'center' }}>pull down to refresh</Text>
           <SafeAreaView>
             <Query query={getUserFeed} fetchPolicy="cache-and-network">
-              {({ loading, error, data, refetch }) =>
-                console.log(error, data) || (
-                  <FeedView
-                    ListItemComponent={ContentCardConnected}
-                    content={get(data, 'userFeed.edges', []).map(
-                      (edge) => edge.node
-                    )}
-                    isLoading={loading}
-                    error={error}
-                    refetch={refetch}
-                    onPressItem={this.handleOnPress}
-                  />
-                )
-              }
+              {({ loading, error, data, refetch }) => (
+                <FeedView
+                  ListItemComponent={ContentCardConnected}
+                  content={get(data, 'userFeed.edges', []).map(
+                    (edge) => edge.node
+                  )}
+                  isLoading={loading}
+                  error={error}
+                  refetch={refetch}
+                  onPressItem={this.handleOnPress}
+                />
+              )}
             </Query>
           </SafeAreaView>
         </FlexImageBackground>

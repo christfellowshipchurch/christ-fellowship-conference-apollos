@@ -8,4 +8,14 @@ authResolver.Mutation.registerPersonWithFullName = (
   { dataSources }
 ) => dataSources.Auth.registerPersonWithFullName(args);
 
+authResolver.Query.currentUser = (
+  root,
+  args,
+  { dataSources },
+  { cacheControl }
+) => {
+  cacheControl.setCacheHint({ maxAge: 0 });
+  return dataSources.Auth.getCurrentPerson();
+};
+
 export default authResolver;

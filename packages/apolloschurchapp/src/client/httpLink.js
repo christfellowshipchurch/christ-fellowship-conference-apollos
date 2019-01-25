@@ -11,7 +11,6 @@ import {
 import { split } from 'apollo-link';
 
 let cdnUri = APP_DATA_CDN_URL;
-
 let uri = APP_DATA_URL;
 
 const androidUri = ANDROID_URL || '10.0.2.2';
