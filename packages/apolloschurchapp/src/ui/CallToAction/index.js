@@ -16,6 +16,8 @@ const CallToActionView = styled(({ theme }) => ({
   width: '60%',
   alignSelf: 'center',
 
+  marginTop: 10,
+
   paddingTop: 15,
   paddingBottom: 15,
 
@@ -25,12 +27,18 @@ const CallToActionView = styled(({ theme }) => ({
   ...Platform.select(theme.shadows.default),
 }))(View);
 
-const CallToAction = ({ icon, title, url, useCookie }) => (
+const CalloutText = styled(({ theme }) => ({
+  textAlign: 'center',
+  color: theme.colors.lightSecondary,
+}))(Text);
+
+const CallToAction = ({ icon, title, url, useCookie, callout }) => (
   <WebBrowserConsumer>
     {(openUrl) => (
       <Touchable
         onPress={() => (useCookie ? OpenUserWebView(url) : openUrl(url))}
       >
+        <CalloutText>{callout}</CalloutText>
         <CallToActionView>
           <CallToActionTitle>
             <FontAwesome5 name={icon} size={28} />
@@ -48,6 +56,7 @@ CallToAction.propTypes = {
   title: PropTypes.string,
   url: PropTypes.string,
   useCookie: PropTypes.bool,
+  callout: PropTypes.string,
 };
 
 export default CallToAction;

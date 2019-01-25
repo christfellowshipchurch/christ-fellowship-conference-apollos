@@ -17,6 +17,9 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AvatarForm from './AvatarForm';
 
 const Container = styled(({ theme }) => ({
+  marginBottom: '15%',
+  paddingBottom: 10,
+
   backgroundColor: theme.colors.background.paper,
   flexDirection: 'row',
 }))(View);
@@ -34,7 +37,7 @@ const LocationHeader = styled(({ theme }) => ({
   marginTop: 5,
 
   color: theme.colors.darkSecondary,
-}))(H4);
+}))(H5);
 
 const JobTitleHeader = styled(({ theme }) => ({
   marginBottom: 5,
@@ -60,30 +63,30 @@ const UserAvatarView = withIsLoading(
     disabled,
     ...viewProps
   }) => (
-      // todo: handle file select stuff
-      <Container {...viewProps}>
-        <AvatarForm
-          isLoading={isLoading}
-          text={false}
-          disabled={disabled}
-          photo={photo}
-          refetch={refetch}
-        />
-        <Content>
-          <JobTitleHeader>{jobTitle}</JobTitleHeader>
-          <H3>
-            {firstName} {lastName}
-          </H3>
-          <LocationHeader>
-            <FontAwesome5 name="building" />
-            &nbsp;
+    // todo: handle file select stuff
+    <Container {...viewProps}>
+      <AvatarForm
+        isLoading={isLoading}
+        text={false}
+        disabled={disabled}
+        photo={photo}
+        refetch={refetch}
+      />
+      <Content>
+        <JobTitleHeader>{jobTitle}</JobTitleHeader>
+        <H3>
+          {firstName} {lastName}
+        </H3>
+        <LocationHeader>
+          <FontAwesome5 name="building" />
+          &nbsp;
           {church}, {department}
-          </LocationHeader>
+        </LocationHeader>
 
-          {/* <ChannelLabel icon="pin" label={church || ''} isLoading={isLoading} /> */}
-        </Content>
-      </Container>
-    )
+        {/* <ChannelLabel icon="pin" label={church || ''} isLoading={isLoading} /> */}
+      </Content>
+    </Container>
+  )
 );
 
 UserAvatarView.propTypes = {

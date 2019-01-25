@@ -28,7 +28,7 @@ const featuresMap = {
     <QRCodeContainer>
       <UserWebView
         url={'https://my.christfellowshipconference.com/mycheckincode'}
-        webViewStyle={{ width: 300, height: 500 }}
+        webViewStyle={{ width: 300, height: 400 }}
         modal={false}
         scrollEnabled={false}
       />
@@ -39,6 +39,7 @@ const featuresMap = {
       <CallToAction
         icon="list"
         title="my breakouts"
+        callout="Sign up for or check in to your breakouts"
         url="https://my.christfellowshipconference.com/mybreakouts"
         useCookie
       />
@@ -47,8 +48,9 @@ const featuresMap = {
   survey: () => (
     <CallToActionContainer>
       <CallToAction
-        icon="list"
-        title="survey"
+        icon="exclamation"
+        title="take a survey"
+        callout="Let us know your thoughts"
         url="https://my.christfellowshipconference.com/survey2019"
         useCookie
       />

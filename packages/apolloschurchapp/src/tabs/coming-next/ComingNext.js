@@ -45,6 +45,8 @@ class ComingNext extends PureComponent {
     headerStyle: {
       backgroundColor: '#00aeef',
       shadowColor: 'transparent',
+      borderBottomWidth: 0,
+      elevation: 0,
     },
   };
 

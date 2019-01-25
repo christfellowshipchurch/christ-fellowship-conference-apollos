@@ -20,7 +20,6 @@ const Container = styled(({ theme }) => ({
   alignItems: 'center',
   flexDirection: 'row',
   paddingTop: theme.sizing.baseUnit * 2,
-  paddingBottom: 0,
 }))(PaddedView);
 
 const SettingsIcon = compose(
