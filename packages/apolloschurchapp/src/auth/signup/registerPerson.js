@@ -5,7 +5,7 @@ export default gql`
     $firstName: String!
     $lastName: String!
     $email: String!
-    $church: String!
+    $church: String
     $password: String!
   ) {
     registerPersonWithFullName(
