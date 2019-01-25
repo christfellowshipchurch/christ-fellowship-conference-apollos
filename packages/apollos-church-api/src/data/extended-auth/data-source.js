@@ -1,5 +1,6 @@
 import { Auth } from '@apollosproject/data-connector-rock';
 import { AuthenticationError } from 'apollo-server';
+import moment from 'moment';
 
 export default class ExtendedAuth extends Auth.dataSource {
   createUserProfileWithFullName = async (props = {}) => {
@@ -15,6 +16,24 @@ export default class ExtendedAuth extends Auth.dataSource {
       });
     } catch (err) {
       throw new Error('Unable to create profile!');
+    }
+  };
+
+  createUserLogin = async (props = {}) => {
+    try {
+      const { email, password, personId } = props;
+
+      return await this.post('/UserLogins', {
+        PersonId: personId,
+        EntityTypeId: 27, // A default setting we use in Rock-person-creation-flow
+        UserName: email,
+        PlainTextPassword: password,
+        LastLoginDateTime: `${moment().toISOString()}`,
+        IsConfirmed: true,
+      });
+    } catch (err) {
+      console.log(err);
+      throw new Error('Unable to create user login!');
     }
   };
 

@@ -63,7 +63,7 @@ const BrowserWithUserCookie = ({
   // get the url from the navigation param or default to the url prop;
   const uri = navigation.getParam('url', url);
   return (
-    <Query query={WITH_USER_COOKIE}>
+    <Query query={WITH_USER_COOKIE} fetchPolicy="cache-and-network">
       {({ data, loading }) => {
         if (loading) {
           return null;
