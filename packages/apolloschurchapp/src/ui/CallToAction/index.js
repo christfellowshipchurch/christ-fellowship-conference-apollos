@@ -38,14 +38,16 @@ const CallToAction = ({ icon, title, url, useCookie, callout }) => (
       <Touchable
         onPress={() => (useCookie ? OpenUserWebView(url) : openUrl(url))}
       >
-        <CalloutText>{callout}</CalloutText>
-        <CallToActionView>
-          <CallToActionTitle>
-            <FontAwesome5 name={icon} size={28} />
-            {'\n'}
-            {title}
-          </CallToActionTitle>
-        </CallToActionView>
+        <View>
+          <CalloutText>{callout}</CalloutText>
+          <CallToActionView>
+            <CallToActionTitle>
+              <FontAwesome5 name={icon} size={28} />
+              {'\n'}
+              {title}
+            </CallToActionTitle>
+          </CallToActionView>
+        </View>
       </Touchable>
     )}
   </WebBrowserConsumer>
