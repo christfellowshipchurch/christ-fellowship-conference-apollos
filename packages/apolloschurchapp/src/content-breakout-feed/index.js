@@ -94,8 +94,8 @@ class ContentItemFeed extends PureComponent {
     );
 
     return (
-      <BackgroundView>
-        <SafeAreaView>
+      <BackgroundView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1 }}>
           <Query
             query={getContentFeed}
             variables={{ itemId }}
@@ -119,6 +119,7 @@ class ContentItemFeed extends PureComponent {
                   error={error}
                   refetch={refetch}
                   onPressItem={this.handleOnPress}
+                  style={{ flex: 1 }}
                   ListHeaderComponent={
                     <View>
                       <HeaderContainer
