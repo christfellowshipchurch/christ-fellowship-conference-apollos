@@ -10,6 +10,7 @@ import {
   BackgroundView,
   FeedView,
   H1,
+  H3,
   H4,
   styled,
 } from '@apollosproject/ui-kit';
@@ -17,7 +18,7 @@ import {
 import ContentCardConnected from 'apolloschurchapp/src/ui/ContentCardConnected';
 import { MyBreakoutsBar } from '../my-breakouts-bar';
 
-import NavigationHeader from '../content-single/NavigationHeader';
+// import NavigationHeader from '../content-single/NavigationHeader';
 import getContentFeed from './getContentFeed';
 
 /**
@@ -26,27 +27,40 @@ import getContentFeed from './getContentFeed';
  */
 const Container = styled(({ theme }) => ({
   marginHorizontal: theme.sizing.baseUnit,
-  marginTop: theme.sizing.baseUnit * 2,
   marginBottom: theme.sizing.baseUnit,
 
-  paddingTop: theme.sizing.baseUnit * 1.7,
-  paddingBottom: theme.sizing.baseUnit * 2,
+  paddingTop: theme.sizing.baseUnit * 1.5,
+  paddingBottom: theme.sizing.baseUnit * 1.5,
 
   borderBottomColor: theme.colors.lightSecondary,
   borderBottomWidth: 1,
+
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
 }))(View);
+
+const Subtitle = styled(({ theme }) => ({
+  textAlign: 'center',
+}))(Text);
 
 const HeaderContainer = ({ title, content }) => (
   <Container>
-    <H1>{title}</H1>
-    <H4>{content}</H4>
+    <H3>{content}</H3>
   </Container>
 );
 
 class ContentItemFeed extends PureComponent {
   /** Function for React Navigation to set information in the header. */
-  static navigationOptions = {
-    header: NavigationHeader,
+  // static navigationOptions = {
+  //   header: NavigationHeader,
+  // };
+
+  static navigationOptions = ({ navigation }) => {
+    const title = get(navigation, 'state.params.title');
+    return {
+      headerTitle: title || null,
+    };
   };
 
   static propTypes = {
