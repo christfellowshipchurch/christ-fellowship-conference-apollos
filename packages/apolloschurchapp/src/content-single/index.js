@@ -8,8 +8,8 @@ const ContentSingleNavigator = createStackNavigator(
   },
   {
     initialRouteName: 'ContentSingle',
-    headerMode: 'float',
-    headerTransitionPreset: 'fade-in-place',
+    // headerMode: 'float',
+    // headerTransitionPreset: 'fade-in-place',
   }
 );
 
