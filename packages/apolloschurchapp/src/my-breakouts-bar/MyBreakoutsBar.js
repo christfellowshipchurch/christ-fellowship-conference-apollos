@@ -11,6 +11,7 @@ import {
   ChannelLabel,
   UIText,
 } from '@apollosproject/ui-kit';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { UserWebBrowserConsumer } from '../user-web-view/Provider';
 
 import getLoginState from '../auth/getLoginState';
@@ -20,9 +21,11 @@ const LiveCard = styled(({ theme }) => ({
   color: 'white',
 }))(Card);
 
-const StyledText = styled(({ theme }) => ({
+const CardTitle = styled(({ theme }) => ({
+  fontWeight: 'bold',
   color: 'white',
-}))(UIText);
+  textAlign: 'center',
+}))(Text);
 
 const MyBreakoutsBar = () => (
   <Query query={getLoginState}>
@@ -39,15 +42,10 @@ const MyBreakoutsBar = () => (
             >
               <LiveCard isLoading={loading}>
                 <CardContent>
-                  <ChannelLabel
-                    // icon="video"
-                    label={
-                      <StyledText color="white">
-                        <StyledText bold>{'My Breakouts: '}</StyledText>
-                        {`Select and check in here`}
-                      </StyledText>
-                    }
-                  />
+                  <CardTitle>
+                    {'Select and check in to my breakouts  '}
+                    <FontAwesome5 name={'angle-right'} />
+                  </CardTitle>
                 </CardContent>
               </LiveCard>
             </TouchableScale>
