@@ -78,7 +78,7 @@ class Form extends PureComponent {
                 value={values.church}
                 error={touched.church && errors.church}
                 onChangeText={(text) => setFieldValue('church', text)}
-                onSubmitEditing={() => this.churchInput.focus()}
+                onSubmitEditing={() => this.emailInput.focus()}
                 returnKeyType="next"
                 textContentType="organizationName"
                 enablesReturnKeyAutomatically
