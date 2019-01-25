@@ -1,4 +1,5 @@
 import React from 'react';
+import { View, Text } from 'react-native';
 import { Query } from 'react-apollo';
 import { get } from 'lodash';
 
@@ -15,8 +16,13 @@ import { UserWebBrowserConsumer } from '../user-web-view/Provider';
 import getLoginState from '../auth/getLoginState';
 
 const LiveCard = styled(({ theme }) => ({
-  backgroundColor: theme.colors.lightSecondary,
+  backgroundColor: theme.colors.primary,
+  color: 'white',
 }))(Card);
+
+const StyledText = styled(({ theme }) => ({
+  color: 'white',
+}))(UIText);
 
 const MyBreakoutsBar = () => (
   <Query query={getLoginState}>
@@ -36,10 +42,10 @@ const MyBreakoutsBar = () => (
                   <ChannelLabel
                     // icon="video"
                     label={
-                      <UIText>
-                        {`View, Select, or Check In to breakouts `}
-                        <UIText bold>{`here`}</UIText>
-                      </UIText>
+                      <StyledText color="white">
+                        <StyledText bold>{'My Breakouts: '}</StyledText>
+                        {`Select and check in here`}
+                      </StyledText>
                     }
                   />
                 </CardContent>
