@@ -44,7 +44,7 @@ const Subtitle = styled(({ theme }) => ({
   textAlign: 'center',
 }))(Text);
 
-const HeaderContainer = ({ title, content }) => (
+const HeaderContainer = ({ content }) => (
   <Container>
     <H3>{content}</H3>
   </Container>
@@ -101,25 +101,36 @@ class ContentItemFeed extends PureComponent {
             variables={{ itemId }}
             fetchPolicy="cache-and-network"
           >
-            {({ loading, error, data, refetch }) => (
-              <FeedView
-                ListItemComponent={ContentCardConnected}
-                content={get(data, 'node.conferenceGroups', [])}
-                isLoading={loading}
-                error={error}
-                refetch={refetch}
-                onPressItem={this.handleOnPress}
-                ListHeaderComponent={
-                  <View>
-                    <HeaderContainer
-                      title={get(data, 'node.title')}
-                      content={get(data, 'node.htmlContent')}
-                    />
-                    <MyBreakoutsBar />
-                  </View>
-                }
-              />
-            )}
+            {({ loading, error, data, refetch }) => {
+              if (
+                get(data, 'node.title') &&
+                get(data, 'node.title') !==
+                  this.props.navigation.getParam('title')
+              ) {
+                this.props.navigation.setParams({
+                  title: get(data, 'node.title'),
+                });
+              }
+              return (
+                <FeedView
+                  ListItemComponent={ContentCardConnected}
+                  content={get(data, 'node.conferenceGroups', [])}
+                  isLoading={loading}
+                  error={error}
+                  refetch={refetch}
+                  onPressItem={this.handleOnPress}
+                  ListHeaderComponent={
+                    <View>
+                      <HeaderContainer
+                        title={get(data, 'node.title')}
+                        content={get(data, 'node.htmlContent')}
+                      />
+                      <MyBreakoutsBar />
+                    </View>
+                  }
+                />
+              );
+            }}
           </Query>
         </SafeAreaView>
       </BackgroundView>
