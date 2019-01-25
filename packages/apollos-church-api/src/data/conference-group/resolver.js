@@ -47,8 +47,6 @@ const getBreakoutDetails = (attributeValues, lineBreak) => {
     lineBreak
   );
 
-  console.log('Logging Breakout Details: ', desc);
-
   return desc;
 };
 

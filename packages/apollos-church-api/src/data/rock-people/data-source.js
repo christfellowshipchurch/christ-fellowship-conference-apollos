@@ -62,14 +62,10 @@ export default class RockPerson extends Person.dataSource {
     const _currentPerson =
       currentPerson || (await this.context.dataSources.Auth.getCurrentPerson());
 
-    console.log('Logging Current Person: ', _currentPerson.id);
-
     attributeValues.forEach(async (n, i) => {
       const uri = `/People/AttributeValue/${_currentPerson.id}/?attributeKey=${
         n.field
       }&attributeValue=${n.value}`;
-
-      console.log('Logging URI', uri);
 
       await this.post(uri);
     });

@@ -6,8 +6,6 @@ export default {
   ContentItem: {
     ...ContentItem.resolver.ContentItem,
     __resolveType: async (attrs, ...otherProps) => {
-      console.log(attrs);
-
       if (Object.hasOwnProperty.call(attrs.attributeValues, 'price')) {
         return 'EventTicketContentItem';
       }

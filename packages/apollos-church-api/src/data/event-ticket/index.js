@@ -39,10 +39,7 @@ export const schema = gql`
 export const resolver = {
   EventTicketContentItem: {
     ...ContentItem.resolver.UniversalContentItem,
-    startDateTime: ({ startDateTime, attributeValues }) => {
-      console.log('Logging Attr Values: ', attributeValues);
-      return startDateTime;
-    },
+    startDateTime: ({ startDateTime, attributeValues }) => startDateTime,
 
     ticketPrice: ({ attributeValues }) => attributeValues.price.value,
     registration: ({ attributeValues }) => attributeValues.registration.value,
