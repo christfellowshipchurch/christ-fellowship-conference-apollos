@@ -17,7 +17,6 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AvatarForm from './AvatarForm';
 
 const Container = styled(({ theme }) => ({
-  marginBottom: '15%',
   paddingBottom: 10,
 
   backgroundColor: theme.colors.background.paper,
