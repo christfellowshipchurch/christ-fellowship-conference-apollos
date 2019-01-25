@@ -15,6 +15,7 @@ import {
 } from '@apollosproject/ui-kit';
 
 import ContentCardConnected from 'apolloschurchapp/src/ui/ContentCardConnected';
+import { MyBreakoutsBar } from '../my-breakouts-bar';
 
 import NavigationHeader from '../content-single/NavigationHeader';
 import getContentFeed from './getContentFeed';
@@ -26,25 +27,19 @@ import getContentFeed from './getContentFeed';
 const Container = styled(({ theme }) => ({
   marginHorizontal: theme.sizing.baseUnit,
   marginTop: theme.sizing.baseUnit * 2,
+  marginBottom: theme.sizing.baseUnit,
+
+  paddingTop: theme.sizing.baseUnit * 1.7,
+  paddingBottom: theme.sizing.baseUnit * 2,
+
+  borderBottomColor: theme.colors.lightSecondary,
+  borderBottomWidth: 1,
 }))(View);
 
-const BreakoutCopy = styled(({ theme }) => ({
-  marginHorizontal: theme.sizing.baseUnit,
-  marginTop: theme.sizing.baseUnit,
-  paddingTop: 20,
-  textAlign: 'center',
-  color: theme.colors.lightTertiary,
-}))(Text);
-
-const HeaderContainer = ({ title, subtitle }) => (
+const HeaderContainer = ({ title, content }) => (
   <Container>
     <H1>{title}</H1>
-    <H4>{subtitle}</H4>
-
-    <BreakoutCopy>
-      To view your schedule, select your breakouts, or check in to a breakout,
-      head to your Profile
-    </BreakoutCopy>
+    <H4>{content}</H4>
   </Container>
 );
 
@@ -101,10 +96,13 @@ class ContentItemFeed extends PureComponent {
                 refetch={refetch}
                 onPressItem={this.handleOnPress}
                 ListHeaderComponent={
-                  <HeaderContainer
-                    title={get(data, 'node.title')}
-                    subtitle={get(data, 'node.summary')}
-                  />
+                  <View>
+                    <HeaderContainer
+                      title={get(data, 'node.title')}
+                      content={get(data, 'node.htmlContent')}
+                    />
+                    <MyBreakoutsBar />
+                  </View>
                 }
               />
             )}
