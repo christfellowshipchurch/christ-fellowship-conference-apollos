@@ -15,8 +15,10 @@ import HorizontalContentFeed from '../HorizontalContentFeed';
 
 const FlexedScrollView = styled({ flex: 1 })(ScrollView);
 
-const UniversalContentItem = ({ content, loading }) => {
+const UniversalContentItem = ({ content, loading, navigation }) => {
   const coverImageSources = get(content, 'coverImage.sources', []);
+  if (content.title && navigation.state.params.title !== content.title)
+    navigation.setParams({ title: content.title });
   return (
     <FlexedScrollView>
       {coverImageSources.length || loading ? (

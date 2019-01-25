@@ -13,7 +13,7 @@ import getContentItem from './getContentItem';
 import DevotionalContentItem from './DevotionalContentItem';
 import UniversalContentItem from './UniversalContentItem';
 
-import NavigationHeader from './NavigationHeader';
+// import NavigationHeader from './NavigationHeader';
 
 class ContentSingle extends PureComponent {
   static propTypes = {
@@ -23,8 +23,11 @@ class ContentSingle extends PureComponent {
     }),
   };
 
-  static navigationOptions = {
-    header: NavigationHeader,
+  static navigationOptions = ({ navigation }) => {
+    const title = get(navigation, 'state.params.title');
+    return {
+      headerTitle: title || null,
+    };
   };
 
   get itemId() {
@@ -58,6 +61,7 @@ class ContentSingle extends PureComponent {
             content={content}
             loading={loading}
             error={error}
+            navigation={this.props.navigation}
           />
         );
     }
