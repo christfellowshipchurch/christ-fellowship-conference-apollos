@@ -54,6 +54,9 @@ class Form extends PureComponent {
                 returnKeyType="next"
                 textContentType="givenName"
                 enablesReturnKeyAutomatically
+                inputRef={(r) => {
+                  this.firstNameInput = r;
+                }}
               />
               <TextInput
                 label="Last Name*"
@@ -61,10 +64,13 @@ class Form extends PureComponent {
                 value={values.lastName}
                 error={touched.lastName && errors.lastName}
                 onChangeText={(text) => setFieldValue('lastName', text)}
-                onSubmitEditing={() => this.emailInput.focus()}
+                onSubmitEditing={() => this.churchInput.focus()}
                 returnKeyType="next"
                 textContentType="familyName"
                 enablesReturnKeyAutomatically
+                inputRef={(r) => {
+                  this.lastNameInput = r;
+                }}
               />
               <TextInput
                 label="Church or Organization"
@@ -72,10 +78,13 @@ class Form extends PureComponent {
                 value={values.church}
                 error={touched.church && errors.church}
                 onChangeText={(text) => setFieldValue('church', text)}
-                onSubmitEditing={() => this.churchInput.focus()}
+                onSubmitEditing={() => this.emailInput.focus()}
                 returnKeyType="next"
                 textContentType="organizationName"
                 enablesReturnKeyAutomatically
+                inputRef={(r) => {
+                  this.churchInput = r;
+                }}
               />
               <TextInput
                 label="Email*"
@@ -87,6 +96,9 @@ class Form extends PureComponent {
                 returnKeyType="next"
                 textContentType="username"
                 enablesReturnKeyAutomatically
+                inputRef={(r) => {
+                  this.emailInput = r;
+                }}
               />
               <TextInput
                 label="Password*"
