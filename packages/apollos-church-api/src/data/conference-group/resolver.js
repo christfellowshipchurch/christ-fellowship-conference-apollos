@@ -25,7 +25,7 @@ const concatWithBreakLine = (args, lineBreak) => {
 
   args.forEach((n, i) => {
     if (n) {
-      const newContent = content.concat(`${n}${lineBreak}`);
+      const newContent = content.concat(`<p>${n}</p>`);
       content = newContent;
     }
   });
