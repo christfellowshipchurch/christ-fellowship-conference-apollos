@@ -28,6 +28,7 @@ const concatWithBreakLine = (args, lineBreak, isTag = false) => {
       const newContent = isTag
         ? content.concat(`<${lineBreak}>${n}</${lineBreak}>`)
         : content.concat(`${n}${lineBreak}`);
+
       content = newContent;
     }
   });
