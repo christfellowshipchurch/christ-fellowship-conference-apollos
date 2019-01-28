@@ -20,12 +20,15 @@ const isImage = ({ key, attributeValues, attributes }) =>
 const titleWithValue = (title, value) =>
   title && value ? `${title}: ${value}` : null;
 
-const concatWithBreakLine = (args, lineBreak) => {
+const concatWithBreakLine = (args, lineBreak, isTag = false) => {
   let content = '';
 
   args.forEach((n, i) => {
     if (n) {
-      const newContent = content.concat(`<p>${n}</p>`);
+      const newContent = isTag
+        ? content.concat(`<${lineBreak}>${n}</${lineBreak}>`)
+        : content.concat(`${n}${lineBreak}`);
+
       content = newContent;
     }
   });
@@ -56,7 +59,7 @@ export default {
     title: ({ name }) => name,
     htmlContent: ({ description, attributeValues }) =>
       sanitizeHtmlNode(
-        `${getBreakoutDetails(attributeValues, '<br>')}<hr>${description}`
+        `${getBreakoutDetails(attributeValues, 'p', true)}<hr>${description}`
       ),
     summary: ({ description, attributeValues }) =>
       sanitizeHtmlNode(getBreakoutDetails(attributeValues, '\n')),
