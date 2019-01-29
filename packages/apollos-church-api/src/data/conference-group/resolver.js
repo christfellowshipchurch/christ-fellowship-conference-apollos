@@ -36,7 +36,7 @@ const concatWithBreakLine = (args, lineBreak, isTag = false) => {
   return content;
 };
 
-const getBreakoutDetails = (attributeValues, lineBreak) => {
+const getBreakoutDetails = (attributeValues, lineBreak, isTag) => {
   const room = get(attributeValues, 'room.value');
   const facilitator = get(attributeValues, 'facilitator.value');
   const breakouts = get(attributeValues, 'breakOut.value');
@@ -47,7 +47,8 @@ const getBreakoutDetails = (attributeValues, lineBreak) => {
       titleWithValue('Facilitator', facilitator),
       titleWithValue('Breakout', breakouts),
     ],
-    lineBreak
+    lineBreak,
+    isTag
   );
 
   return desc;
@@ -62,7 +63,7 @@ export default {
         `${getBreakoutDetails(attributeValues, 'p', true)}<hr>${description}`
       ),
     summary: ({ description, attributeValues }) =>
-      sanitizeHtmlNode(getBreakoutDetails(attributeValues, '\n')),
+      sanitizeHtmlNode(getBreakoutDetails(attributeValues, '\n', false)),
     childGroups: ({ id }, args, { dataSources }) =>
       dataSources.Group.getChildrenFromParentId(id),
     parentChannel: () => null,
