@@ -35,7 +35,8 @@ export default {
       typeof attributeValues.instagram === 'object'
         ? attributeValues.instagram.value
         : '',
+    activeFeatures: () => ['my-breakouts'],
     // activeFeatures: () => ['my-breakouts', 'qr-code'],
-    activeFeatures: () => ['my-breakouts', 'survey', 'qr-code'],
+    // activeFeatures: () => ['my-breakouts', 'survey', 'qr-code'],
   },
 };
