@@ -1,5 +1,6 @@
 import { createStackNavigator } from 'react-navigation';
 import React, { PureComponent } from 'react';
+import { View } from 'react-native';
 import { Query } from 'react-apollo';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
@@ -9,7 +10,6 @@ import SafeAreaView from 'react-native-safe-area-view';
 import { FeedView } from '@apollosproject/ui-kit';
 import ContentCardConnected from 'apolloschurchapp/src/ui/ContentCardConnected';
 import BackgroundView from '../ui/BackgroundView';
-
 
 import headerOptions from '../tabs/headerOptions';
 import ContentSingle from '../content-single/ContentSingle';
@@ -69,15 +69,18 @@ class ContentGroupFeed extends PureComponent {
           fetchPolicy="cache-and-network"
         >
           {({ loading, error, data, refetch }) => (
-            <FeedView
-              ListItemComponent={ContentCardConnected}
-              content={get(data, 'node.childGroups', [])}
-              isLoading={loading}
-              error={error}
-              refetch={refetch}
-              onPressItem={this.handleOnPress}
-              ListHeaderComponent={<MyBreakoutsBar />}
-            />
+            <View>
+              <MyBreakoutsBar />
+              <FeedView
+                ListItemComponent={ContentCardConnected}
+                content={get(data, 'node.childGroups', [])}
+                isLoading={loading}
+                error={error}
+                refetch={refetch}
+                onPressItem={this.handleOnPress}
+                // ListHeaderComponent={}
+              />
+            </View>
           )}
         </Query>
       </BackgroundView>
