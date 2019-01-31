@@ -3,11 +3,13 @@ import { createStackNavigator } from 'react-navigation';
 
 import tabBarIcon from '../tabBarIcon';
 
+import ContentSingle from '../../content-single/ContentSingle';
 import ComingNext from './ComingNext';
 
 export const ComingNextNavigator = createStackNavigator(
   {
     ComingNext,
+    ContentSingle,
   },
   {
     initialRouteName: 'ComingNext',
