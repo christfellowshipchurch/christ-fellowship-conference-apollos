@@ -28,7 +28,7 @@ const UniversalContentItem = ({ content, loading, navigation }) => {
         />
       ) : null}
       <SafeAreaView>
-        <BackgroundView>
+        <BackgroundView colors={['white', 'white']}>
           <MediaControls contentId={content.id} />
           <PaddedView>
             <H2 padded isLoading={!content.title && loading}>
