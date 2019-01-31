@@ -6,7 +6,7 @@ import NavigationService from '../NavigationService';
 
 const LogoTitle = styled(({ theme }) => ({
   width: '100%',
-  height: '50%',
+  height: '40%',
   margin: theme.sizing.baseUnit,
   alignSelf: 'center',
   resizeMode: 'contain',

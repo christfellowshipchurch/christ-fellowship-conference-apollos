@@ -49,12 +49,6 @@ class Home extends PureComponent {
                 isLoading={loading}
                 error={error}
                 refetch={refetch}
-                // ListHeaderComponent={
-                //   <>
-                //     <LogoTitle source={require('./wordmark.png')} />
-                //     <LiveButton />
-                //   </>
-                // }
                 onPressItem={this.handleOnPress}
               />
             )}
