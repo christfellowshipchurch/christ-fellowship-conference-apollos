@@ -20,8 +20,7 @@ import getContentFeed from './getContentFeed';
  * A FeedView wrapped in a query to pull content data.
  */
 const Container = styled(({ theme }) => ({
-  paddingTop: theme.sizing.baseUnit * 1.5,
-  paddingBottom: theme.sizing.baseUnit * 1.5,
+  maxHeight: '20%',
 
   borderBottomColor: theme.colors.lightSecondary,
   borderBottomWidth: 1,
@@ -32,12 +31,6 @@ const Container = styled(({ theme }) => ({
 
   backgroundColor: 'white',
 }))(View);
-
-const HeaderContainer = ({ content }) => (
-  <Container>
-    <H3>{content}</H3>
-  </Container>
-);
 
 class ContentItemFeed extends PureComponent {
   /** Function for React Navigation to set information in the header. */
@@ -53,7 +46,7 @@ class ContentItemFeed extends PureComponent {
         shadowColor: 'transparent',
         borderBottomWidth: 0,
         elevation: 0,
-        marginBottom: -20,
+        marginBottom: -5,
       },
     };
   };
@@ -107,23 +100,23 @@ class ContentItemFeed extends PureComponent {
                 });
               }
               return (
-                <FeedView
-                  ListItemComponent={ContentCardConnected}
-                  content={get(data, 'node.conferenceGroups', [])}
-                  isLoading={loading}
-                  error={error}
-                  refetch={refetch}
-                  onPressItem={this.handleOnPress}
-                  ListHeaderComponent={
-                    <View>
-                      <HeaderContainer
-                        title={get(data, 'node.title')}
-                        content={get(data, 'node.htmlContent')}
-                      />
-                      <MyBreakoutsBar />
-                    </View>
-                  }
-                />
+                <View>
+                  <Container>
+                    <H3>{get(data, 'node.htmlContent')}</H3>
+                    <MyBreakoutsBar />
+                  </Container>
+                  <FeedView
+                    ListItemComponent={ContentCardConnected}
+                    content={get(data, 'node.conferenceGroups', [])}
+                    isLoading={loading}
+                    error={error}
+                    refetch={refetch}
+                    onPressItem={this.handleOnPress}
+                    // ListHeaderComponent={
+
+                    // }
+                  />
+                </View>
               );
             }}
           </Query>
