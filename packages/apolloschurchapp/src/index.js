@@ -38,8 +38,6 @@ const AppNavigator = createStackNavigator(
   },
   {
     initialRouteName: 'Tabs',
-    mode: 'modal',
-    headerMode: 'screen',
   }
 );
 

@@ -90,7 +90,10 @@ class Connect extends PureComponent {
 
   render() {
     return (
-      <BackgroundView style={{ flex: 1, height: '100%' }}>
+      <BackgroundView
+        style={{ flex: 1, height: '100%' }}
+        colors={['white', 'white']}
+      >
         <Query query={getLoginState}>
           {({ data }) => {
             if (get(data, 'isLoggedIn', false))

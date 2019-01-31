@@ -5,7 +5,8 @@ import { Image } from 'react-native';
 import NavigationService from '../NavigationService';
 
 const LogoTitle = styled(({ theme }) => ({
-  height: theme.sizing.baseUnit,
+  width: '100%',
+  height: '50%',
   margin: theme.sizing.baseUnit,
   alignSelf: 'center',
   resizeMode: 'contain',

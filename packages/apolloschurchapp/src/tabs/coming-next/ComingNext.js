@@ -103,18 +103,4 @@ class ComingNext extends PureComponent {
   }
 }
 
-const ComingNextNavigator = createStackNavigator(
-  {
-    ComingNext,
-    ContentSingle,
-  },
-  {
-    initialRouteName: 'ComingNext',
-  }
-);
-
-ComingNextNavigator.navigationOptions = {
-  header: null,
-};
-
-export default ComingNextNavigator;
+export default ComingNext;

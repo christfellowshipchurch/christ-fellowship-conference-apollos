@@ -15,7 +15,7 @@ const options = {
 
 function showImagePicker() {
   return new Promise((resolve, reject) => {
-    ImagePicker.showImagePicker(options, (response) => {
+    ImagePicker.launchImageLibrary(options, (response) => {
       if (response.didCancel) {
         reject(response.didCancel);
       } else if (response.error) {

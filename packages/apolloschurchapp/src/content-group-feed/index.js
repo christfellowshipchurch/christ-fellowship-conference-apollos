@@ -10,10 +10,10 @@ import SafeAreaView from 'react-native-safe-area-view';
 import { FeedView } from '@apollosproject/ui-kit';
 import ContentCardConnected from 'apolloschurchapp/src/ui/ContentCardConnected';
 import BackgroundView from '../ui/BackgroundView';
-
-import headerOptions from '../tabs/headerOptions';
 import ContentSingle from '../content-single/ContentSingle';
 import { MyBreakoutsBar } from '../my-breakouts-bar';
+
+import headerOptions from '../tabs/headerOptions';
 import getGroupFeed from './getGroupFeed';
 /**
  * This is where the component description lives
