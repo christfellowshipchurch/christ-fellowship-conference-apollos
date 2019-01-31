@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { Query } from 'react-apollo';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
 import SafeAreaView from 'react-native-safe-area-view';
 
-import { FeedView, H1, H3, H4, styled } from '@apollosproject/ui-kit';
+import { FeedView, H3, styled } from '@apollosproject/ui-kit';
 import ContentCardConnected from 'apolloschurchapp/src/ui/ContentCardConnected';
 import BackgroundView from '../ui/BackgroundView';
 
@@ -20,11 +20,7 @@ import getContentFeed from './getContentFeed';
  * A FeedView wrapped in a query to pull content data.
  */
 const Container = styled(({ theme }) => ({
-  marginHorizontal: theme.sizing.baseUnit,
-  marginBottom: theme.sizing.baseUnit,
-
-  paddingTop: theme.sizing.baseUnit * 1.5,
-  paddingBottom: theme.sizing.baseUnit * 1.5,
+  maxHeight: '20%',
 
   borderBottomColor: theme.colors.lightSecondary,
   borderBottomWidth: 1,
@@ -32,17 +28,9 @@ const Container = styled(({ theme }) => ({
   flex: 1,
   justifyContent: 'center',
   alignItems: 'center',
+
+  backgroundColor: 'white',
 }))(View);
-
-const Subtitle = styled(({ theme }) => ({
-  textAlign: 'center',
-}))(Text);
-
-const HeaderContainer = ({ content }) => (
-  <Container>
-    <H3>{content}</H3>
-  </Container>
-);
 
 class ContentItemFeed extends PureComponent {
   /** Function for React Navigation to set information in the header. */
@@ -54,6 +42,12 @@ class ContentItemFeed extends PureComponent {
     const title = get(navigation, 'state.params.title');
     return {
       headerTitle: title || null,
+      headerStyle: {
+        shadowColor: 'transparent',
+        borderBottomWidth: 0,
+        elevation: 0,
+        marginBottom: -5,
+      },
     };
   };
 
@@ -106,23 +100,23 @@ class ContentItemFeed extends PureComponent {
                 });
               }
               return (
-                <FeedView
-                  ListItemComponent={ContentCardConnected}
-                  content={get(data, 'node.conferenceGroups', [])}
-                  isLoading={loading}
-                  error={error}
-                  refetch={refetch}
-                  onPressItem={this.handleOnPress}
-                  ListHeaderComponent={
-                    <View>
-                      <HeaderContainer
-                        title={get(data, 'node.title')}
-                        content={get(data, 'node.htmlContent')}
-                      />
-                      <MyBreakoutsBar />
-                    </View>
-                  }
-                />
+                <View>
+                  <Container>
+                    <H3>{get(data, 'node.htmlContent')}</H3>
+                    <MyBreakoutsBar />
+                  </Container>
+                  <FeedView
+                    ListItemComponent={ContentCardConnected}
+                    content={get(data, 'node.conferenceGroups', [])}
+                    isLoading={loading}
+                    error={error}
+                    refetch={refetch}
+                    onPressItem={this.handleOnPress}
+                    // ListHeaderComponent={
+
+                    // }
+                  />
+                </View>
               );
             }}
           </Query>

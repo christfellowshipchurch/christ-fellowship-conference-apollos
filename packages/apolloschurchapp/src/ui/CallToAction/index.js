@@ -29,7 +29,7 @@ const CallToActionView = styled(({ theme }) => ({
 
 const CalloutText = styled(({ theme }) => ({
   textAlign: 'center',
-  color: theme.colors.lightSecondary,
+  color: theme.colors.darkSecondary,
 }))(Text);
 
 const CallToAction = ({ icon, title, url, useCookie, callout }) => (

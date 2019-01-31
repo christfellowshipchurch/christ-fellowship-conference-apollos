@@ -19,7 +19,7 @@ import AvatarForm from './AvatarForm';
 const Container = styled(({ theme }) => ({
   paddingBottom: 10,
 
-  backgroundColor: theme.colors.background.paper,
+  backgroundColor: '#F3F3F3',
   flexDirection: 'row',
 }))(View);
 
@@ -35,13 +35,13 @@ const LocationHeader = styled(({ theme }) => ({
   alignItems: 'center',
   marginTop: 5,
 
-  color: theme.colors.darkSecondary,
+  color: theme.colors.darkPrimary,
 }))(H5);
 
 const JobTitleHeader = styled(({ theme }) => ({
   marginBottom: 5,
 
-  color: theme.colors.lightSecondary,
+  color: theme.colors.darkSecondary,
   textTransform: 'lowercase',
 }))(Text);
 

@@ -49,7 +49,7 @@ class UserSettings extends PureComponent {
           if (loading) return <ActivityIndicator />;
           if (!isLoggedIn) return null;
           return (
-            <BackgroundContainer>
+            <BackgroundContainer colors={['white', 'white']}>
               <AvatarView>
                 <AvatarForm
                   text

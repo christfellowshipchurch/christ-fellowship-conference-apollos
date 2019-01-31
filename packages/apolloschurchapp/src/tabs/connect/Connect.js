@@ -71,8 +71,14 @@ const StyledMaybeLaterButton = styled(({ theme }) => ({
 
 class Connect extends PureComponent {
   static navigationOptions = ({ navigation }) => ({
-    title: 'Connect',
+    title: 'My Profile',
     headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)} />,
+    headerStyle: {
+      backgroundColor: '#F3F3F3',
+      shadowColor: 'transparent',
+      borderBottomWidth: 0,
+      elevation: 0,
+    },
   });
 
   static propTypes = {
