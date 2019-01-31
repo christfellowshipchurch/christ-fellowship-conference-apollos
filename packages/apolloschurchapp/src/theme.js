@@ -4,6 +4,7 @@ const colors = {
   tertiary: '#00aeef',
   screen: '#FCFCFC',
   paper: '#FFFFFF',
+
   alert: '#c64f55',
 
   // Dark shades
@@ -22,7 +23,10 @@ const colors = {
 
 const typography = {};
 
-const overrides = {};
+const overrides = {
+  // must be an array of at least 2 values
+  background: ['#F3F3F3', '#F3F3F3'],
+};
 
 export default {
   colors,
