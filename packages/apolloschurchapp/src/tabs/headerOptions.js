@@ -1,11 +1,12 @@
 import React from 'react';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { styled } from '@apollosproject/ui-kit';
-import { Image } from 'react-native';
+import { Image, View } from 'react-native';
 import NavigationService from '../NavigationService';
 
 const LogoTitle = styled(({ theme }) => ({
-  height: theme.sizing.baseUnit,
+  width: '100%',
+  height: '50%',
   margin: theme.sizing.baseUnit,
   alignSelf: 'center',
   resizeMode: 'contain',
