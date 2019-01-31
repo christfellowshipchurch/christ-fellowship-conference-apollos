@@ -27,6 +27,12 @@ class MapFeed extends PureComponent {
   static navigationOptions = ({ navigation }) => ({
     ...headerOptions,
     title: 'Map',
+    headerStyle: {
+      backgroundColor: 'white',
+      shadowColor: 'transparent',
+      borderBottomWidth: 0,
+      elevation: 0,
+    },
   });
 
   static propTypes = {
