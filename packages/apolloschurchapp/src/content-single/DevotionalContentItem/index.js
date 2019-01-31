@@ -7,9 +7,9 @@ import {
   ErrorCard,
   TabView,
   TabSceneMap as SceneMap,
-  BackgroundView,
   styled,
 } from '@apollosproject/ui-kit';
+import BackgroundView from '../../ui/BackgroundView';
 import ContentTab from './ContentTab';
 import ScriptureTab from './ScriptureTab';
 

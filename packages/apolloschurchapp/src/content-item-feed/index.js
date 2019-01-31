@@ -3,9 +3,10 @@ import { Query } from 'react-apollo';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
-import { BackgroundView, FeedView } from '@apollosproject/ui-kit';
-
+import { FeedView } from '@apollosproject/ui-kit';
 import ContentCardConnected from 'apolloschurchapp/src/ui/ContentCardConnected';
+import BackgroundView from '../ui/BackgroundView';
+
 
 import headerOptions from '../tabs/headerOptions';
 import getContentFeed from './getContentFeed';
@@ -41,7 +42,7 @@ class ContentItemFeed extends PureComponent {
   /** Function that is called when a card in the feed is pressed.
    * Takes the user to the ContentSingle
    */
-  handleOnPress = item => {
+  handleOnPress = (item) => {
     if (
       item.__typename === 'ConferenceScheduleContentItem' &&
       item.conferenceGroups &&
@@ -77,7 +78,7 @@ class ContentItemFeed extends PureComponent {
                 data,
                 'node.childContentItemsConnection.edges',
                 []
-              ).map(edge => edge.node)}
+              ).map((edge) => edge.node)}
               isLoading={loading}
               error={error}
               refetch={refetch}

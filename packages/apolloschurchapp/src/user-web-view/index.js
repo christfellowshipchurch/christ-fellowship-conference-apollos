@@ -3,11 +3,12 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
-import { BackgroundView, styled } from '@apollosproject/ui-kit';
+import { styled } from '@apollosproject/ui-kit';
 import { WebView } from 'react-native-webview';
 import { withNavigation } from 'react-navigation';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
+import BackgroundView from '../ui/BackgroundView';
 
 const Container = styled({
   flex: null,

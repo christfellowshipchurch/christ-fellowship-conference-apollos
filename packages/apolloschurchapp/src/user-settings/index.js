@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { Query, Mutation } from 'react-apollo';
 
 import {
-  BackgroundView,
   PaddedView,
   TableView,
   Cell,
@@ -17,6 +16,7 @@ import {
 } from '@apollosproject/ui-kit';
 import { WebBrowserConsumer } from 'apolloschurchapp/src/ui/WebBrowser';
 import AvatarForm from 'apolloschurchapp/src/ui/UserAvatarView/AvatarForm';
+import BackgroundView from '../ui/BackgroundView';
 
 import getLoginState from '../auth/getLoginState';
 import logout from '../auth/logout';

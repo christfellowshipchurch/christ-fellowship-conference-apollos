@@ -3,9 +3,10 @@ import { Query } from 'react-apollo';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
-import { BackgroundView, FeedView } from '@apollosproject/ui-kit';
-
+import { FeedView } from '@apollosproject/ui-kit';
 import ContentCardConnected from 'apolloschurchapp/src/ui/ContentCardConnected';
+import BackgroundView from '../ui/BackgroundView';
+
 
 import getContentFeed from './getContentFeed';
 /**

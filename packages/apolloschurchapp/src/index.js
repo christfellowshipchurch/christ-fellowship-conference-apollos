@@ -3,8 +3,9 @@ import { StatusBar } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 // import { Sentry } from 'react-native-sentry';
 
-import { BackgroundView, withTheme } from '@apollosproject/ui-kit';
+import { withTheme } from '@apollosproject/ui-kit';
 import MediaPlayer from 'apolloschurchapp/src/ui/MediaPlayer';
+import BackgroundView from './ui/BackgroundView';
 import Providers from './Providers';
 import NotificationsInit from './Notifications';
 import NavigationService from './NavigationService';
@@ -12,9 +13,9 @@ import ContentSingle from './content-single';
 import Tabs from './tabs';
 import Auth from './auth';
 import UserWebView from './user-web-view';
+import Connect from './tabs/connect';
 import PersonalDetails from './user-settings/PersonalDetails';
 import ChangePassword from './user-settings/ChangePassword';
-import Connect from './tabs/connect';
 
 // Sentry.config(
 //   'https://5908fa19ed37447f86b2717423cadec5:45dd3b58792b413cb67109c5e63a0bb7@sentry.io/1241658'
@@ -37,8 +38,8 @@ const AppNavigator = createStackNavigator(
   },
   {
     initialRouteName: 'Tabs',
-    // mode: 'modal',
-    // headerMode: 'screen',
+    mode: 'modal',
+    headerMode: 'screen',
   }
 );
 

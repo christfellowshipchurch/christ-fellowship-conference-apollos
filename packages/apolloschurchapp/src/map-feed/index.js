@@ -5,9 +5,10 @@ import PropTypes from 'prop-types';
 import SafeAreaView from 'react-native-safe-area-view';
 
 import { createStackNavigator } from 'react-navigation';
-import { BackgroundView, styled } from '@apollosproject/ui-kit';
-
+import { styled } from '@apollosproject/ui-kit';
 import { WebView } from 'react-native-webview';
+import BackgroundView from '../ui/BackgroundView';
+
 import UserWebView from '../user-web-view';
 
 import headerOptions from '../tabs/headerOptions';

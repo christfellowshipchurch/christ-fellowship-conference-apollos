@@ -2,12 +2,8 @@ import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { Mutation } from 'react-apollo';
 
-import {
-  ButtonLink,
-  CenteredView,
-  BackgroundView,
-  FlexedView,
-} from '@apollosproject/ui-kit';
+import { ButtonLink, CenteredView, FlexedView } from '@apollosproject/ui-kit';
+import BackgroundView from '../BackgroundView';
 
 import { playVideoMutation } from './mutations';
 import MediaPlayer from '.';

@@ -5,7 +5,8 @@ import SafeAreaView from 'react-native-safe-area-view';
 import { createStackNavigator } from 'react-navigation';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
-import { FeedView, BackgroundView, styled } from '@apollosproject/ui-kit';
+import { FeedView, styled } from '@apollosproject/ui-kit';
+import BackgroundView from '../../ui/BackgroundView';
 import headerOptions from '../headerOptions';
 
 import ContentCardConnected from '../../ui/ContentCardConnected';
