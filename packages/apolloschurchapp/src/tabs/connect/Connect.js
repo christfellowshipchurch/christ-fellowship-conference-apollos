@@ -71,8 +71,14 @@ const StyledMaybeLaterButton = styled(({ theme }) => ({
 
 class Connect extends PureComponent {
   static navigationOptions = ({ navigation }) => ({
-    title: 'Connect',
+    title: 'My Profile',
     headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)} />,
+    headerStyle: {
+      backgroundColor: '#F3F3F3',
+      shadowColor: 'transparent',
+      borderBottomWidth: 0,
+      elevation: 0,
+    },
   });
 
   static propTypes = {
@@ -84,10 +90,7 @@ class Connect extends PureComponent {
 
   render() {
     return (
-      <BackgroundView
-        style={{ flex: 1, height: '100%' }}
-        colors={['white', 'white']}
-      >
+      <BackgroundView style={{ flex: 1, height: '100%' }}>
         <Query query={getLoginState}>
           {({ data }) => {
             if (get(data, 'isLoggedIn', false))

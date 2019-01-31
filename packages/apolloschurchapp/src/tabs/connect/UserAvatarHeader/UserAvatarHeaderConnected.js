@@ -16,11 +16,13 @@ const CallToActionContainer = styled(({ theme }) => ({
   flex: 1,
 }))(View);
 
-const QRCodeContainer = styled(() => ({
+const QRCodeContainer = styled(({ theme }) => ({
   width: '100%',
   justifyContent: 'space-around',
   alignItems: 'center',
   flex: 1,
+
+  backgroundColor: '#f3f3f3',
 }))(View);
 
 const featuresMap = {
@@ -28,7 +30,7 @@ const featuresMap = {
     <QRCodeContainer>
       <UserWebView
         url={'https://my.christfellowshipconference.com/mycheckincode'}
-        webViewStyle={{ width: 300, height: 400 }}
+        webViewStyle={{ width: 300, height: 400, backgroundColor: '#f3f3f3' }}
         modal={false}
         scrollEnabled={false}
       />
