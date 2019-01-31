@@ -34,13 +34,13 @@ const featuresMap = {
       />
     </QRCodeContainer>
   ),
-  'my-breakouts': () => (
+  'my-breakouts': ({ rockGuid }) => (
     <CallToActionContainer>
       <CallToAction
         icon="list"
         title="my breakouts"
         callout="Sign up for or check in to your breakouts"
-        url="https://my.christfellowshipconference.com/mybreakouts"
+        url={`https://my.christfellowshipconference.com/mybreakouts?person=${rockGuid}`}
         useCookie
       />
     </CallToActionContainer>
@@ -62,6 +62,7 @@ const UserAvatarHeaderConnected = ({ navigation }) => (
     {({
       data: {
         currentUser: {
+          rockGuid = '',
           profile: {
             photo,
             firstName,
@@ -91,7 +92,7 @@ const UserAvatarHeaderConnected = ({ navigation }) => (
           .map((feature) => featuresMap[feature])
           .map((Component, i) => (
             // eslint-disable-next-line react/no-array-index-key
-            <Component key={`${i}`} />
+            <Component key={`${i}`} rockGuid={rockGuid} />
           ))}
       </React.Fragment>
     )}
