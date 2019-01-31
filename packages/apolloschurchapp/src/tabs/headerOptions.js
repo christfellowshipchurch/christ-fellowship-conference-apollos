@@ -1,7 +1,7 @@
 import React from 'react';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { styled } from '@apollosproject/ui-kit';
-import { Image, View } from 'react-native';
+import { Image } from 'react-native';
 import NavigationService from '../NavigationService';
 
 const LogoTitle = styled(({ theme }) => ({
