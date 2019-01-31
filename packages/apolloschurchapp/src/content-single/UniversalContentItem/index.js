@@ -6,7 +6,7 @@ import {
   styled,
   GradientOverlayImage,
   PaddedView,
-  H2,
+  H3,
 } from '@apollosproject/ui-kit';
 import MediaControls from '../MediaControls';
 import HTMLContent from '../HTMLContent';
@@ -14,6 +14,11 @@ import HorizontalContentFeed from '../HorizontalContentFeed';
 import BackgroundView from '../../ui/BackgroundView';
 
 const FlexedScrollView = styled({ flex: 1 })(ScrollView);
+
+const PaddedH3 = styled(({ theme }) => ({
+  marginTop: '5%',
+  marginBottom: '5%',
+}))(H3);
 
 const UniversalContentItem = ({ content, loading, navigation }) => {
   const coverImageSources = get(content, 'coverImage.sources', []);
@@ -28,12 +33,12 @@ const UniversalContentItem = ({ content, loading, navigation }) => {
         />
       ) : null}
       <SafeAreaView>
-        <BackgroundView>
+        <BackgroundView colors={['white', 'white']}>
           <MediaControls contentId={content.id} />
           <PaddedView>
-            <H2 padded isLoading={!content.title && loading}>
+            <PaddedH3 padded isLoading={!content.title && loading}>
               {content.title}
-            </H2>
+            </PaddedH3>
             <HTMLContent contentId={content.id} />
           </PaddedView>
           <HorizontalContentFeed contentId={content.id} />
