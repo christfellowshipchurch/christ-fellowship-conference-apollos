@@ -2,7 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 
-import { BackgroundView, FeedView } from '@apollosproject/ui-kit';
+import { FeedView } from '@apollosproject/ui-kit';
+import BackgroundView from '../../../ui/BackgroundView';
 import ContentCardConnected from '../../../ui/ContentCardConnected';
 
 import getLikedContent from '../getLikedContent';

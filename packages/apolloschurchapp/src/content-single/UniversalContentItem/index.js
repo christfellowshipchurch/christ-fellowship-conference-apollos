@@ -5,13 +5,13 @@ import PropTypes from 'prop-types';
 import {
   styled,
   GradientOverlayImage,
-  BackgroundView,
   PaddedView,
   H2,
 } from '@apollosproject/ui-kit';
 import MediaControls from '../MediaControls';
 import HTMLContent from '../HTMLContent';
 import HorizontalContentFeed from '../HorizontalContentFeed';
+import BackgroundView from '../../ui/BackgroundView';
 
 const FlexedScrollView = styled({ flex: 1 })(ScrollView);
 

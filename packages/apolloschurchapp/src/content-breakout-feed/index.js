@@ -6,16 +6,10 @@ import PropTypes from 'prop-types';
 
 import SafeAreaView from 'react-native-safe-area-view';
 
-import {
-  BackgroundView,
-  FeedView,
-  H1,
-  H3,
-  H4,
-  styled,
-} from '@apollosproject/ui-kit';
-
+import { FeedView, H1, H3, H4, styled } from '@apollosproject/ui-kit';
 import ContentCardConnected from 'apolloschurchapp/src/ui/ContentCardConnected';
+import BackgroundView from '../ui/BackgroundView';
+
 import { MyBreakoutsBar } from '../my-breakouts-bar';
 
 // import NavigationHeader from '../content-single/NavigationHeader';

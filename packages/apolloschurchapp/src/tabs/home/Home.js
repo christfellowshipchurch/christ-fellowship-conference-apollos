@@ -3,7 +3,8 @@ import { Query } from 'react-apollo';
 import SafeAreaView from 'react-native-safe-area-view';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
-import { FeedView, BackgroundView } from '@apollosproject/ui-kit';
+import { FeedView } from '@apollosproject/ui-kit';
+import BackgroundView from '../../ui/BackgroundView';
 import headerOptions from '../headerOptions';
 
 import ContentCardConnected from '../../ui/ContentCardConnected';

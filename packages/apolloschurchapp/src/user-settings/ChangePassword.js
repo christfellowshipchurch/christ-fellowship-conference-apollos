@@ -10,10 +10,10 @@ import {
   Button,
   ButtonLink,
   TextInput,
-  BackgroundView,
   PaddedView,
   FlexedView,
 } from '@apollosproject/ui-kit';
+import BackgroundView from '../ui/BackgroundView';
 
 import getAuthToken from '../store/getAuthToken';
 import changePassword from './passwordChange';

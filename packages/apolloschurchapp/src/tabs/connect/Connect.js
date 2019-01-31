@@ -11,7 +11,6 @@ import {
   H3,
   BodyText,
   Paragraph,
-  BackgroundView,
   withTheme,
   styled,
   Icon,
@@ -19,6 +18,7 @@ import {
   Button,
   ButtonLink,
 } from '@apollosproject/ui-kit';
+import BackgroundView from '../../ui/BackgroundView';
 import ActionTable from './ActionTable';
 import { UserAvatarHeaderConnected } from './UserAvatarHeader';
 import getLoginState from './getLoginState';
@@ -84,7 +84,10 @@ class Connect extends PureComponent {
 
   render() {
     return (
-      <BackgroundView style={{ flex: 1, height: '100%' }}>
+      <BackgroundView
+        style={{ flex: 1, height: '100%' }}
+        colors={['white', 'white']}
+      >
         <Query query={getLoginState}>
           {({ data }) => {
             if (get(data, 'isLoggedIn', false))

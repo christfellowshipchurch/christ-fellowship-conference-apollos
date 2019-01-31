@@ -6,9 +6,10 @@ import PropTypes from 'prop-types';
 
 import SafeAreaView from 'react-native-safe-area-view';
 
-import { BackgroundView, FeedView } from '@apollosproject/ui-kit';
-
+import { FeedView } from '@apollosproject/ui-kit';
 import ContentCardConnected from 'apolloschurchapp/src/ui/ContentCardConnected';
+import BackgroundView from '../ui/BackgroundView';
+
 
 import headerOptions from '../tabs/headerOptions';
 import ContentSingle from '../content-single/ContentSingle';
