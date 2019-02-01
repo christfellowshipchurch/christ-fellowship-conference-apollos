@@ -1,5 +1,6 @@
 // Provider API for WebBrowser that injects theme values and defaults to the web browser:
 // import { Platform } from 'react-native';
+// import Url from 'url';
 import React from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
@@ -18,12 +19,20 @@ const Container = styled({
 })(BackgroundView);
 
 const Browser = ({ url, cookie = '', modal, webViewStyle, ...props }) => {
+  const URL = require('url');
+  const _url = URL.parse(url);
+  const now = new Date();
+  const uri = `${_url.protocol}//${_url.host}${_url.pathname}?${_url.query ||
+    ''}&timestamp=${now.getMilliseconds()}`;
+
+  console.log('URI: ', uri);
+
   if (modal) {
     return (
       <Container>
         <WebView
           style={webViewStyle}
-          source={{ uri: url, headers: { Cookie: cookie } }}
+          source={{ uri, headers: { Cookie: cookie } }}
           {...props}
         />
       </Container>
@@ -32,7 +41,7 @@ const Browser = ({ url, cookie = '', modal, webViewStyle, ...props }) => {
   return (
     <WebView
       style={webViewStyle}
-      source={{ uri: url, headers: { Cookie: cookie } }}
+      source={{ uri, headers: { Cookie: cookie } }}
       {...props}
     />
   );
