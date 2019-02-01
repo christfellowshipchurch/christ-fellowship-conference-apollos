@@ -1,21 +1,16 @@
 import React, { PureComponent } from 'react';
-import { View, ScrollView, SafeAreaView, Text, Image } from 'react-native';
+import { ScrollView, SafeAreaView, Image } from 'react-native';
 import { Query } from 'react-apollo';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
-import { HeaderBackButton, withNavigation } from 'react-navigation';
+import { HeaderBackButton } from 'react-navigation';
 
 import { LoginButton } from 'apolloschurchapp/src/auth';
 import {
-  H1,
-  H3,
   BodyText,
   Paragraph,
-  withTheme,
   styled,
-  Icon,
   PaddedView,
-  Button,
   ButtonLink,
 } from '@apollosproject/ui-kit';
 import BackgroundView from '../../ui/BackgroundView';
@@ -32,29 +27,18 @@ const MaybeLaterButon = ({ navigation, style }) => (
     Skip for now
   </ButtonLink>
 );
-const Title = styled(({ theme }) => ({
-  color: theme.colors.primary,
-  paddingBottom: theme.helpers.verticalRhythm(1.5),
-}))(H3);
 
-const Logo = styled(({ theme }) => ({
+const Logo = styled({
   resizeMode: 'contain',
   width: '70%',
   height: '30%',
   alignSelf: 'center',
-}))(Image);
-
-const BrandIcon = withTheme(({ theme }) => ({
-  name: 'brand-icon',
-  size: theme.sizing.baseUnit * 2.25,
-  marginBottom: theme.sizing.baseUnit,
-  fill: theme.colors.primary,
-}))(Icon);
+})(Image);
 
 const Header = styled(({ theme }) => ({
   paddingBottom: theme.sizing.baseUnit * 3,
   height: '100%',
-  backgroundColor: theme.colors.background.paper,
+  backgroundColor: theme.overrides.background,
   // paddingTop: theme.sizing.baseUnit * 4,
 }))(PaddedView);
 
@@ -69,12 +53,19 @@ const StyledMaybeLaterButton = styled(({ theme }) => ({
   marginVertical: theme.sizing.baseUnit,
 }))(MaybeLaterButon);
 
+const StyledSafeAreaView = styled(({ theme }) => ({
+  flex: 1,
+  height: '100%',
+
+  backgroundColor: theme.overrides.background,
+}))(SafeAreaView);
+
 class Connect extends PureComponent {
   static navigationOptions = ({ navigation }) => ({
     title: 'My Profile',
     headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)} />,
     headerStyle: {
-      backgroundColor: '#F3F3F3',
+      backgroundColor: '#f3f3f3',
       shadowColor: 'transparent',
       borderBottomWidth: 0,
       elevation: 0,
@@ -90,10 +81,7 @@ class Connect extends PureComponent {
 
   render() {
     return (
-      <BackgroundView
-        style={{ flex: 1, height: '100%' }}
-        colors={['white', 'white']}
-      >
+      <BackgroundView style={{ flex: 1, height: '100%' }}>
         <Query query={getLoginState}>
           {({ data }) => {
             if (get(data, 'isLoggedIn', false))
@@ -107,7 +95,7 @@ class Connect extends PureComponent {
               );
 
             return (
-              <SafeAreaView style={{ flex: 1, height: '100%' }}>
+              <StyledSafeAreaView>
                 <ScrollView contentContainerStyle={{ flex: 1 }}>
                   <Header>
                     <Logo source={require('../logo.png')} />
@@ -129,7 +117,7 @@ class Connect extends PureComponent {
                     />
                   </Header>
                 </ScrollView>
-              </SafeAreaView>
+              </StyledSafeAreaView>
             );
           }}
         </Query>

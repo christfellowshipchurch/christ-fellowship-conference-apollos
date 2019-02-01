@@ -5,7 +5,7 @@ import { styled, withTheme } from '@apollosproject/ui-kit';
 const BackgroundView = compose(
   withTheme(({ theme, colors }) => ({
     colors: colors ||
-      theme.overrides.background || [
+      theme.overrides.backgroundGradient || [
         theme.colors.background.paper,
         theme.colors.background.screen,
       ],

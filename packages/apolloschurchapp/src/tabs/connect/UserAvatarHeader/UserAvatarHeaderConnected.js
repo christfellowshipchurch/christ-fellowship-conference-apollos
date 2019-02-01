@@ -10,11 +10,11 @@ import UserWebView from '../../../user-web-view';
 import getUserProfile from '../getUserProfile';
 import UserAvatarHeader from './UserAvatarHeader';
 
-const CallToActionContainer = styled(({ theme }) => ({
+const CallToActionContainer = styled({
   marginTop: 30,
   marginBottom: 30,
   flex: 1,
-}))(View);
+})(View);
 
 const QRCodeContainer = styled(({ theme }) => ({
   width: '100%',
@@ -22,7 +22,7 @@ const QRCodeContainer = styled(({ theme }) => ({
   alignItems: 'center',
   flex: 1,
 
-  backgroundColor: '#f3f3f3',
+  backgroundColor: theme.overrides.background,
 }))(View);
 
 const featuresMap = {
