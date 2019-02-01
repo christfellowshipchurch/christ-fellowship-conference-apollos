@@ -8,9 +8,9 @@ export default class ExtendedAuth extends Auth.dataSource {
       const { firstName, lastName, email } = props;
 
       return await this.post('/People', {
-        FirstName: firstName,
-        LastName: lastName,
-        Email: email,
+        FirstName: firstName.trim(),
+        LastName: lastName.trim(),
+        Email: email.trim(),
         IsSystem: false, // Required by Rock
         Gender: 0, // Required by Rock
       });
