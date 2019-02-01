@@ -4,15 +4,12 @@ import { Query } from 'react-apollo';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
-import SafeAreaView from 'react-native-safe-area-view';
-
-import { FeedView, H3, styled } from '@apollosproject/ui-kit';
+import { FeedView, H3, styled, FlexedView } from '@apollosproject/ui-kit';
 import ContentCardConnected from 'apolloschurchapp/src/ui/ContentCardConnected';
 import BackgroundView from '../ui/BackgroundView';
 
 import { MyBreakoutsBar } from '../my-breakouts-bar';
 
-// import NavigationHeader from '../content-single/NavigationHeader';
 import getContentFeed from './getContentFeed';
 
 /**
@@ -20,17 +17,13 @@ import getContentFeed from './getContentFeed';
  * A FeedView wrapped in a query to pull content data.
  */
 const Container = styled(({ theme }) => ({
-  maxHeight: '20%',
-
   borderBottomColor: theme.colors.lightSecondary,
   borderBottomWidth: 1,
-
-  flex: 1,
-  justifyContent: 'center',
-  alignItems: 'center',
-
+  paddingVertical: theme.sizing.baseUnit * 0.5,
   backgroundColor: 'white',
 }))(View);
+
+const CenteredH3 = styled({ textAlign: 'center' })(H3);
 
 class ContentItemFeed extends PureComponent {
   /** Function for React Navigation to set information in the header. */
@@ -46,7 +39,6 @@ class ContentItemFeed extends PureComponent {
         shadowColor: 'transparent',
         borderBottomWidth: 0,
         elevation: 0,
-        marginBottom: -5,
       },
     };
   };
@@ -83,44 +75,39 @@ class ContentItemFeed extends PureComponent {
 
     return (
       <BackgroundView>
-        <SafeAreaView>
-          <Query
-            query={getContentFeed}
-            variables={{ itemId }}
-            fetchPolicy="cache-and-network"
-          >
-            {({ loading, error, data, refetch }) => {
-              if (
-                get(data, 'node.title') &&
-                get(data, 'node.title') !==
-                  this.props.navigation.getParam('title')
-              ) {
-                this.props.navigation.setParams({
-                  title: get(data, 'node.title'),
-                });
-              }
-              return (
-                <View>
-                  <Container>
-                    <H3>{get(data, 'node.htmlContent')}</H3>
-                    <MyBreakoutsBar />
-                  </Container>
-                  <FeedView
-                    ListItemComponent={ContentCardConnected}
-                    content={get(data, 'node.conferenceGroups', [])}
-                    isLoading={loading}
-                    error={error}
-                    refetch={refetch}
-                    onPressItem={this.handleOnPress}
-                    // ListHeaderComponent={
-
-                    // }
-                  />
-                </View>
-              );
-            }}
-          </Query>
-        </SafeAreaView>
+        <Query
+          query={getContentFeed}
+          variables={{ itemId }}
+          fetchPolicy="cache-and-network"
+        >
+          {({ loading, error, data, refetch }) => {
+            if (
+              get(data, 'node.title') &&
+              get(data, 'node.title') !==
+                this.props.navigation.getParam('title')
+            ) {
+              this.props.navigation.setParams({
+                title: get(data, 'node.title'),
+              });
+            }
+            return (
+              <FlexedView>
+                <Container>
+                  <CenteredH3>{get(data, 'node.htmlContent')}</CenteredH3>
+                  <MyBreakoutsBar />
+                </Container>
+                <FeedView
+                  ListItemComponent={ContentCardConnected}
+                  content={get(data, 'node.conferenceGroups', [])}
+                  isLoading={loading}
+                  error={error}
+                  refetch={refetch}
+                  onPressItem={this.handleOnPress}
+                />
+              </FlexedView>
+            );
+          }}
+        </Query>
       </BackgroundView>
     );
   }
