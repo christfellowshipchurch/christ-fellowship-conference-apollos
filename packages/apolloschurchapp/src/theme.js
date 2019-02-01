@@ -25,7 +25,8 @@ const typography = {};
 
 const overrides = {
   // must be an array of at least 2 values
-  background: ['#F3F3F3', '#F3F3F3'],
+  background: '#F3F3F3',
+  backgroundGradient: ['#F3F3F3', '#F3F3F3'],
 };
 
 export default {
