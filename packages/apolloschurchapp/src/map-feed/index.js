@@ -49,6 +49,7 @@ class MapFeed extends PureComponent {
 
   render() {
     const { height, width } = Dimensions.get('window');
+    const now = new Date();
 
     return (
       <SafeAreaView
@@ -61,8 +62,7 @@ class MapFeed extends PureComponent {
         <InlineWebViewContainer>
           <WebView
             source={{
-              uri:
-                'https://www.christfellowshipconference.com/map?device=apollosApp',
+              uri: `https://www.christfellowshipconference.com/map?device=apollosApp&${now.getMilliseconds()}`,
             }}
             style={{ flex: 1, width, height }}
             scrollEnabled
