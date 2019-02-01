@@ -73,8 +73,7 @@ class ComingNext extends PureComponent {
 
   render() {
     return (
-      <BackgroundView>
-        {/* <BackgroundImg source={require('./background.png')} /> */}
+      <BackgroundView colors={['#00aeef', '#00aeef']}>
         <FlexImageBackground
           source={require('./background.png')}
           resizeMode={'cover'}
