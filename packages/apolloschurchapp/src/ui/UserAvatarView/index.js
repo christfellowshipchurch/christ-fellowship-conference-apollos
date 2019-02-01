@@ -4,12 +4,10 @@ import { View, Text } from 'react-native';
 
 import {
   H3,
-  H4,
   H5,
   PaddedView,
   ConnectedImage,
   styled,
-  ChannelLabel,
   withIsLoading,
 } from '@apollosproject/ui-kit';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -19,7 +17,7 @@ import AvatarForm from './AvatarForm';
 const Container = styled(({ theme }) => ({
   paddingBottom: 10,
 
-  backgroundColor: '#F3F3F3',
+  backgroundColor: theme.overrides.background,
   flexDirection: 'row',
 }))(View);
 

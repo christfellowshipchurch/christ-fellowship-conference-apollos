@@ -2,15 +2,11 @@ import React, { PureComponent } from 'react';
 import { View, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 
-import SafeAreaView from 'react-native-safe-area-view';
-
 import { createStackNavigator } from 'react-navigation';
 import { styled } from '@apollosproject/ui-kit';
 import { WebView } from 'react-native-webview';
-import BackgroundView from '../ui/BackgroundView';
 
-import UserWebView from '../user-web-view';
-
+import SafeAreaView from 'react-native-safe-area-view';
 import headerOptions from '../tabs/headerOptions';
 
 const InlineWebViewContainer = styled(() => ({
@@ -22,9 +18,15 @@ const InlineWebViewContainer = styled(() => ({
   padding: 0,
 }))(View);
 
+const StyledSafeViewArea = styled(() => ({
+  flex: 1,
+  width: '100%',
+  height: '100%',
+}));
+
 class MapFeed extends PureComponent {
   /** Function for React Navigation to set information in the header. */
-  static navigationOptions = ({ navigation }) => ({
+  static navigationOptions = {
     ...headerOptions,
     title: 'Map',
     headerStyle: {
@@ -33,7 +35,7 @@ class MapFeed extends PureComponent {
       borderBottomWidth: 0,
       elevation: 0,
     },
-  });
+  };
 
   static propTypes = {
     /** Functions passed down from React Navigation to use in navigating to/from
@@ -49,7 +51,13 @@ class MapFeed extends PureComponent {
     const { height, width } = Dimensions.get('window');
 
     return (
-      <SafeAreaView style={{ flex: 1, width: '100%', height: '100%' }}>
+      <SafeAreaView
+        style={{
+          flex: 1,
+          width: '100%',
+          height: '100%',
+        }}
+      >
         <InlineWebViewContainer>
           <WebView
             source={{

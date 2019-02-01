@@ -40,7 +40,7 @@ class ChangePassword extends PureComponent {
   renderForm = (props) => (
     <FlexedView>
       <KeyboardAwareScrollView>
-        <BackgroundView>
+        <BackgroundView colors={['white', 'white']}>
           <PaddedView>
             <TextInput
               label="New Password"

@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react';
-import { View, Image, ImageBackground, Text } from 'react-native';
+import { Image, ImageBackground, Text } from 'react-native';
 import { Query } from 'react-apollo';
 import SafeAreaView from 'react-native-safe-area-view';
-import { createStackNavigator } from 'react-navigation';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import { FeedView, styled } from '@apollosproject/ui-kit';
@@ -10,25 +9,23 @@ import BackgroundView from '../../ui/BackgroundView';
 import headerOptions from '../headerOptions';
 
 import ContentCardConnected from '../../ui/ContentCardConnected';
-import ContentSingle from '../../content-single/ContentSingle';
 
 import getUserFeed from './getUserFeed';
-import defaultCardContent from './defaultCard';
 
-const FlexImageBackground = styled(({ theme }) => ({
+const FlexImageBackground = styled({
   flex: 1,
   textAlign: 'center',
-}))(ImageBackground);
+})(ImageBackground);
 
-const Logo = styled(({ theme }) => ({
+const Logo = styled({
   flex: 1,
   resizeMode: 'contain',
   width: '70%',
   height: '30%',
   alignSelf: 'center',
-}))(Image);
+})(Image);
 
-const Header = styled(({ theme }) => ({
+const Header = styled({
   alignSelf: 'center',
   textAlign: 'center',
   textTransform: 'uppercase',
@@ -37,7 +34,11 @@ const Header = styled(({ theme }) => ({
   fontSize: 16,
   paddingLeft: '20%',
   paddingRight: '20%',
-}))(Text);
+})(Text);
+
+const CenteredText = styled({
+  textAlign: 'center',
+})(Text);
 
 class ComingNext extends PureComponent {
   static navigationOptions = {
@@ -80,7 +81,7 @@ class ComingNext extends PureComponent {
         >
           <Logo source={require('../logo-white.png')} />
           <Header>coming up next:</Header>
-          <Text style={{ textAlign: 'center' }}>pull down to refresh</Text>
+          <CenteredText>pull down to refresh</CenteredText>
           <SafeAreaView>
             <Query query={getUserFeed} fetchPolicy="cache-and-network">
               {({ loading, error, data, refetch }) => (

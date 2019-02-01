@@ -1,31 +1,26 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 import { Query } from 'react-apollo';
 import { get } from 'lodash';
 
-import {
-  Card,
-  CardContent,
-  TouchableScale,
-  styled,
-  ChannelLabel,
-  UIText,
-} from '@apollosproject/ui-kit';
+import { Card, TouchableScale, styled } from '@apollosproject/ui-kit';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { UserWebBrowserConsumer } from '../user-web-view/Provider';
 
 import getLoginState from '../auth/getLoginState';
 
 const LiveCard = styled(({ theme }) => ({
+  paddingVertical: theme.sizing.baseUnit * 0.75,
+
   backgroundColor: theme.colors.primary,
   color: 'white',
 }))(Card);
 
-const CardTitle = styled(({ theme }) => ({
+const CardTitle = styled({
   fontWeight: 'bold',
   color: 'white',
   textAlign: 'center',
-}))(Text);
+})(Text);
 
 const MyBreakoutsBar = () => (
   <Query query={getLoginState}>
@@ -41,12 +36,10 @@ const MyBreakoutsBar = () => (
               }
             >
               <LiveCard isLoading={loading}>
-                <CardContent>
-                  <CardTitle>
-                    {'Select and check in to my breakouts  '}
-                    <FontAwesome5 name={'angle-right'} />
-                  </CardTitle>
-                </CardContent>
+                <CardTitle>
+                  {'Select and check in to my breakouts  '}
+                  <FontAwesome5 name={'angle-right'} />
+                </CardTitle>
               </LiveCard>
             </TouchableScale>
           )}

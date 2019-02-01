@@ -13,8 +13,6 @@ import getContentItem from './getContentItem';
 import DevotionalContentItem from './DevotionalContentItem';
 import UniversalContentItem from './UniversalContentItem';
 
-// import NavigationHeader from './NavigationHeader';
-
 class ContentSingle extends PureComponent {
   static propTypes = {
     navigation: PropTypes.shape({
@@ -27,6 +25,12 @@ class ContentSingle extends PureComponent {
     const title = get(navigation, 'state.params.title');
     return {
       headerTitle: title || null,
+      headerStyle: {
+        backgroundColor: '#F3F3F3',
+        shadowColor: 'transparent',
+        borderBottomWidth: 0,
+        elevation: 0,
+      },
     };
   };
 
@@ -72,7 +76,7 @@ class ContentSingle extends PureComponent {
 
     const content = data.node || {};
 
-    const { theme = {}, id } = content;
+    const { theme = {} } = content;
 
     return (
       <ThemeMixin
