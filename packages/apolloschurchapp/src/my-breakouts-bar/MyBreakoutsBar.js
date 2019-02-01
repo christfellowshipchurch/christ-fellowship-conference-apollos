@@ -8,6 +8,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { UserWebBrowserConsumer } from '../user-web-view/Provider';
 
 import getLoginState from '../auth/getLoginState';
+import getOverrideStatus from './getOverrideStatus';
 
 const LiveCard = styled(({ theme }) => ({
   paddingVertical: theme.sizing.baseUnit * 0.75,
@@ -28,22 +29,41 @@ const MyBreakoutsBar = () => (
       const isLoggedIn = get(data, 'isLoggedIn', false);
 
       return isLoggedIn ? (
-        <UserWebBrowserConsumer>
-          {(openUrl) => (
-            <TouchableScale
-              onPress={() =>
-                openUrl('https://my.christfellowshipconference.com/mybreakouts')
-              }
-            >
-              <LiveCard isLoading={loading}>
-                <CardTitle>
-                  {'Select and check in to my breakouts  '}
-                  <FontAwesome5 name={'angle-right'} />
-                </CardTitle>
-              </LiveCard>
-            </TouchableScale>
-          )}
-        </UserWebBrowserConsumer>
+        <Query query={getOverrideStatus} fetchPolicy="cache-and-network">
+          {({ loading: overrideLoading, data: overrideData }) => {
+            console.log('Logging Override Data: ', overrideData);
+
+            const activeFeatures = get(
+              overrideData,
+              'currentUser.profile.activeFeatures',
+              []
+            );
+            const MY_BREAKOUTS_KEY = 'MY-BREAKOUTS';
+
+            return activeFeatures
+              .map((feature) => feature.toUpperCase())
+              .includes(MY_BREAKOUTS_KEY) ? (
+              <UserWebBrowserConsumer>
+                {(openUrl) => (
+                  <TouchableScale
+                    onPress={() =>
+                      openUrl(
+                        'https://my.christfellowshipconference.com/mybreakouts'
+                      )
+                    }
+                  >
+                    <LiveCard isLoading={overrideLoading}>
+                      <CardTitle>
+                        {'Select and check in to my breakouts  '}
+                        <FontAwesome5 name={'angle-right'} />
+                      </CardTitle>
+                    </LiveCard>
+                  </TouchableScale>
+                )}
+              </UserWebBrowserConsumer>
+            ) : null;
+          }}
+        </Query>
       ) : null;
     }}
   </Query>
