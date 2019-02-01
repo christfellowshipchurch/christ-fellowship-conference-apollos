@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, SafeAreaView } from 'react-native';
+import { View, ScrollView, SafeAreaView } from 'react-native';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import {
@@ -12,10 +12,18 @@ import MediaControls from '../MediaControls';
 import HTMLContent from '../HTMLContent';
 import HorizontalContentFeed from '../HorizontalContentFeed';
 import BackgroundView from '../../ui/BackgroundView';
+import { MyBreakoutsBar } from '../../my-breakouts-bar/index';
 
 const FlexedScrollView = styled({ flex: 1 })(ScrollView);
 
-const PaddedH3 = styled(({ theme }) => ({
+const MyBreakoutsBarContainer = styled(({ theme }) => ({
+  backgroundColor: theme.overrides.background,
+
+  borderBottomColor: theme.colors.lightSecondary,
+  borderBottomWidth: 1,
+}))(View);
+
+const PaddedH3 = styled(() => ({
   marginTop: '5%',
   marginBottom: '5%',
 }))(H3);
@@ -24,16 +32,23 @@ const UniversalContentItem = ({ content, loading, navigation }) => {
   const coverImageSources = get(content, 'coverImage.sources', []);
   if (content.title && navigation.state.params.title !== content.title)
     navigation.setParams({ title: content.title });
+
+  const showMyBreakouts = content.__typename === 'ConferenceGroupContentItem';
   return (
-    <FlexedScrollView>
-      {coverImageSources.length || loading ? (
-        <GradientOverlayImage
-          isLoading={!coverImageSources.length && loading}
-          source={coverImageSources}
-        />
+    <BackgroundView colors={['white', 'white']}>
+      {showMyBreakouts ? (
+        <MyBreakoutsBarContainer>
+          <MyBreakoutsBar />
+        </MyBreakoutsBarContainer>
       ) : null}
-      <SafeAreaView>
-        <BackgroundView colors={['white', 'white']}>
+      <FlexedScrollView>
+        {coverImageSources.length || loading ? (
+          <GradientOverlayImage
+            isLoading={!coverImageSources.length && loading}
+            source={coverImageSources}
+          />
+        ) : null}
+        <SafeAreaView>
           <MediaControls contentId={content.id} />
           <PaddedView>
             <PaddedH3 padded isLoading={!content.title && loading}>
@@ -42,9 +57,9 @@ const UniversalContentItem = ({ content, loading, navigation }) => {
             <HTMLContent contentId={content.id} />
           </PaddedView>
           <HorizontalContentFeed contentId={content.id} />
-        </BackgroundView>
-      </SafeAreaView>
-    </FlexedScrollView>
+        </SafeAreaView>
+      </FlexedScrollView>
+    </BackgroundView>
   );
 };
 
