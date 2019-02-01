@@ -25,8 +25,6 @@ const Browser = ({ url, cookie = '', modal, webViewStyle, ...props }) => {
   const uri = `${_url.protocol}//${_url.host}${_url.pathname}?${_url.query ||
     ''}&timestamp=${now.getMilliseconds()}`;
 
-  console.log('URI: ', uri);
-
   if (modal) {
     return (
       <Container>
