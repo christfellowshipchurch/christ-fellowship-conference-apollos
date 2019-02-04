@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 import { ContentItem } from '@apollosproject/data-connector-rock';
+import { get } from 'lodash';
 
 export { default as dataSource } from './data-source';
 
@@ -36,6 +37,27 @@ export const schema = gql`
 export const resolver = {
   ConferenceSpeakerContentItem: {
     ...ContentItem.resolver.UniversalContentItem,
+    htmlContent: async ({ attributeValues }, _, { dataSources }) => {
+      const personAlias = get(attributeValues, 'person.value', null);
+      if (personAlias) {
+        const person = await dataSources.Person.getFromAlias(personAlias);
+        const jobTitle = get(person, 'attributeValues.jobTitle.value', '');
+        const bio = get(person, 'attributeValues.bio.value', '');
+
+        return `<strong>${jobTitle}</strong><p>${bio}</p>`;
+      }
+      return '';
+    },
+    summary: async ({ attributeValues }, _, { dataSources }) => {
+      const personAlias = get(attributeValues, 'person.value', null);
+      if (personAlias) {
+        const person = await dataSources.Person.getFromAlias(personAlias);
+
+        return get(person, 'attributeValues.jobTitle.value', '');
+      }
+      return '';
+    },
+
     person: ({ attributeValues }, _, { dataSources }) => {
       if (attributeValues.person.value) {
         return dataSources.Person.getFromAlias(attributeValues.person.value);
