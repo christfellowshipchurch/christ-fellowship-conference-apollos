@@ -45,7 +45,7 @@ const getBreakoutDetails = (attributeValues, lineBreak, isTag) => {
     [
       titleWithValue('Breakout', breakouts),
       titleWithValue('Room', room),
-      titleWithValue('Facilitator', facilitator),
+      // titleWithValue('Facilitator', facilitator),
     ],
     lineBreak,
     isTag
@@ -122,12 +122,12 @@ export default {
               : '',
             sources: parentGroup.attributeValues.image
               ? [
-                {
-                  uri: createImageUrl(
-                    parentGroup.attributeValues.image.value
-                  ),
-                },
-              ]
+                  {
+                    uri: createImageUrl(
+                      parentGroup.attributeValues.image.value
+                    ),
+                  },
+                ]
               : [],
           };
         }
