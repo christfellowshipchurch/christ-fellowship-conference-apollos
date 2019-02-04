@@ -38,6 +38,7 @@ const MyBreakoutsBar = () => (
               'currentUser.profile.activeFeatures',
               []
             );
+            const rockGuid = get(overrideData, 'currentUser.rockGuid', '');
             const MY_BREAKOUTS_KEY = 'MY-BREAKOUTS';
 
             return activeFeatures
@@ -48,7 +49,7 @@ const MyBreakoutsBar = () => (
                   <TouchableScale
                     onPress={() =>
                       openUrl(
-                        'https://my.christfellowshipconference.com/mybreakouts'
+                        `https://my.christfellowshipconference.com/mybreakouts?person=${rockGuid}`
                       )
                     }
                   >

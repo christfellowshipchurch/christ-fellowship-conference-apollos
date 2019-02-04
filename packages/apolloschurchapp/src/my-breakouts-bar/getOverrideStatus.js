@@ -4,6 +4,7 @@ export default gql`
   query {
     currentUser {
       id
+      rockGuid
       profile {
         id
         activeFeatures
