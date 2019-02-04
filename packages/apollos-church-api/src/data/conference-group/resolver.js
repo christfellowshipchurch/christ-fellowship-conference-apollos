@@ -43,9 +43,9 @@ const getBreakoutDetails = (attributeValues, lineBreak, isTag) => {
 
   const desc = concatWithBreakLine(
     [
+      titleWithValue('Breakout', breakouts),
       titleWithValue('Room', room),
       titleWithValue('Facilitator', facilitator),
-      titleWithValue('Breakout', breakouts),
     ],
     lineBreak,
     isTag
@@ -53,6 +53,16 @@ const getBreakoutDetails = (attributeValues, lineBreak, isTag) => {
 
   return desc;
 };
+
+const groupByKey = (objectArray, _key) =>
+  objectArray.reduce((acc, obj) => {
+    const key = _key({ obj });
+    if (!acc[key]) {
+      acc[key] = [];
+    }
+    acc[key].push(obj);
+    return acc;
+  }, {});
 
 export default {
   ConferenceGroupContentItem: {
@@ -64,8 +74,20 @@ export default {
       ),
     summary: ({ description, attributeValues }) =>
       sanitizeHtmlNode(getBreakoutDetails(attributeValues, '\n', false)),
-    childGroups: ({ id }, args, { dataSources }) =>
-      dataSources.Group.getChildrenFromParentId(id),
+    childGroups: async ({ id }, args, { dataSources }) => {
+      const children = await dataSources.Group.getChildrenFromParentId(id);
+
+      if (children) {
+        children.sort((a, b) =>
+          dataSources.ConferenceGroupContentItem.sortByBreakoutThenPriority(
+            a,
+            b
+          )
+        );
+      }
+
+      return children;
+    },
     parentChannel: () => null,
     coverImage: async (root, args, { dataSources }) => {
       const pickBestImage = (images) => {
