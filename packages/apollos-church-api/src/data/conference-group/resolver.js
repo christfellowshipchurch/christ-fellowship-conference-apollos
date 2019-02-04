@@ -81,8 +81,6 @@ export default {
     childGroups: async ({ id }, args, { dataSources }) => {
       const children = await dataSources.Group.getChildrenFromParentId(id);
 
-      console.log('Group Length: ', children.length);
-
       if (children) {
         return children.sort(
           dataSources.ConferenceGroupContentItem.sortByBreakoutThenPriority
@@ -124,12 +122,12 @@ export default {
               : '',
             sources: parentGroup.attributeValues.image
               ? [
-                  {
-                    uri: createImageUrl(
-                      parentGroup.attributeValues.image.value
-                    ),
-                  },
-                ]
+                {
+                  uri: createImageUrl(
+                    parentGroup.attributeValues.image.value
+                  ),
+                },
+              ]
               : [],
           };
         }
