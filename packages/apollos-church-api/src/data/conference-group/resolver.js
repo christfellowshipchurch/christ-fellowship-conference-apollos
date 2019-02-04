@@ -64,6 +64,10 @@ const groupByKey = (objectArray, _key) =>
     return acc;
   }, {});
 
+const replaceEmptyString = (str, value) => (str || str === '' ? value : str);
+const getAttributeValue = (obj, attr, fallback) =>
+  replaceEmptyString(get(obj, `attributeValues.${attr}.value`, '6'), fallback);
+
 export default {
   ConferenceGroupContentItem: {
     ...ContentItem.resolver.UniversalContentItem,
@@ -77,12 +81,11 @@ export default {
     childGroups: async ({ id }, args, { dataSources }) => {
       const children = await dataSources.Group.getChildrenFromParentId(id);
 
+      console.log('Group Length: ', children.length);
+
       if (children) {
-        children.sort((a, b) =>
-          dataSources.ConferenceGroupContentItem.sortByBreakoutThenPriority(
-            a,
-            b
-          )
+        return children.sort(
+          dataSources.ConferenceGroupContentItem.sortByBreakoutThenPriority
         );
       }
 
