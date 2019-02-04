@@ -1,6 +1,10 @@
 import { ContentItem } from '@apollosproject/data-connector-rock';
 import { get } from 'lodash';
 
+const replaceEmptyString = (str, value) => (str || str === '' ? value : str);
+const getAttributeValue = (obj, attr, fallback) =>
+  replaceEmptyString(get(obj, `attributeValues.${attr}.value`, '6'), fallback);
+
 export default {
   ConferenceScheduleContentItem: {
     ...ContentItem.resolver.UniversalContentItem,
@@ -48,7 +52,8 @@ export default {
       return timeRange + subtitle;
     },
     customItem: ({ attributeValues }) => attributeValues.customItem.value,
-    itemStartTime: ({ title, attributeValues }, args, { dataSources }) => dataSources.ConferenceScheduleContentItem.getTime(
+    itemStartTime: ({ title, attributeValues }, args, { dataSources }) =>
+      dataSources.ConferenceScheduleContentItem.getTime(
         get(
           attributeValues,
           'itemStartDateTime.value',
@@ -89,9 +94,14 @@ export default {
 
       return null;
     },
-    conferenceGroups: ({ attributeValues }, args, { dataSources }) =>
-      dataSources.ConferenceScheduleContentItem.getScheduleItemGroupsByBreakoutSession(
+    conferenceGroups: async ({ attributeValues }, args, { dataSources }) => {
+      const groups = await dataSources.ConferenceScheduleContentItem.getScheduleItemGroupsByBreakoutSession(
         get(attributeValues, 'breakoutSession.value') || ''
-      ),
+      );
+
+      return groups.sort(
+        dataSources.ConferenceGroupContentItem.sortByBreakoutThenPriority
+      );
+    },
   },
 };

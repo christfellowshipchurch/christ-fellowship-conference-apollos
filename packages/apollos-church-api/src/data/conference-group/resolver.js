@@ -43,9 +43,9 @@ const getBreakoutDetails = (attributeValues, lineBreak, isTag) => {
 
   const desc = concatWithBreakLine(
     [
+      titleWithValue('Breakout', breakouts),
       titleWithValue('Room', room),
       titleWithValue('Facilitator', facilitator),
-      titleWithValue('Breakout', breakouts),
     ],
     lineBreak,
     isTag
@@ -53,6 +53,20 @@ const getBreakoutDetails = (attributeValues, lineBreak, isTag) => {
 
   return desc;
 };
+
+const groupByKey = (objectArray, _key) =>
+  objectArray.reduce((acc, obj) => {
+    const key = _key({ obj });
+    if (!acc[key]) {
+      acc[key] = [];
+    }
+    acc[key].push(obj);
+    return acc;
+  }, {});
+
+const replaceEmptyString = (str, value) => (str || str === '' ? value : str);
+const getAttributeValue = (obj, attr, fallback) =>
+  replaceEmptyString(get(obj, `attributeValues.${attr}.value`, '6'), fallback);
 
 export default {
   ConferenceGroupContentItem: {
@@ -64,8 +78,17 @@ export default {
       ),
     summary: ({ description, attributeValues }) =>
       sanitizeHtmlNode(getBreakoutDetails(attributeValues, '\n', false)),
-    childGroups: ({ id }, args, { dataSources }) =>
-      dataSources.Group.getChildrenFromParentId(id),
+    childGroups: async ({ id }, args, { dataSources }) => {
+      const children = await dataSources.Group.getChildrenFromParentId(id);
+
+      if (children) {
+        return children.sort(
+          dataSources.ConferenceGroupContentItem.sortByBreakoutThenPriority
+        );
+      }
+
+      return children;
+    },
     parentChannel: () => null,
     coverImage: async (root, args, { dataSources }) => {
       const pickBestImage = (images) => {
@@ -99,12 +122,12 @@ export default {
               : '',
             sources: parentGroup.attributeValues.image
               ? [
-                  {
-                    uri: createImageUrl(
-                      parentGroup.attributeValues.image.value
-                    ),
-                  },
-                ]
+                {
+                  uri: createImageUrl(
+                    parentGroup.attributeValues.image.value
+                  ),
+                },
+              ]
               : [],
           };
         }
