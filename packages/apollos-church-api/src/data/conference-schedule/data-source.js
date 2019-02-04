@@ -8,7 +8,7 @@ export default class ConferenceScheduleContentItem extends ContentItem.dataSourc
   getTime = (dateTime) => {
     const date = moment(dateTime);
 
-    return date ? date.format('LT') : '00:00';
+    return date ? date.format('h:mmA') : '00:00';
   };
 
   extendAndSanitizeHtmlContent = (htmlContent, args) => {
