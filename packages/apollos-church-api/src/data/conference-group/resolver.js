@@ -17,8 +17,12 @@ const isImage = ({ key, attributeValues, attributes }) =>
     typeof attributeValues[key].value === 'string' &&
     attributeValues[key].value.startsWith('http')); // looks like an image url
 
-const titleWithValue = (title, value) =>
-  title && value ? `${title}: ${value}` : null;
+const titleWithValue = (title, value, titleTag) =>
+  title && value
+    ? titleTag
+      ? `<${titleTag}>${title}:</${titleTag}> ${value}`
+      : `${title}: ${value}`
+    : null;
 
 const concatWithBreakLine = (args, lineBreak, isTag = false) => {
   let content = '';
@@ -40,11 +44,12 @@ const getBreakoutDetails = (attributeValues, lineBreak, isTag) => {
   const room = get(attributeValues, 'room.value');
   const facilitator = get(attributeValues, 'facilitator.value');
   const breakouts = get(attributeValues, 'breakOut.value');
+  const strongTag = isTag ? 'strong' : null;
 
   const desc = concatWithBreakLine(
     [
-      titleWithValue('Breakout', breakouts),
-      titleWithValue('Room', room),
+      titleWithValue('Breakout', breakouts, strongTag),
+      titleWithValue('Room', room, strongTag),
       // titleWithValue('Facilitator', facilitator),
     ],
     lineBreak,
