@@ -15,7 +15,7 @@ export default new ApolloServer({
   cacheControl: {
     stripFormattedExtensions: false,
     calculateHttpHeaders: true,
-    defaultMaxAge: 240,
+    defaultMaxAge: 600,
   },
   formatError: (error) => {
     console.error(error.extensions.exception.stacktrace.join('\n'));
