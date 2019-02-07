@@ -10,8 +10,8 @@ const availableFeatures = [
   },
   {
     key: 'qr-code',
-    startTime: '2019-02-06 07:30:00-05:00',
-    endTime: '2019-02-06 10:30:00-05:00',
+    startTime: '2019-02-07 07:30:00-05:00',
+    endTime: '2019-02-07 11:00:00-05:00',
     order: 2,
   },
   {
