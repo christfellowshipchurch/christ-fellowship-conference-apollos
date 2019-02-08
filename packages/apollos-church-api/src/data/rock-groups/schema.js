@@ -10,6 +10,10 @@ export default gql`
     image: ImageMedia
 
     childGroups: [Group]
+
+    slideshowPresentation: String
+    audioRecording: String
+    additionalResources: String
   }
   extend type Query {
     group(id: String): Group

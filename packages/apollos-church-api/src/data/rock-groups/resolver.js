@@ -1,5 +1,6 @@
 import ApollosConfig from '@apollosproject/config';
 import { createGlobalId } from '@apollosproject/server-core';
+import { get, isEmpty } from 'lodash';
 
 const { ROCK } = ApollosConfig;
 const enforceProtocol = (uri) => (uri.startsWith('//') ? `https:${uri}` : uri);
@@ -13,7 +14,7 @@ export default {
   Query: {
     group: (root, { id }, { dataSources }) =>
       !id ? false : dataSources.Group.getFromId(id),
-    groups: (root, {}, { dataSources }) => dataSources.Group.getGroups(),
+    groups: (root, { }, { dataSources }) => dataSources.Group.getGroups(),
   },
   Mutation: {},
   Group: {
@@ -35,5 +36,21 @@ export default {
 
     childGroups: ({ id }, args, { dataSources }) =>
       typeof id === null ? [] : dataSources.Group.getChildrenFromParentId(id),
+    slideshowPresentation: ({ attributes, attributeValues }) => {
+      const value = get(attributeValues, 'slideshowPresentation.value', null);
+
+      return value && !isEmpty(value, false)
+        ? `https://my.christfellowshipconference.com/GetFile.ashx?guid=${value}`
+        : null;
+    },
+    audioRecording: ({ attributeValues }) => {
+      const value = get(attributeValues, 'breakoutAudio.value', null);
+
+      return value && !isEmpty(value, false)
+        ? `https://my.christfellowshipconference.com/GetFile.ashx?guid=${value}`
+        : null;
+    },
+    additionalResources: ({ attributeValues }) =>
+      get(attributeValues, 'additionalResources.value', null),
   },
 };
