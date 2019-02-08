@@ -5,7 +5,7 @@ const availableFeatures = [
   {
     key: 'my-breakouts',
     startTime: null,
-    endTime: null,
+    endTime: '2019-02-07 5:00:00-05:00',
     order: 1,
   },
   {
