@@ -3,19 +3,13 @@ import ApollosConfig from '@apollosproject/config';
 import { get } from 'lodash';
 import sanitizeHtmlNode from 'sanitize-html';
 
-const { ROCK_CONSTANTS, ROCK_MAPPINGS, ROCK } = ApollosConfig;
+const { ROCK } = ApollosConfig;
 
 const enforceProtocol = (uri) => (uri.startsWith('//') ? `https:${uri}` : uri);
 const createImageUrl = (uri) =>
   uri.split('-').length === 5
     ? `${ROCK.IMAGE_URL}?guid=${uri}`
     : enforceProtocol(uri);
-
-const isImage = ({ key, attributeValues, attributes }) =>
-  attributes[key].fieldTypeId === ROCK_CONSTANTS.IMAGE ||
-  (key.toLowerCase().includes('image') &&
-    typeof attributeValues[key].value === 'string' &&
-    attributeValues[key].value.startsWith('http')); // looks like an image url
 
 const titleWithValue = (title, value, titleTag) =>
   title && value
@@ -49,7 +43,7 @@ const getBreakoutDetails = (attributeValues, lineBreak, isTag) => {
   const desc = concatWithBreakLine(
     [
       titleWithValue('Breakout', breakouts, strongTag),
-      titleWithValue('Room', room, strongTag),
+      // titleWithValue('Room', room, strongTag),
       // titleWithValue('Facilitator', facilitator),
     ],
     lineBreak,
@@ -77,12 +71,19 @@ export default {
   ConferenceGroupContentItem: {
     ...ContentItem.resolver.UniversalContentItem,
     title: ({ name }) => name,
-    htmlContent: ({ description, attributeValues }) =>
-      sanitizeHtmlNode(
-        `${getBreakoutDetails(attributeValues, 'p', true)}<hr>${description}`
-      ),
-    summary: ({ description, attributeValues }) =>
-      sanitizeHtmlNode(getBreakoutDetails(attributeValues, '\n', false)),
+    htmlContent: ({ description, attributeValues }) => {
+      const resources = get(attributeValues, 'additionalResources.value', null);
+      const resourcesLink = resources
+        ? `<p><strong><a href="${resources}">View Breakout Resources ></a></strong></p>`
+        : '';
+      return sanitizeHtmlNode(
+        `${resourcesLink}
+         ${getBreakoutDetails(attributeValues, 'p', true)}
+         <hr>
+         ${description}`
+      );
+    },
+    summary: ({ description, attributeValues }) => 'View Breakout Resources',
     childGroups: async ({ id }, args, { dataSources }) => {
       const children = await dataSources.Group.getChildrenFromParentId(id);
 
