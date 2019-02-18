@@ -31,6 +31,7 @@ export const schema = gql`
 
     person: Person
     personId: Int
+    youTubeId: String
   }
 `;
 
@@ -64,5 +65,8 @@ export const resolver = {
       }
       return null;
     },
+
+    youTubeId: ({ attributeValues }) =>
+      get(attributeValues, 'youTubeId.value', ''),
   },
 };

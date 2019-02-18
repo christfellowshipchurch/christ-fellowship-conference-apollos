@@ -96,6 +96,7 @@ const UserAvatarHeaderConnected = ({ navigation }) => (
             // eslint-disable-next-line react/no-array-index-key
             <Component key={`${i}`} rockGuid={rockGuid} />
           ))}
+        {console.log({ rockGuid })}
       </React.Fragment>
     )}
   </Query>
