@@ -18,6 +18,7 @@ export default setContext(async (request, { headers }) => {
         }
       `,
     });
+
     if (!authToken) return {};
     // return the headers to the context so httpLink can read them
     return {

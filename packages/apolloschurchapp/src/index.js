@@ -1,7 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
-// import { Sentry } from 'react-native-sentry';
 
 import { withTheme } from '@apollosproject/ui-kit';
 import MediaPlayer from 'apolloschurchapp/src/ui/MediaPlayer';
@@ -16,10 +15,6 @@ import UserWebView from './user-web-view';
 import Connect from './tabs/connect';
 import PersonalDetails from './user-settings/PersonalDetails';
 import ChangePassword from './user-settings/ChangePassword';
-
-// Sentry.config(
-//   'https://5908fa19ed37447f86b2717423cadec5:45dd3b58792b413cb67109c5e63a0bb7@sentry.io/1241658'
-// ).install();
 
 const AppStatusBar = withTheme(({ theme }) => ({
   barStyle: 'dark-content',
@@ -44,7 +39,7 @@ const AppNavigator = createStackNavigator(
 const App = () => (
   <Providers>
     <BackgroundView>
-      <AppStatusBar barStyle="dark-content" />
+      <AppStatusBar />
       <AppNavigator
         ref={(navigatorRef) => {
           NavigationService.setTopLevelNavigator(navigatorRef);

@@ -3,6 +3,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { styled } from '@apollosproject/ui-kit';
 import { Image } from 'react-native';
 import NavigationService from '../NavigationService';
+import HeaderRight from './HeaderRight';
 
 const LogoTitle = styled(({ theme }) => ({
   width: '100%',
@@ -14,19 +15,7 @@ const LogoTitle = styled(({ theme }) => ({
 
 export default {
   headerTitle: <LogoTitle source={require('./wordmark.png')} />,
-  headerRight: (
-    <FontAwesome5.Button
-      name={'user-circle'}
-      solid
-      size={26}
-      color="#303030"
-      backgroundColor="transparent"
-      underlayColor="transparent"
-      onPress={() => {
-        NavigationService.navigate('Connect');
-      }}
-    />
-  ),
+  headerRight: <HeaderRight />,
   headerStyle: {
     backgroundColor: '#F3F3F3',
     shadowColor: 'transparent',

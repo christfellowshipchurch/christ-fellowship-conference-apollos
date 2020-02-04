@@ -1,20 +1,65 @@
 import React, { PureComponent } from 'react';
+import { Image, Text, View, Animated } from 'react-native';
 import { Query } from 'react-apollo';
 import SafeAreaView from 'react-native-safe-area-view';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
-import { FeedView } from '@apollosproject/ui-kit';
-import BackgroundView from '../../ui/BackgroundView';
-import headerOptions from '../headerOptions';
+import {
+  FeedView,
+  styled,
+  ContentCard,
+  BackgroundView,
+} from '@apollosproject/ui-kit';
 
 import ContentCardConnected from '../../ui/ContentCardConnected';
+import { ThinCard } from '../../ui/Cards';
+import NavigationHeader from '../../ui/NavigationHeader';
 
 import getUserFeed from './getUserFeed';
 
+const FeedViewContainer = styled(({ theme }) => ({
+  marginTop: theme.sizing.baseUnit,
+}))(View);
+
+const Header = styled(({ theme }) => ({
+  fontWeight: 'bold',
+  color: theme.colors.text.secondary,
+  fontSize: 16,
+  paddingLeft: theme.sizing.baseUnit,
+  marginBottom: -5,
+}))(Text);
+
+const ListCardContainer = styled(({ theme }) => ({
+  marginBottom: theme.sizing.baseUnit,
+}))(View);
+
+const ListCard = ({ expand, sectionHeader, ...props }) => (
+  <ListCardContainer>
+    {!!sectionHeader && <Header>{sectionHeader}</Header>}
+    <ContentCardConnected {...props} card={expand ? ContentCard : ThinCard} />
+  </ListCardContainer>
+);
+
 class Home extends PureComponent {
-  static navigationOptions = {
-    ...headerOptions,
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      scrollY: new Animated.Value(0),
+    };
+  }
+
+  static navigationOptions = ({ navigation }) => {
+    const { params = {} } = navigation.state;
+
+    return {
+      header: <NavigationHeader scrollY={params.scrollY} title="Home" />,
+    };
   };
+
+  componentDidMount() {
+    this.props.navigation.setParams({ scrollY: this.state.scrollY });
+  }
 
   static propTypes = {
     navigation: PropTypes.shape({
@@ -28,6 +73,7 @@ class Home extends PureComponent {
     this.props.navigation.navigate('ContentSingle', {
       itemId: item.id,
       transitionKey: item.transitionKey,
+      headerTitle: 'Home',
     });
 
   handleProfilePress = (item) =>
@@ -40,18 +86,40 @@ class Home extends PureComponent {
       <BackgroundView>
         <SafeAreaView>
           <Query query={getUserFeed} fetchPolicy="cache-and-network">
-            {({ loading, error, data, refetch }) => (
-              <FeedView
-                ListItemComponent={ContentCardConnected}
-                content={get(data, 'userFeed.edges', []).map(
-                  (edge) => edge.node
-                )}
-                isLoading={loading}
-                error={error}
-                refetch={refetch}
-                onPressItem={this.handleOnPress}
-              />
-            )}
+            {({ loading, error, data, refetch }) => {
+              const nodes = get(data, 'userFeed.edges', []);
+              const comingUp = 'Coming Up Next';
+              const happeningNow = 'Happening Now';
+
+              return (
+                <FeedViewContainer>
+                  <FeedView
+                    ListItemComponent={ListCard}
+                    content={nodes.map((edge, i) => ({
+                      ...edge.node,
+                      expand: nodes.length === 1 || i > 0,
+                      sectionHeader:
+                        nodes.length <= 1
+                          ? null
+                          : i > 0
+                            ? comingUp
+                            : happeningNow,
+                    }))}
+                    isLoading={loading}
+                    error={error}
+                    refetch={refetch}
+                    onPressItem={this.handleOnPress}
+                    onScroll={Animated.event([
+                      {
+                        nativeEvent: {
+                          contentOffset: { y: this.state.scrollY },
+                        },
+                      },
+                    ])}
+                  />
+                </FeedViewContainer>
+              );
+            }}
           </Query>
         </SafeAreaView>
       </BackgroundView>

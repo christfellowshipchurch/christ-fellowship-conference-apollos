@@ -4,29 +4,14 @@ import { View } from 'react-native';
 import {
   TableView,
   Cell,
-  CellIcon,
   CellText,
   Divider,
   Touchable,
   styled,
-  PaddedView,
-  H4,
 } from '@apollosproject/ui-kit';
 import { WebBrowserConsumer } from 'apolloschurchapp/src/ui/WebBrowser';
-import NavigationActions from 'apolloschurchapp/src/NavigationService';
 
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-
-const RowHeader = styled(({ theme }) => ({
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  paddingVertical: theme.sizing.baseUnit,
-}))(PaddedView);
-
-const Name = styled({
-  flexGrow: 1,
-})(View);
 
 const ActionTable = () => (
   <WebBrowserConsumer>
@@ -60,16 +45,6 @@ const ActionTable = () => (
           </Touchable>
           <Divider />
         </TableView>
-        {/* <TableView>
-          <Touchable
-            onPress={() => NavigationActions.navigate('TestingControlPanel')}
-          >
-            <Cell>
-              <CellIcon name="settings" />
-              <CellText>Open Testing Panel</CellText>
-            </Cell>
-          </Touchable>
-        </TableView> */}
       </View>
     )}
   </WebBrowserConsumer>

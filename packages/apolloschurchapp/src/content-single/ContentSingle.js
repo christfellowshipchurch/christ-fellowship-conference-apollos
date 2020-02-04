@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Query } from 'react-apollo';
-import { get } from 'lodash';
+import { get, has } from 'lodash';
 import PropTypes from 'prop-types';
 
 import { ErrorCard, ThemeMixin } from '@apollosproject/ui-kit';
@@ -8,10 +8,11 @@ import { ErrorCard, ThemeMixin } from '@apollosproject/ui-kit';
 import TrackEventWhenLoaded from 'apolloschurchapp/src/analytics/TrackEventWhenLoaded';
 import { events } from 'apolloschurchapp/src/analytics';
 
+import NavigationHeader from '../ui/NavigationHeader';
 import getContentItem from './getContentItem';
 
-import DevotionalContentItem from './DevotionalContentItem';
 import UniversalContentItem from './UniversalContentItem';
+import Breakout from './Breakout';
 
 class ContentSingle extends PureComponent {
   static propTypes = {
@@ -19,18 +20,21 @@ class ContentSingle extends PureComponent {
       getParam: PropTypes.func,
       push: PropTypes.func,
     }),
+    headerColor: PropTypes.string,
   };
 
   static navigationOptions = ({ navigation }) => {
-    const title = get(navigation, 'state.params.title');
+    const { title, headerTitle, theme } = get(navigation, 'state.params', {});
+
     return {
-      headerTitle: title || null,
-      headerStyle: {
-        backgroundColor: '#F3F3F3',
-        shadowColor: 'transparent',
-        borderBottomWidth: 0,
-        elevation: 0,
-      },
+      header: (
+        <NavigationHeader
+          title={headerTitle || title}
+          theme={theme}
+          nested
+          goBack={() => navigation.goBack(null)}
+        />
+      ),
     };
   };
 
@@ -47,14 +51,16 @@ class ContentSingle extends PureComponent {
     if (!__typename && this.itemId) {
       [__typename] = this.itemId.split(':');
     }
+
     switch (__typename) {
-      case 'DevotionalContentItem':
+      case 'Breakout':
         return (
-          <DevotionalContentItem
+          <Breakout
             id={this.itemId}
             content={content}
             loading={loading}
             error={error}
+            navigation={this.props.navigation}
           />
         );
       case 'UniversalContentItem':
@@ -93,7 +99,7 @@ class ContentSingle extends PureComponent {
             itemId: this.itemId,
           }}
         />
-        {this.renderContent({ content, loading, error })}
+        {this.renderContent({ content, loading, error, theme })}
       </ThemeMixin>
     );
   };

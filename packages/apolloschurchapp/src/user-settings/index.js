@@ -17,6 +17,7 @@ import {
 import { WebBrowserConsumer } from 'apolloschurchapp/src/ui/WebBrowser';
 import AvatarForm from 'apolloschurchapp/src/ui/UserAvatarView/AvatarForm';
 import BackgroundView from '../ui/BackgroundView';
+import NavigationHeader from '../ui/NavigationHeader';
 
 import getLoginState from '../auth/getLoginState';
 import logout from '../auth/logout';
@@ -32,7 +33,7 @@ const BackgroundContainer = styled(({ theme }) => ({
 
 class UserSettings extends PureComponent {
   static navigationOptions = () => ({
-    title: 'Settings',
+    header: <NavigationHeader nested title="Settings" />,
   });
 
   static propTypes = {

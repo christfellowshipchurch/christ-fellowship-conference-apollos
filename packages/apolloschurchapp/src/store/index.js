@@ -248,10 +248,6 @@ export const resolvers = {
           cacheLoaded: true,
         },
       });
-      const isLoggedIn = resolvers.Query.isLoggedIn();
-      if (!isLoggedIn) {
-        NavigationService.navigate('Connect');
-      }
     },
   },
 };
