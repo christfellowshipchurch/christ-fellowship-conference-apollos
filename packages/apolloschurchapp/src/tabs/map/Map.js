@@ -252,7 +252,7 @@ class ZoomableImage extends Component {
 ZoomableImage.propTypes = {
   imageWidth: PropTypes.number,
   imageHeight: PropTypes.number,
-  source: PropTypes.object,
+  source: PropTypes.any,
 };
 
 ZoomableImage.defaultProps = {
