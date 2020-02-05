@@ -7,21 +7,13 @@ import {
   GradientOverlayImage,
   PaddedView,
   H3,
+  BackgroundView,
 } from '@apollosproject/ui-kit';
 import MediaControls from '../MediaControls';
 import HTMLContent from '../HTMLContent';
 import HorizontalContentFeed from '../HorizontalContentFeed';
-import BackgroundView from '../../ui/BackgroundView';
-import { MyBreakoutsBar } from '../../my-breakouts-bar/index';
 
 const FlexedScrollView = styled({ flex: 1 })(ScrollView);
-
-const MyBreakoutsBarContainer = styled(({ theme }) => ({
-  backgroundColor: theme.overrides.background,
-
-  borderBottomColor: theme.colors.lightSecondary,
-  borderBottomWidth: 1,
-}))(View);
 
 const PaddedH3 = styled(() => ({
   marginTop: '5%',
@@ -33,14 +25,8 @@ const UniversalContentItem = ({ content, loading, navigation }) => {
   if (content.title && navigation.state.params.title !== content.title)
     navigation.setParams({ title: content.title });
 
-  const showMyBreakouts = content.__typename === 'ConferenceGroupContentItem';
   return (
-    <BackgroundView colors={['white', 'white']}>
-      {showMyBreakouts ? (
-        <MyBreakoutsBarContainer>
-          <MyBreakoutsBar />
-        </MyBreakoutsBarContainer>
-      ) : null}
+    <BackgroundView>
       <FlexedScrollView>
         {coverImageSources.length || loading ? (
           <GradientOverlayImage

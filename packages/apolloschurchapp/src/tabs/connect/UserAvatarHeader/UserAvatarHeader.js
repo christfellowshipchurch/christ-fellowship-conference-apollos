@@ -1,4 +1,5 @@
 import React from 'react';
+import { StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import { compose } from 'recompose';
 import { withNavigation } from 'react-navigation';
@@ -41,27 +42,27 @@ const UserAvatarHeader = ({
   disabled,
   isLoading,
 }) => (
-  <Container>
-    <FlexedView>
-      <UserAvatarView
-        firstName={firstName}
-        lastName={lastName}
-        church={church}
-        department={department}
-        jobTitle={jobTitle}
-        photo={photo}
-        refetch={refetch}
-        disabled={disabled}
-        isLoading={isLoading}
-      />
-    </FlexedView>
-    <Touchable
-      onPress={() => navigation.navigate('UserSettings', { photo, refetch })}
-    >
-      <SettingsIcon />
-    </Touchable>
-  </Container>
-);
+    <Container>
+      <StatusBar barStyle="dark-content" />
+      <FlexedView>
+        <UserAvatarView
+          firstName={firstName}
+          lastName={lastName}
+          church={church}
+          jobTitle={jobTitle}
+          photo={photo}
+          refetch={refetch}
+          disabled={disabled}
+          isLoading={isLoading}
+        />
+      </FlexedView>
+      <Touchable
+        onPress={() => navigation.navigate('UserSettings', { photo, refetch })}
+      >
+        <SettingsIcon />
+      </Touchable>
+    </Container>
+  );
 
 UserAvatarHeader.propTypes = {
   firstName: PropTypes.string,

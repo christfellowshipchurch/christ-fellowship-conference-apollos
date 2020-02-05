@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
-import { ScrollView, SafeAreaView, Image } from 'react-native';
+import { ScrollView, Image } from 'react-native';
 import { Query } from 'react-apollo';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
-import { HeaderBackButton } from 'react-navigation';
+import { HeaderBackButton, SafeAreaView } from 'react-navigation';
 
 import { LoginButton } from 'apolloschurchapp/src/auth';
 import {
@@ -12,8 +12,11 @@ import {
   styled,
   PaddedView,
   ButtonLink,
+  FlexedView,
 } from '@apollosproject/ui-kit';
 import BackgroundView from '../../ui/BackgroundView';
+import NavigationHeader from '../../ui/NavigationHeader';
+import MyBreakouts from './MyBreakouts';
 import ActionTable from './ActionTable';
 import { UserAvatarHeaderConnected } from './UserAvatarHeader';
 import getLoginState from './getLoginState';
@@ -62,14 +65,13 @@ const StyledSafeAreaView = styled(({ theme }) => ({
 
 class Connect extends PureComponent {
   static navigationOptions = ({ navigation }) => ({
-    title: 'My Profile',
-    headerLeft: <HeaderBackButton onPress={() => navigation.goBack(null)} />,
-    headerStyle: {
-      backgroundColor: '#f3f3f3',
-      shadowColor: 'transparent',
-      borderBottomWidth: 0,
-      elevation: 0,
-    },
+    header: (
+      <NavigationHeader
+        nested
+        title="My Profile"
+        goBack={() => navigation.goBack(null)}
+      />
+    ),
   });
 
   static propTypes = {
@@ -86,12 +88,13 @@ class Connect extends PureComponent {
           {({ data }) => {
             if (get(data, 'isLoggedIn', false))
               return (
-                <SafeAreaView>
+                <FlexedView>
+                  <UserAvatarHeaderConnected key="UserAvatarHeaderConnected" />
+                  <ActionTable />
                   <ScrollView>
-                    <UserAvatarHeaderConnected key="UserAvatarHeaderConnected" />
-                    <ActionTable />
+                    <MyBreakouts />
                   </ScrollView>
-                </SafeAreaView>
+                </FlexedView>
               );
 
             return (

@@ -39,6 +39,30 @@ export const contentItemFragment = gql`
   }
 `;
 
+export const breakoutFragment = gql`
+  fragment breakoutFragment on Breakout {
+    id
+    title
+    summary
+    location
+    htmlContent
+    icon
+    theme {
+      colors {
+        primary
+      }
+    }
+    categories {
+      id
+      value
+    }
+    times {
+      id
+      value
+    }
+  }
+`;
+
 export default gql`
   query getContentItem($itemId: ID!) {
     node(id: $itemId) {
@@ -46,7 +70,12 @@ export default gql`
       ... on ContentItem {
         ...contentItemFragment
       }
+
+      ... on Breakout {
+        ...breakoutFragment
+      }
     }
   }
   ${contentItemFragment}
+  ${breakoutFragment}
 `;

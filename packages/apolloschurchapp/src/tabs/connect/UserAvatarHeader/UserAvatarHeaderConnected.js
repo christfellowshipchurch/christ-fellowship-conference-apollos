@@ -64,7 +64,7 @@ const UserAvatarHeaderConnected = ({ navigation }) => (
     {({
       data: {
         currentUser: {
-          rockGuid = '',
+          rockToken,
           profile: {
             photo,
             firstName,
@@ -76,29 +76,30 @@ const UserAvatarHeaderConnected = ({ navigation }) => (
           } = {},
         } = {},
       } = {},
+      loading,
       refetch,
     }) => (
-      <React.Fragment>
-        <UserAvatarHeader
-          firstName={firstName}
-          lastName={lastName}
-          church={church}
-          department={department}
-          jobTitle={jobTitle}
-          photo={photo}
-          refetch={refetch}
-          navigation={navigation}
-          disabled
-        />
-        {activeFeatures
-          .map((feature) => featuresMap[feature])
-          .map((Component, i) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <Component key={`${i}`} rockGuid={rockGuid} />
-          ))}
-        {console.log({ rockGuid })}
-      </React.Fragment>
-    )}
+        <React.Fragment>
+          <UserAvatarHeader
+            firstName={firstName}
+            lastName={lastName}
+            church={church}
+            department={department}
+            jobTitle={jobTitle}
+            photo={photo}
+            refetch={refetch}
+            loading={loading}
+            navigation={navigation}
+            disabled
+          />
+          {activeFeatures
+            .map((feature) => featuresMap[feature])
+            .map((Component, i) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <Component key={`${i}`} />
+            ))}
+        </React.Fragment>
+      )}
   </Query>
 );
 

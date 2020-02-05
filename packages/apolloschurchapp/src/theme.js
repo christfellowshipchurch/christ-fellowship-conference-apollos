@@ -1,8 +1,8 @@
 const colors = {
   primary: '#00aeef',
-  secondary: '#00aeef',
+  secondary: '#0F4D81',
   tertiary: '#00aeef',
-  screen: '#FCFCFC',
+  // screen: '#FCFCFC',
   paper: '#FFFFFF',
 
   alert: '#c64f55',
@@ -23,14 +23,14 @@ const colors = {
 
 const typography = {};
 
-const overrides = {
-  // must be an array of at least 2 values
-  background: '#F3F3F3',
-  backgroundGradient: ['#F3F3F3', '#F3F3F3'],
-};
+// const overrides = {
+//   // must be an array of at least 2 values
+//   background: '#F3F3F3',
+//   backgroundGradient: ['#F3F3F3', '#F3F3F3'],
+// };
 
 export default {
   colors,
   typography,
-  overrides,
+  // overrides,
 };

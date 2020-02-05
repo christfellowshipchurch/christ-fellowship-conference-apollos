@@ -80,6 +80,38 @@ export const largeCardFragment = gql`
   ${baseCardFragment}
 `;
 
+export const breakoutFragment = gql`
+  fragment breakoutFragment on Breakout {
+    title
+    summary
+    htmlContent
+    icon
+    categories {
+      id
+      value
+    }
+    times {
+      id
+      value
+    }
+    theme {
+      colors {
+        primary
+      }
+    }
+  }
+
+  fragment breakoutFilterFragment on BreakoutFilter {
+    value
+    icon
+    theme {
+      colors {
+        primary
+      }
+    }
+  }
+`;
+
 const getContentCard = gql`
   query getContentCard($contentId: ID!, $tile: Boolean!) {
     node(id: $contentId) {
@@ -87,10 +119,13 @@ const getContentCard = gql`
       __typename
       ...tileCardFragment @include(if: $tile)
       ...largeCardFragment @skip(if: $tile)
+      ...breakoutFragment
+      ...breakoutFilterFragment
     }
   }
   ${tileCardFragment}
   ${largeCardFragment}
+  ${breakoutFragment}
 `;
 
 export default getContentCard;

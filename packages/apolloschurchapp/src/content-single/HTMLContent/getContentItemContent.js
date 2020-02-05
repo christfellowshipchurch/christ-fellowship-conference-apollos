@@ -7,6 +7,11 @@ export default gql`
         id
         htmlContent
       }
+
+      ... on Breakout {
+        id
+        htmlContent
+      }
     }
   }
 `;

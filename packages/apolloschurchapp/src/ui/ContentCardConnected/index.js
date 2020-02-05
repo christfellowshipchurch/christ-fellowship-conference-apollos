@@ -12,6 +12,7 @@ const ContentCardConnected = ({
   contentId,
   isLoading,
   tile,
+  card,
   ...otherProps
 }) => {
   if (!contentId || isLoading) return null;
@@ -21,28 +22,18 @@ const ContentCardConnected = ({
       {({ data: { node = {} } = {}, loading, error }) => {
         if (error) console.log(error, 'content card error');
         if (error) return <ErrorCard error={error} />;
-        const theme = {
-          colors: {
-            background: {
-              accent: get(
-                node,
-                'theme.colors.primary',
-                'rgba(165, 165, 165, 0.30000000000000004)'
-              ),
-            },
-          },
-        };
+
         const coverImage = get(node, 'coverImage.sources', undefined);
-        return (
-          <ContentCard
-            {...node}
-            {...otherProps}
-            theme={theme}
-            coverImage={coverImage}
-            tile={tile}
-            isLoading={loading}
-          />
-        );
+        const theme = get(node, 'theme');
+
+        return React.createElement(card, {
+          ...node,
+          ...otherProps,
+          coverImage,
+          theme,
+          tile,
+          isLoading: loading,
+        });
       }}
     </Query>
   );
@@ -52,6 +43,11 @@ ContentCardConnected.propTypes = {
   isLoading: PropTypes.bool,
   contentId: PropTypes.string,
   tile: PropTypes.bool,
+  card: PropTypes.func,
+};
+
+ContentCardConnected.defaultProps = {
+  card: ContentCard,
 };
 
 export default ContentCardConnected;
