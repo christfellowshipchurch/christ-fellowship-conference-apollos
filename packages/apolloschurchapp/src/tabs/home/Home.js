@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Image, Text, View, Animated } from 'react-native';
+import { Text, View, Animated } from 'react-native';
 import { Query } from 'react-apollo';
 import SafeAreaView from 'react-native-safe-area-view';
 import { get } from 'lodash';
@@ -19,6 +19,7 @@ import getUserFeed from './getUserFeed';
 
 const FeedViewContainer = styled(({ theme }) => ({
   marginTop: theme.sizing.baseUnit,
+  height: '100%',
 }))(View);
 
 const Header = styled(({ theme }) => ({
@@ -41,25 +42,9 @@ const ListCard = ({ expand, sectionHeader, ...props }) => (
 );
 
 class Home extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      scrollY: new Animated.Value(0),
-    };
-  }
-
-  static navigationOptions = ({ navigation }) => {
-    const { params = {} } = navigation.state;
-
-    return {
-      header: <NavigationHeader scrollY={params.scrollY} title="Home" />,
-    };
+  static navigationOptions = {
+    header: <NavigationHeader title="Home" />,
   };
-
-  componentDidMount() {
-    this.props.navigation.setParams({ scrollY: this.state.scrollY });
-  }
 
   static propTypes = {
     navigation: PropTypes.shape({
@@ -109,13 +94,6 @@ class Home extends PureComponent {
                     error={error}
                     refetch={refetch}
                     onPressItem={this.handleOnPress}
-                    onScroll={Animated.event([
-                      {
-                        nativeEvent: {
-                          contentOffset: { y: this.state.scrollY },
-                        },
-                      },
-                    ])}
                   />
                 </FeedViewContainer>
               );

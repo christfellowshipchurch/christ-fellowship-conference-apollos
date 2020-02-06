@@ -12,7 +12,7 @@ const TextContainer = styled(({ theme, nested }) => ({
     paddingRight: nested ? theme.sizing.baseUnit : 0,
 }))(View);
 
-const BackIcon = styled(({ theme, nested }) => ({
+const BackIcon = styled(({ theme }) => ({
     color: theme.colors.primary,
 }))(FontAwesome5.Button);
 
@@ -26,9 +26,10 @@ const TabTitle = ({
     nested,
     theme,
 }) => {
+    // TODO : refactor this to use scaling with Transform to take advantage of Native Driver
     const fontSize = scrollY.interpolate({
         inputRange: [0, scrollDistance],
-        outputRange: [maxFontSize, minFontSize],
+        outputRange: [minFontSize, minFontSize],
         extrapolate: 'clamp',
     });
     const opacity = scrollY.interpolate({

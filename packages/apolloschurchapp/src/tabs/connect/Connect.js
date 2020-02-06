@@ -42,7 +42,6 @@ const Header = styled(({ theme }) => ({
   paddingBottom: theme.sizing.baseUnit * 3,
   height: '100%',
   backgroundColor: theme.overrides.background,
-  // paddingTop: theme.sizing.baseUnit * 4,
 }))(PaddedView);
 
 const StyledLoginButton = styled(({ theme }) => ({
@@ -82,6 +81,7 @@ class Connect extends PureComponent {
   };
 
   render() {
+    // return null;
     return (
       <BackgroundView style={{ flex: 1, height: '100%' }}>
         <Query query={getLoginState}>

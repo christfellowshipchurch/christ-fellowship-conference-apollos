@@ -21,7 +21,8 @@ if (Platform.OS === 'android') {
   cdnUri = cdnUri.replace('localhost', androidUri);
 }
 
-console.log('Logging some URI: ', { uri, cdnUri });
+// console.log('Logging some URI: ', { uri, cdnUri });
+console.log('Logging some URI: ', { uri });
 
 export default split(
   ({ query }) => {

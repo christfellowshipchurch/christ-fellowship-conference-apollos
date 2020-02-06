@@ -30,12 +30,6 @@ const StyledH5 = styled(() => ({
   padding: 0,
 }))(H5);
 
-const BrandIcon = withTheme(({ theme }) => ({
-  name: 'brand-icon',
-  size: theme.sizing.baseUnit * 3.0,
-  fill: theme.colors.primary,
-}))(Icon);
-
 const HeaderContainer = styled(({ theme }) => ({
   backgroundColor: theme.colors.background.paper,
 }))(SafeAreaView);

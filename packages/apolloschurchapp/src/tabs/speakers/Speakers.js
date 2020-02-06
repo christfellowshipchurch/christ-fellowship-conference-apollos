@@ -11,12 +11,8 @@ import NavigationHeader from '../../ui/NavigationHeader';
 import getSpeakers from './getSpeakers';
 
 class Speakers extends PureComponent {
-  static navigationOptions = ({ navigation }) => {
-    const { params = {} } = navigation.state;
-
-    return {
-      header: <NavigationHeader scrollY={params.scrollY} title="Speakers" />,
-    };
+  static navigationOptions = {
+    header: <NavigationHeader title="Speakers" />,
   };
 
   static propTypes = {
@@ -26,18 +22,6 @@ class Speakers extends PureComponent {
       navigate: PropTypes.func,
     }),
   };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      scrollY: new Animated.Value(0),
-    };
-  }
-
-  componentDidMount() {
-    this.props.navigation.setParams({ scrollY: this.state.scrollY });
-  }
 
   handleOnPress = (item) =>
     this.props.navigation.navigate('ContentSingle', {
@@ -61,11 +45,6 @@ class Speakers extends PureComponent {
                 error={error}
                 refetch={refetch}
                 onPressItem={this.handleOnPress}
-                onScroll={Animated.event([
-                  {
-                    nativeEvent: { contentOffset: { y: this.state.scrollY } },
-                  },
-                ])}
               />
             )}
           </Query>
