@@ -40,7 +40,6 @@ const JobTitleHeader = styled(({ theme }) => ({
   marginBottom: 5,
 
   color: theme.colors.darkSecondary,
-  textTransform: 'lowercase',
 }))(Text);
 
 const UserAvatarView = withIsLoading(

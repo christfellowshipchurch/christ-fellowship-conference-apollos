@@ -1,12 +1,4 @@
-import React, { Component } from 'react';
-import {
-  createBottomTabNavigator,
-  StackActions,
-  NavigationActions,
-} from 'react-navigation';
-import { capitalize, lowerCase } from 'lodash';
-
-import { withTheme } from '@apollosproject/ui-kit';
+import { createBottomTabNavigator } from 'react-navigation';
 
 import Home from './home';
 import Speakers from './speakers';

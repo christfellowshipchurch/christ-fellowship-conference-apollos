@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Query, useQuery } from 'react-apollo';
+import { Query } from 'react-apollo';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import Color from 'color';
@@ -15,7 +15,6 @@ import { BREAKOUTS_BY_FILTERS } from './BreakoutsWithFilter/queries';
 const Card = (item) => <ContentCardConnected {...item} card={ThinCard} />;
 const Loading = () => {
     const cards = [0, 1, 2, 3, 4, 5];
-
     return cards.map((n) => <ThinCard isLoading key={n} />);
 };
 
@@ -90,7 +89,6 @@ class BreakoutsByFilter extends PureComponent {
                                     content={get(data, 'breakouts', [])}
                                     isLoading={loading}
                                     error={error}
-                                    refetch={refetch}
                                     onPressItem={this.handleOnPress}
                                     onScroll={this.props.onScroll}
                                 />

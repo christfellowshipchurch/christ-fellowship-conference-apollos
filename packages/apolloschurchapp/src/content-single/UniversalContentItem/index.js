@@ -42,7 +42,6 @@ const UniversalContentItem = ({ content, loading, navigation }) => {
             </PaddedH3>
             <HTMLContent contentId={content.id} />
           </PaddedView>
-          <HorizontalContentFeed contentId={content.id} />
         </SafeAreaView>
       </FlexedScrollView>
     </BackgroundView>

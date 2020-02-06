@@ -1,24 +1,11 @@
 import React, { PureComponent } from 'react';
-import { Animated, View, Text, Platform } from 'react-native';
-import { Query } from 'react-apollo';
-import SafeAreaView from 'react-native-safe-area-view';
-import { get } from 'lodash';
+import { Animated, Platform, View } from 'react-native';
 import PropTypes from 'prop-types';
-import {
-  FeedView,
-  BackgroundView,
-  FlexedView,
-  styled,
-  withTheme,
-  H1,
-} from '@apollosproject/ui-kit';
+import { BackgroundView, FlexedView, withTheme } from '@apollosproject/ui-kit';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
-import Swiper from 'react-native-swiper';
 
-import Color from 'color';
 import NavigationHeader from '../../ui/NavigationHeader';
 import BreakoutsWithFilter from './BreakoutsWithFilter';
-import getSchedule from './getScheduleItems';
 
 const StyledSegmentedControlTab = withTheme(({ theme }) => ({
   borderRadius: 8,
@@ -44,21 +31,8 @@ const StyledSegmentedControlTab = withTheme(({ theme }) => ({
 }))(SegmentedControlTab);
 
 class Breakouts extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      scrollY: new Animated.Value(0),
-      selectedIndex: 0,
-    };
-  }
-
-  static navigationOptions = ({ navigation }) => {
-    const { params = {} } = navigation.state;
-
-    return {
-      header: <NavigationHeader scrollY={params.scrollY} title="Breakouts" />,
-    };
+  static navigationOptions = {
+    header: <NavigationHeader title="Breakouts" />,
   };
 
   static propTypes = {
@@ -69,13 +43,16 @@ class Breakouts extends PureComponent {
     }),
   };
 
-  componentDidMount() {
-    this.props.navigation.setParams({ scrollY: this.state.scrollY });
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selectedIndex: 0,
+    };
   }
 
   handleIndexChange = (index) => {
     this.setState({
-      ...this.state,
       selectedIndex: index,
     });
   };
@@ -99,15 +76,12 @@ class Breakouts extends PureComponent {
           onTabPress={this.handleIndexChange}
         />
 
-        <BreakoutsWithFilter
-          filter={this.state.selectedIndex > 0 ? 'CATEGORIES' : 'TIMES'}
-          onPressItem={this.handleOnPress}
-          onScroll={Animated.event([
-            {
-              nativeEvent: { contentOffset: { y: this.state.scrollY } },
-            },
-          ])}
-        />
+        <FlexedView>
+          <BreakoutsWithFilter
+            filter={this.state.selectedIndex > 0 ? 'CATEGORIES' : 'TIMES'}
+            onPressItem={this.handleOnPress}
+          />
+        </FlexedView>
       </BackgroundView>
     );
   }

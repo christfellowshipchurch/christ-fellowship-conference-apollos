@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Text, View, StyleSheet } from 'react-native';
 import { Query } from 'react-apollo';
 import { withNavigation } from 'react-navigation';
@@ -16,7 +17,6 @@ import ContentCardConnected from '../../../ui/ContentCardConnected';
 import { ThinCard } from '../../../ui/Cards';
 import { WebBrowserConsumer } from '../../../ui/WebBrowser';
 
-import getLoginState from '../../../auth/getLoginState';
 import { MY_BREAKOUTS, BREAKOUTS_SIGN_UP_URL } from './queries';
 
 const Title = styled(({ theme }) => ({
@@ -42,29 +42,28 @@ const BreakoutSignUpButton = styled(({ theme }) => ({
   marginHorizontal: theme.sizing.baseUnit,
 }))(Button);
 
-const MyBreakoutList = ({ navigation }) => (
-  <View>
-    <Title>My Breakouts</Title>
-    <Query query={MY_BREAKOUTS} fetchPolicy="cache-and-network">
-      {({ loading, data }) => {
-        if (loading) {
-          const theme = { colors: { primary: 'rgba(0, 0, 0, 0.35)' } };
-          return (
-            <BreakoutContainer>
-              <ThinCard isLoading theme={theme} />
-              <ThinCard isLoading theme={theme} />
-              <ThinCard isLoading theme={theme} />
-            </BreakoutContainer>
-          );
-        }
+const BreakoutReloadButton = styled(({ theme }) => ({
+  marginVertical: theme.sizing.baseUnit * 0.5,
+  marginHorizontal: theme.sizing.baseUnit,
+  padding: theme.sizing.baseUnit * 0.5,
+  alignItems: 'center',
+}))(TouchableScale);
 
-        const myBreakouts = get(data, 'myBreakouts', []);
+const loadingTheme = { colors: { primary: 'rgba(0, 0, 0, 0.35)' } };
 
-        return myBreakouts.map(({ id, times, theme, ...props }, i) => (
+const MyBreakoutList = ({ navigation, breakouts, loading }) =>
+  loading ? (
+    <BreakoutContainer>
+      <ThinCard isLoading theme={loadingTheme} />
+      <ThinCard isLoading theme={loadingTheme} />
+      <ThinCard isLoading theme={loadingTheme} />
+    </BreakoutContainer>
+  ) : (
+      <View>
+        <Title>My Breakouts</Title>
+        {breakouts.map(({ id, times, theme, ...props }, i) => (
           <BreakoutContainer key={i}>
-            <BreakoutSessionTitle>
-              {get(times, '[0].value')}
-            </BreakoutSessionTitle>
+            <BreakoutSessionTitle>{get(times, '[0].value')}</BreakoutSessionTitle>
             <TouchableScale
               onPress={() =>
                 navigation.push('ContentSingle', {
@@ -92,19 +91,25 @@ const MyBreakoutList = ({ navigation }) => (
               />
             </TouchableScale>
           </BreakoutContainer>
-        ));
-      }}
-    </Query>
-  </View>
-);
+        ))}
+      </View>
+    );
 
-const MyBreakoutSignUp = () => (
+MyBreakoutList.propTypes = {
+  breakouts: PropTypes.arrayOf(PropTypes.object),
+  loading: PropTypes.bool,
+  navigation: PropTypes.shape({
+    push: PropTypes.func,
+  }),
+};
+
+const MyBreakoutSignUp = ({ isLoading }) => (
   <Query query={BREAKOUTS_SIGN_UP_URL} fetchPolicy="network-only">
     {({ loading, data }) => (
       <WebBrowserConsumer>
         {(openUrl) => (
           <BreakoutSignUpButton
-            isLoading={loading}
+            isLoading={loading || isLoading}
             title="Select Breakouts"
             onPress={() => openUrl(data.breakoutSignUpUrl)}
           />
@@ -115,14 +120,23 @@ const MyBreakoutSignUp = () => (
 );
 
 const MyBreakouts = ({ navigation }) => (
-  <Query query={getLoginState}>
-    {({ loading, data }) => {
-      const isLoggedIn = get(data, 'isLoggedIn', false);
+  <Query query={MY_BREAKOUTS} fetchPolicy="cache-and-network">
+    {({ loading, data, refetch }) => {
+      const myBreakouts = get(data, 'myBreakouts', []);
 
-      return isLoggedIn ? (
-        <MyBreakoutList navigation={navigation} />
+      return myBreakouts.length ? (
+        <MyBreakoutList
+          navigation={navigation}
+          loading={loading}
+          breakouts={myBreakouts}
+        />
       ) : (
-          <MyBreakoutSignUp />
+          <FlexedView>
+            <MyBreakoutSignUp isLoading={loading} />
+            <BreakoutReloadButton onPress={() => refetch()}>
+              <Text>Reload Breakouts</Text>
+            </BreakoutReloadButton>
+          </FlexedView>
         );
     }}
   </Query>

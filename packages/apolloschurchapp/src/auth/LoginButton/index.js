@@ -18,7 +18,7 @@ class LoginButton extends PureComponent {
   handleLoginPress = () => {
     this.props.navigation.push('Auth');
     OneSignal.registerForPushNotifications();
-  }
+  };
 
   render() {
     const { navigation, ...otherProps } = this.props;

@@ -1,7 +1,10 @@
 import React, { PureComponent } from 'react';
 import { View, SafeAreaView } from 'react-native';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { get } from 'lodash';
 
 import { track, events } from 'apolloschurchapp/src/analytics';
 import { WebBrowserConsumer } from 'apolloschurchapp/src/ui/WebBrowser';
@@ -51,7 +54,7 @@ class Form extends PureComponent {
                 label="Email"
                 type="email"
                 value={values.email}
-                error={touched.email && errors.email}
+                error={errors.email}
                 onChangeText={(text) => setFieldValue('email', text)}
                 onSubmitEditing={() => this.passwordInput.focus()}
                 returnKeyType="next"
@@ -62,7 +65,7 @@ class Form extends PureComponent {
                 label="Password"
                 type="password"
                 value={values.password}
-                error={touched.password && errors.password}
+                error={errors.password}
                 onChangeText={(text) => setFieldValue('password', text)}
                 onSubmitEditing={handleSubmit}
                 returnKeyType="go"
@@ -72,20 +75,7 @@ class Form extends PureComponent {
                   this.passwordInput = r;
                 }}
               />
-              <WebBrowserConsumer>
-                {(openUrl) => (
-                  <ButtonLink
-                    onPress={() => {
-                      track({ eventName: events.UserForgotPassword });
-                      return openUrl(
-                        'https://my.christfellowshipconference.com/page/56/'
-                      );
-                    }}
-                  >
-                    Forgot your password?
-                  </ButtonLink>
-                )}
-              </WebBrowserConsumer>
+              <ForgotPassword />
             </View>
           </PaddedView>
         </KeyboardAwareScrollView>
@@ -103,5 +93,34 @@ class Form extends PureComponent {
     );
   }
 }
+
+const PASSWORD_REST_URL = gql`
+  query passwordResetUrl {
+    passwordResetUrl
+  }
+`;
+
+const ForgotPassword = () => (
+  <Query query={PASSWORD_REST_URL} fetchPolicy="network-only">
+    {({ data, loading }) =>
+      loading ? (
+        <ButtonLink isLoading>Forgot your password?</ButtonLink>
+      ) : (
+          <WebBrowserConsumer>
+            {(openUrl) => (
+              <ButtonLink
+                onPress={() => {
+                  track({ eventName: events.UserForgotPassword });
+                  return openUrl(get(data, 'passwordResetUrl', ''));
+                }}
+              >
+                Forgot your password?
+            </ButtonLink>
+            )}
+          </WebBrowserConsumer>
+        )
+    }
+  </Query>
+);
 
 export default Form;

@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Query, useQuery } from 'react-apollo';
+import { Query } from 'react-apollo';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
@@ -46,8 +46,6 @@ class BreakoutsByFilter extends PureComponent {
                         )}
                         isLoading={loading}
                         error={error}
-                        refetch={refetch}
-                        // onPressItem={this.handleOnPress}
                         onPressItem={this.props.onPressItem}
                         onScroll={this.props.onScroll}
                     />
