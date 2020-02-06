@@ -32,8 +32,14 @@ const BackgroundContainer = styled(({ theme }) => ({
 }))(BackgroundView);
 
 class UserSettings extends PureComponent {
-  static navigationOptions = () => ({
-    header: <NavigationHeader nested title="Settings" />,
+  static navigationOptions = ({ navigation }) => ({
+    header: (
+      <NavigationHeader
+        nested
+        title="Settings"
+        goBack={() => navigation.goBack(null)}
+      />
+    ),
   });
 
   static propTypes = {
