@@ -45,14 +45,11 @@ class MapFeed extends PureComponent {
   render() {
     const { height, width } = Dimensions.get('window');
 
-    console.log({ MAP_LINK });
-
     return (
       <BackgroundView>
         <Query query={MAP_LINK} fetchPolicy="cache-and-network">
-          {({ loading, data, error }) => {
-            console.log({ data, loading, error });
-            return loading ? (
+          {({ loading, data, error }) =>
+            loading ? (
               <ActivityIndicator />
             ) : (
                 <SafeAreaView style={{ flex: 1, width: '100%', height: '100%' }}>
@@ -66,8 +63,8 @@ class MapFeed extends PureComponent {
                     />
                   </InlineWebViewContainer>
                 </SafeAreaView>
-              );
-          }}
+              )
+          }
         </Query>
       </BackgroundView>
     );
