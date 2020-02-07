@@ -58,21 +58,26 @@ export const schema = `
   }
 `;
 
+// export const defaults = {
+//   __typename: 'Query',
+//   authToken: null,
+//   cacheLoaded: false,
+//   pushId: null,
+//   mediaPlayer: {
+//     __typename: 'MediaPlayerState',
+//     currentTrack: null,
+//     isPlaying: false,
+//     isFullscreen: false,
+//     isVisible: false,
+//     currentTime: 0,
+//     showVideo: true,
+//     muted: false,
+//   },
+// };
+
 export const defaults = {
   __typename: 'Query',
-  authToken: null,
   cacheLoaded: false,
-  pushId: null,
-  mediaPlayer: {
-    __typename: 'MediaPlayerState',
-    currentTrack: null,
-    isPlaying: false,
-    isFullscreen: false,
-    isVisible: false,
-    currentTime: 0,
-    showVideo: true,
-    muted: false,
-  },
 };
 
 let trackId = 0;
@@ -91,7 +96,12 @@ export const resolvers = {
     },
   },
   Mutation: {
-    logout: () => {
+    logout: async (root, args, { cache }) => {
+      console.log({ cache });
+
+      await cache.writeData({ data: defaults });
+
+      console.log({ cache });
       client.resetStore();
       track({ eventName: events.UserLogout });
       return null;

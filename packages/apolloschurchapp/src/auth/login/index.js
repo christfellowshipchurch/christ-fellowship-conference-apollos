@@ -33,6 +33,7 @@ const Login = ({ onLogin }) => (
             if (onLogin) onLogin();
           } catch (e) {
             const { graphQLErrors } = e;
+            console.log({ e });
             if (
               graphQLErrors.length &&
               graphQLErrors.find(
@@ -44,7 +45,7 @@ const Login = ({ onLogin }) => (
             } else {
               setFieldError(
                 'password',
-                'Unknown error. Please try again later.'
+                'Please make sure you enter in the correct email and password.'
               );
             }
           }

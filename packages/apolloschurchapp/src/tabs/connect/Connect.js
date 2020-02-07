@@ -91,9 +91,8 @@ class Connect extends PureComponent {
                 <FlexedView>
                   <UserAvatarHeaderConnected key="UserAvatarHeaderConnected" />
                   <ActionTable />
-                  <ScrollView>
-                    <MyBreakouts />
-                  </ScrollView>
+
+                  <MyBreakouts />
                 </FlexedView>
               );
 
