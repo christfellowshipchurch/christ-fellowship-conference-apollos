@@ -5,7 +5,6 @@ import { ApolloClient } from 'apollo-client';
 import { ApolloLink } from 'apollo-link';
 import SplashScreen from 'react-native-splash-screen';
 import gql from 'graphql-tag';
-import DeviceInfo from 'react-native-device-info';
 
 import { resolvers, schema, defaults } from '../store';
 import httpLink from './httpLink';
@@ -25,8 +24,6 @@ export const client = new ApolloClient({
   shouldBatch: true,
   resolvers,
   typeDefs: schema,
-  name: DeviceInfo.getApplicationName(),
-  version: DeviceInfo.getVersion(),
 });
 
 // Hack to give auth link access to method on client;

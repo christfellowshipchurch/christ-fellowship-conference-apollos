@@ -6,6 +6,7 @@ import { AsyncStorage } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 import { CachePersistor } from 'apollo-cache-persist';
 import gql from 'graphql-tag';
+import Config from 'react-native-config';
 
 import introspectionQueryResultData from './fragmentTypes.json';
 
@@ -24,7 +25,8 @@ export const MARK_CACHE_LOADED = gql`
 // We reset our apollo cache on every build:
 // TODO: this could be optimized by only reseting cache when our schema or client-side schema changes,
 // however there is risk for missing changes and breaking things in production, so this is safer.
-const SCHEMA_VERSION = `${DeviceInfo.getVersion()}${DeviceInfo.getBuildNumber()}`; // Must be a string.
+// const SCHEMA_VERSION = `${DeviceInfo.getVersion()}${DeviceInfo.getBuildNumber()}`; // Must be a string.
+const SCHEMA_VERSION = `${Config.SCHEMA_VERSION}`; // Must be a string.
 const SCHEMA_VERSION_KEY = 'apollo-schema-version';
 
 const nodeCacheRedirect = (_, { id }, { getCacheKey }) =>
