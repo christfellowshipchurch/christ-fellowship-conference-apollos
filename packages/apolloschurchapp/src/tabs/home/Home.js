@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Text, View, Animated } from 'react-native';
+import { Text, View } from 'react-native';
 import { Query } from 'react-apollo';
 import SafeAreaView from 'react-native-safe-area-view';
 import { get } from 'lodash';

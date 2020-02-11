@@ -34,7 +34,6 @@ const UserAvatarHeader = ({
   firstName,
   lastName,
   church,
-  department,
   jobTitle,
   photo,
   refetch,

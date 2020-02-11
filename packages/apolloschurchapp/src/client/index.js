@@ -15,8 +15,6 @@ import cache, { ensureCacheHydration } from './cache';
 const link = clientStateLink.concat(ApolloLink.from([authLink, httpLink]));
 const wipeData = () => cache.writeData({ data: defaults });
 
-let clearStore;
-
 export const client = new ApolloClient({
   link,
   cache,
@@ -25,10 +23,6 @@ export const client = new ApolloClient({
   resolvers,
   typeDefs: schema,
 });
-
-// Hack to give auth link access to method on client;
-// eslint-disable-next-line prefer-destructuring
-clearStore = client.clearStore;
 
 wipeData();
 // Ensure that media player still works after logout.

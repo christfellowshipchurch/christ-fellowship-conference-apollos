@@ -1,12 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Text,
-  View,
-  StyleSheet,
-  ScrollView,
-  ActivityIndicator,
-} from 'react-native';
+import { Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { Query } from 'react-apollo';
 import { withNavigation } from 'react-navigation';
 import { get } from 'lodash';

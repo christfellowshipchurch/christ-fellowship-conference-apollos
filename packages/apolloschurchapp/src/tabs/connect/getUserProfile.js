@@ -11,9 +11,7 @@ export default gql`
         email
         nickName
         church
-        department
         jobTitle
-        activeFeatures
         photo {
           uri
         }

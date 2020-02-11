@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Query } from 'react-apollo';
-import { get, has } from 'lodash';
+import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
 import { ErrorCard, ThemeMixin } from '@apollosproject/ui-kit';
@@ -20,7 +20,6 @@ class ContentSingle extends PureComponent {
       getParam: PropTypes.func,
       push: PropTypes.func,
     }),
-    headerColor: PropTypes.string,
   };
 
   static navigationOptions = ({ navigation }) => {

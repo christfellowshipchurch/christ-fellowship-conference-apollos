@@ -78,7 +78,7 @@ class BreakoutsByFilter extends PureComponent {
                     variables={variables}
                     fetchPolicy="cache-and-network"
                 >
-                    {({ loading, error, data, refetch }) =>
+                    {({ loading, error, data }) =>
                         loading ? (
                             <FlexedView>
                                 <Loading />

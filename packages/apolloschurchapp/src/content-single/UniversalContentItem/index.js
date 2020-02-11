@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView, SafeAreaView } from 'react-native';
+import { ScrollView, SafeAreaView } from 'react-native';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import {
@@ -11,7 +11,6 @@ import {
 } from '@apollosproject/ui-kit';
 import MediaControls from '../MediaControls';
 import HTMLContent from '../HTMLContent';
-import HorizontalContentFeed from '../HorizontalContentFeed';
 
 const FlexedScrollView = styled({ flex: 1 })(ScrollView);
 

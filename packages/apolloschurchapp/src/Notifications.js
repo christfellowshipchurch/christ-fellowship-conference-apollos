@@ -58,13 +58,13 @@ export default class NotificationsInit extends Component {
     }
   };
 
-  onIds = (device) => {
-    // Uncomment to support sending push notifications from Rock
-    // client.mutate({
-    //   mutation: UPDATE_DEVICE_PUSH_ID,
-    //   variables: { pushId: device.userId },
-    // });
-  };
+  // onIds = (device) => {
+  //   // Uncomment to support sending push notifications from Rock
+  //   // client.mutate({
+  //   //   mutation: UPDATE_DEVICE_PUSH_ID,
+  //   //   variables: { pushId: device.userId },
+  //   // });
+  // };
 
   render() {
     return null;

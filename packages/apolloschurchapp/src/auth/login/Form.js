@@ -38,7 +38,6 @@ class Form extends PureComponent {
   render() {
     const {
       values,
-      touched,
       errors,
       handleSubmit,
       setFieldValue,

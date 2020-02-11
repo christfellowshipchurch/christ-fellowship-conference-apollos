@@ -4,7 +4,7 @@ import wait from 'waait';
 
 import Providers from 'apolloschurchapp/src/Providers';
 
-import getLoginState from '../connect/getLoginState';
+import getLoginState from '../tabs/connect/getLoginState';
 import UserSettings from '.';
 
 describe('UserSettings component', () => {

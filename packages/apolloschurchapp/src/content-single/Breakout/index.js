@@ -1,10 +1,9 @@
 import React from 'react';
-import { Text, View, ScrollView, SafeAreaView } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
 import { get, filter } from 'lodash';
 import PropTypes from 'prop-types';
 import {
   styled,
-  GradientOverlayImage,
   PaddedView,
   H3,
   H4,
@@ -12,16 +11,12 @@ import {
   FlexedView,
   withTheme,
   BackgroundView,
-  ChannelLabel,
   UIText,
 } from '@apollosproject/ui-kit';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Color from 'color';
 
 import HTMLContent from '../HTMLContent';
-import NavigationHeader from '../../ui/NavigationHeader';
-
-const FlexedScrollView = styled({ flex: 1 })(ScrollView);
 
 const Title = styled(({ theme }) => ({
   color: theme.colors.white,
@@ -67,7 +62,7 @@ const LabelPill = styled(({ theme }) => ({
   fontSize: theme.typography.baseFontSize,
 }))(Text);
 
-const Breakout = ({ content, loading, navigation }) => {
+const Breakout = ({ content, loading }) => {
   const categories = get(content, 'categories', []);
   const times = filter(
     get(content, 'times', []),
@@ -109,8 +104,8 @@ const Breakout = ({ content, loading, navigation }) => {
 
             {!!times.length && <H6>Sessions:</H6>}
             {times.map(
-              ({ value }, i) =>
-                !!value && <TimeLabel key={i}>{value}</TimeLabel>
+              ({ value }) =>
+                !!value && <TimeLabel key={value}>{value}</TimeLabel>
             )}
 
             {!!location &&

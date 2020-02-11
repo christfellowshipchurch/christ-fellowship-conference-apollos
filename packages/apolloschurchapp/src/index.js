@@ -6,7 +6,6 @@ import { withTheme } from '@apollosproject/ui-kit';
 import MediaPlayer from 'apolloschurchapp/src/ui/MediaPlayer';
 import BackgroundView from './ui/BackgroundView';
 import Providers from './Providers';
-import NotificationsInit from './Notifications';
 import NavigationService from './NavigationService';
 import ContentSingle from './content-single';
 import Tabs from './tabs';
@@ -45,7 +44,6 @@ const App = () => (
           NavigationService.setTopLevelNavigator(navigatorRef);
         }}
       />
-      <NotificationsInit />
       <MediaPlayer />
     </BackgroundView>
   </Providers>

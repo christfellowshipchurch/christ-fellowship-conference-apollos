@@ -35,7 +35,7 @@ class BreakoutsByFilter extends PureComponent {
                 variables={{ filter: this.props.filter }}
                 fetchPolicy="cache-and-network"
             >
-                {({ loading, error, data, refetch }) => (
+                {({ loading, error, data }) => (
                     <FeedView
                         ListItemComponent={Card}
                         content={get(data, 'breakoutFilters', []).map(

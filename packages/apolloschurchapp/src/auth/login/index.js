@@ -33,7 +33,6 @@ const Login = ({ onLogin }) => (
             if (onLogin) onLogin();
           } catch (e) {
             const { graphQLErrors } = e;
-            console.log({ e });
             if (
               graphQLErrors.length &&
               graphQLErrors.find(

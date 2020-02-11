@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Animated, Platform, View } from 'react-native';
+import { Platform } from 'react-native';
 import PropTypes from 'prop-types';
 import { BackgroundView, FlexedView, withTheme } from '@apollosproject/ui-kit';
 import SegmentedControlTab from 'react-native-segmented-control-tab';

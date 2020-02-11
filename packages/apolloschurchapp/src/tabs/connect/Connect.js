@@ -3,7 +3,7 @@ import { ScrollView, Image } from 'react-native';
 import { Query } from 'react-apollo';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
-import { HeaderBackButton, SafeAreaView } from 'react-navigation';
+import { SafeAreaView } from 'react-navigation';
 
 import { LoginButton } from 'apolloschurchapp/src/auth';
 import {

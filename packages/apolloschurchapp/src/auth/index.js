@@ -9,9 +9,7 @@ import {
   H2,
   H5,
   styled,
-  Icon,
   ButtonLink,
-  withTheme,
 } from '@apollosproject/ui-kit';
 
 import { track } from 'apolloschurchapp/src/analytics';
