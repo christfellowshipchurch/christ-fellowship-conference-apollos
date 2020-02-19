@@ -51,7 +51,7 @@
     "@apollosproject/babel-preset-apollos": "^0.8.0-alpha.6",
     "@babel/cli": "7.1.5",
     "@babel/core": "7.1.6",
-    "codecov": "3.0.2",
+    "codecov": "3.6.5",
     "coveralls": "3.0.1",
     "jest": "23.0.0",
     "jest-fetch-mock": "1.6.2",
